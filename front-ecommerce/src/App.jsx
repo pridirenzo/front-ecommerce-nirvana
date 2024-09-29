@@ -3,6 +3,7 @@ import LogIn from "./components/logIn/LogIn";
 import SignIn from "./components/signIn/SignIn";
 import Profile from "./components/profile/Profile";
 import ProductDetail from "./components/productDetail/productDetail";
+import NotFound from "./routes/NotFound";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 
@@ -21,8 +22,11 @@ function App() {
     { path: "/profile",
       element: <Profile />
     },
-    {path: "/product",
+    { path: "/product",
       element: <ProductDetail />
+    },
+    { path: "*",
+      element: <NotFound/>
     }
   ]);
 
