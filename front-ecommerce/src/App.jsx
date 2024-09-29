@@ -3,6 +3,7 @@ import LogIn from "./components/logIn/LogIn";
 import SignIn from "./components/signIn/SignIn";
 import Profile from "./components/profile/Profile";
 import ProductDetail from "./components/productDetail/productDetail";
+import PurchaseDetail from "./components/purchaseDetail/PurchaseDetail";
 import NotFound from "./routes/NotFound";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -27,6 +28,9 @@ function App() {
     },
     { path: "*",
       element: <NotFound/>
+    },
+    { path: "/purchase",
+      element: <PurchaseDetail/>
     }
   ]);
 
