@@ -1,6 +1,7 @@
 import Landing from "./components/landing/Landing";
 import LogIn from "./components/logIn/LogIn";
 import SignIn from "./components/signIn/SignIn";
+import Profile from "./components/profile/Profile";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
     },
     { path: "/register",
       element: <SignIn />
+    },
+    { path: "/profile",
+      element: <Profile />
     }
   ]);
 
