@@ -1,0 +1,27 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.mi-navbar {
+    background-color: #E6D901;
+  }
+
+.nav-link, .navbar-brand {
+    color: black !important; 
+    background-color: #E6D901 !important;
+  }
+
+.mi-container {
+    background-color: #E6D901; 
+  }
+
+.custom-form {
+  background-color: #E6D901 !important; 
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.col{
+    background-color: #E6D901;
+}
+
+
+

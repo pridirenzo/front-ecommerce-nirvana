@@ -1,10 +1,15 @@
-import { Card, Button } from "react-bootstrap";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card, Button, Navbar } from "react-bootstrap";
+import NavBar from "../navbar/NavBar.jsx";
 // textos de prueba, debe mapearse desde el back!!!!!!!
 
 const Landing = () => {
   return (
     <>
+
+    <div>
+      <NavBar />
+    </div> 
       <h2 className="d-flex justify-content-center mt-5 mb-5">
         Bienvenidos ⭐
       </h2>
@@ -12,7 +17,7 @@ const Landing = () => {
         <img
           className="img-fluid"
           style={{ maxWidth: "100%", height: "100%" }}
-          src="https://vignette.wikia.nocookie.net/music-bands-database/images/6/6e/Nirvana.jpg/revision/latest?cb=20180918171837&path-prefix=fr"
+          src="https://elasombrario.publico.es/wp-content/uploads/sites/1/2022/01/nirvana.jpg"
           alt="Nirvana"
         />
       </div>
