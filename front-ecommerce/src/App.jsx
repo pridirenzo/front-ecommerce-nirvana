@@ -6,6 +6,7 @@ import ProductDetail from "./components/productDetail/productDetail";
 import PurchaseDetail from "./components/purchaseDetail/PurchaseDetail";
 import NotFound from "./routes/NotFound";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Footer from "./components/footer/Footer";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
     <>
       <div>
         <RouterProvider router={router} />
+        <Footer />
       </div>
     </>
   );
