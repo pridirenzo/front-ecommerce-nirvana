@@ -1,9 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button, Navbar } from "react-bootstrap";
 import NavBar from "../navbar/NavBar.jsx";
+import { useNavigate } from 'react-router-dom';
 // textos de prueba, debe mapearse desde el back!!!!!!!
 
 const Landing = () => {
+
+  const navigate = useNavigate()
+
+
   return (
     <>
 
@@ -38,7 +43,10 @@ const Landing = () => {
               Nirvana Smiley Tee
             </Card.Title>
             <Card.Text>$24.99</Card.Text>
-            <Button variant="dark">Comprar</Button>
+            <Button 
+            variant="dark"
+            onClick={() => navigate('/product')}
+            >Comprar</Button>
           </Card.Body>
         </Card>
       </div>
