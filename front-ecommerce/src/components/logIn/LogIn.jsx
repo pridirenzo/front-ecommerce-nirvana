@@ -19,7 +19,7 @@ const LogIn = () => {
             <Button
               type="submit"
               variant="dark"
-              className="mt-4 d-flex justify-content-center text-align-center align-items-center w-100"
+              className="form-button mt-4 d-flex justify-content-center text-align-center align-items-center w-100"
             >
               INICIAR SESIÓN
             </Button>

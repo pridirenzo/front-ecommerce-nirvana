@@ -3,11 +3,56 @@
 
 *{
   color: #E6D901;
-  background-color: #090909;
+  background-color: #090909; 
   font-family: "Abril Fatface", 'Courier New';
   margin: 0;
   padding: 0;
 }
 
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
 
+.animated-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffcc00;
+  animation: slideDown 1s ease-out;
+}
 
+/* Efecto de hover para las cards */
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: scale(1.05); /* Agranda ligeramente la card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Añade una sombra más intensa */
+}
+
+.icon-hover {
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.icon-hover:hover {
+  transform: scale(1.2); /* Aumenta el tamaño en 20% */
+  color: #f0ad4e; /* Cambia el color a un tono diferente */
+}
+
+.form-button {
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.form-button:hover{
+  transform: scale(1.1); /* Aumenta el tamaño en 20% */
+  color:#E6D901;/* Cambia el color a un tono diferente */
+}
