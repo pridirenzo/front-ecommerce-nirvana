@@ -17,13 +17,17 @@ const NavBar = () => {
     navigate("/register"); 
   };
 
+  const handleHomeClick = () => {
+    navigate("/"); 
+  };
+
   return (
     <>
       <Navbar data-bs-theme="dark" className="mi-navbar" sticky="top">
         <Container fluid className="mi-container">
-          <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+          <Navbar.Brand href="#home">Nirvana E-commerce</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link onClick={handleHomeClick}>Home</Nav.Link>
             <NavDropdown title="Merch">
               <NavDropdown.Item href="#remeras">Remeras</NavDropdown.Item>
               <NavDropdown.Item href="#buzos">Buzos</NavDropdown.Item>

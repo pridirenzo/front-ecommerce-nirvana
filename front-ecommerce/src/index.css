@@ -27,14 +27,13 @@
   animation: slideDown 1s ease-out;
 }
 
-/* Efecto de hover para las cards */
 .hover-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hover-card:hover {
-  transform: scale(1.05); /* Agranda ligeramente la card */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Añade una sombra más intensa */
+  transform: scale(1.05); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
 }
 
 .icon-hover {
@@ -43,8 +42,8 @@
 }
 
 .icon-hover:hover {
-  transform: scale(1.2); /* Aumenta el tamaño en 20% */
-  color: #f0ad4e; /* Cambia el color a un tono diferente */
+  transform: scale(1.2); 
+  color: #f0ad4e; 
 }
 
 .form-button {
@@ -53,6 +52,16 @@
 }
 
 .form-button:hover{
-  transform: scale(1.1); /* Aumenta el tamaño en 20% */
-  color:#E6D901;/* Cambia el color a un tono diferente */
+  transform: scale(1.1); 
+  color:#E6D901;
+}
+
+.add-button {
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.add-button:hover{
+  transform: scale(1.1);
+  color:#E6D901;
 }

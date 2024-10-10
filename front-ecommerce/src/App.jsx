@@ -7,7 +7,8 @@ import PurchaseDetail from "./components/purchaseDetail/PurchaseDetail";
 import NotFound from "./routes/NotFound";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/footer/Footer";
-
+import AdminDashboard from "./components/adminDashboard/AdminDashboard";
+import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,12 @@ function App() {
     },
     { path: "/purchase",
       element: <PurchaseDetail/>
+    },
+    { path: "/admin",
+      element: <AdminDashboard/>
+    },
+    { path: "/superadmin",
+      element: <SuperAdminDashboard/>
     }
   ]);
 
@@ -39,7 +46,7 @@ function App() {
     <>
       <div>
         <RouterProvider router={router} />
-        <Footer />
+        <Footer/>
       </div>
     </>
   );
