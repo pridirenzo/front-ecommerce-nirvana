@@ -15,7 +15,7 @@ const Footer = () => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
       <div className="footer-custom py-2 w-full bg-yellow  text-dark relative mt-auto flex-grow-0">
         <div className="footer-custom container mx-auto">
           <div className="footer-custom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
@@ -118,6 +118,7 @@ const Footer = () => {
         </div>
         
       </div>
+      <span id="contacto"></span> {/* Identificador para la sección de contacto */}
     </div>
   );
 };
