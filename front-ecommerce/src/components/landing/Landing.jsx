@@ -83,8 +83,8 @@ const Landing = ({products}) => {
       <h3 className="d-flex justify-content-center">Prendas 🏷️</h3>
       <div className="d-flex justify-content-center mt-4">
         
-        {products.map((product) => (
-          <Card className="hover-card" style={{ width: "20rem" }}>
+        {products.map((product, index) => (
+          <Card key={index} className="hover-card" style={{ width: "20rem" }}>
           <Card.Img
             variant="top"
             src = {product.imageUrl}
