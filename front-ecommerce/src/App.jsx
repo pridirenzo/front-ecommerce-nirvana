@@ -9,12 +9,30 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
+import { useEffect, useState } from "react";
+import { GetProducts } from "./components/api/apiService";
 
 function App() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {try {
+      const Products = await GetProducts()
+      console.log(Products.data)
+      setProducts(Products.data)
+    } catch (error) {
+      console.log(error)
+    }} 
+    fetchData()
+  }, [])
+
+
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Landing />,
+      element: <Landing products = {products} />,
     },
     { path: "/login", 
       element: <LogIn /> 
@@ -41,6 +59,7 @@ function App() {
       element: <SuperAdminDashboard/>
     }
   ]);
+
 
   return (
     <>
