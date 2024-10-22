@@ -6,19 +6,21 @@ import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import "../navbar/Navbar.css";
 import search from "../icons/search.svg";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../../services/theme/theme.context";
 
 const NavBar = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); 
- 
+  const { toggleTheme } = useContext(ThemeContext);
+
   const handleAccountClick = () => {
-    navigate("/register"); 
+    navigate("/register");
   };
 
   const handleHomeClick = () => {
-    navigate("/"); 
+    navigate("/");
   };
 
   return (
@@ -44,8 +46,11 @@ const NavBar = () => {
               <NavDropdown.Item href="#pines">Pines</NavDropdown.Item>
               <NavDropdown.Item href="#otros">Otros</NavDropdown.Item>
             </NavDropdown>
+            <Button variant="dark" onClick={toggleTheme}>
+              Cambiar tema
+            </Button>
           </Nav>
-    
+
           <Form inline className="custom-form me-3">
             <InputGroup>
               <Form.Control placeholder="Buscar" aria-label="Buscar" />
@@ -70,6 +75,6 @@ const NavBar = () => {
       </Navbar>
     </>
   );
-}
+};
 
 export default NavBar;

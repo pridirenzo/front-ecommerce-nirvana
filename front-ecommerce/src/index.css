@@ -3,7 +3,6 @@
 
 *{
   color: #E6D901;
-  background-color: #090909; 
   font-family: "Abril Fatface", 'Courier New';
   margin: 0;
   padding: 0;
@@ -29,6 +28,7 @@
 
 .hover-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgb(124, 124, 124);
 }
 
 .hover-card:hover {
