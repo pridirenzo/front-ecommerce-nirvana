@@ -3,7 +3,9 @@ import { Card, Button, Carousel, Container } from "react-bootstrap";
 import NavBar from "../navbar/NavBar.jsx";
 // textos de prueba, debe mapearse desde el back!!!!!!!
 
-const Landing = () => {
+const Landing = ({products}) => {
+
+ console.log(products)
   return (
     <>
       <div>
@@ -80,19 +82,23 @@ const Landing = () => {
       </h2>
       <h3 className="d-flex justify-content-center">Prendas 🏷️</h3>
       <div className="d-flex justify-content-center mt-4">
-        <Card className="hover-card" style={{ width: "20rem" }}>
+        
+        {products.map((product) => (
+          <Card className="hover-card" style={{ width: "20rem" }}>
           <Card.Img
             variant="top"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi5.walmartimages.com%2Fasr%2F1a1fc812-cc36-43bd-95d8-a74c2fccf64f_1.d6e06a21cd7375b28d52cc48a6928d78.jpeg&f=1&nofb=1&ipt=b430bfb47708b3399ec55cee4556cca74b88807ebd5f143bbade1d96426c7675&ipo=images"
+            src = {product.imageUrl}
           />
           <Card.Body>
             <Card.Title style={{ color: "yellow" }}>
-              Nirvana Smiley Tee
+              {product.name}
             </Card.Title>
-            <Card.Text>$24.99</Card.Text>
+            <Card.Text>{product.price}</Card.Text>
             <Button variant="dark">Comprar</Button>
           </Card.Body>
         </Card>
+      ))}
+
       </div>
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
