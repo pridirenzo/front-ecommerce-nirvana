@@ -1,5 +1,24 @@
 .footer-custom {
-    color: black !important ;
-    background-color: yellow !important;
-  }
-  
+  color: black;
+  background-color: yellow;
+}
+
+.footer-custom > * {
+  color: inherit;
+  background-color: inherit;
+}
+
+.footer-custom .icon-hover svg {
+  fill: #333;
+  stroke: #333;
+}
+
+.btn-footer {
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-footer:hover {
+  transform: scale(1.2);
+}

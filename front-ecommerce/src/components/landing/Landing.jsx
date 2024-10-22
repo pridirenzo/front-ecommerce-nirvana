@@ -8,9 +8,6 @@ const Landing = ({products}) => {
  console.log(products)
   return (
     <>
-      <div>
-        <NavBar />
-      </div>
 
       <div className="animated-text d-flex justify-content-center">
         <Container className="text-center mt-5">
@@ -98,7 +95,7 @@ const Landing = ({products}) => {
           </Card.Body>
         </Card>
       ))}
-
+      <span id="MERCH"></span> {/* Identificador para la sección de contacto */}
       </div>
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
@@ -120,6 +117,7 @@ const Landing = ({products}) => {
             <Button variant="dark">Comprar</Button>
           </Card.Body>
         </Card>
+        <span id="MUSIC"></span> {/* Identificador para la sección de contacto */}
       </div>
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
@@ -141,6 +139,7 @@ const Landing = ({products}) => {
             <Button variant="dark">Comprar</Button>
           </Card.Body>
         </Card>
+        <span id="ACCESORIES"></span> {/* Identificador para la sección de contacto */}
       </div>
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
