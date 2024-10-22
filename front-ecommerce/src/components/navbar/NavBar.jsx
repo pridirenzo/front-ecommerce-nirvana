@@ -46,9 +46,7 @@ const NavBar = () => {
               <NavDropdown.Item href="#pines">Pines</NavDropdown.Item>
               <NavDropdown.Item href="#otros">Otros</NavDropdown.Item>
             </NavDropdown>
-            <Button variant="dark" onClick={toggleTheme}>
-              Cambiar tema
-            </Button>
+            <Nav.Link onClick={toggleTheme}>Cambiar tema</Nav.Link>
           </Nav>
 
           <Form inline className="custom-form me-3">
