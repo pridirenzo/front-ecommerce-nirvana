@@ -26,7 +26,7 @@ const Navlinks = [
   },
 ];
 
-const SysAdminNavbar = () => {
+const SuperAdminNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [showButtons, setShowButtons] = useState(false);
@@ -138,4 +138,4 @@ const SysAdminNavbar = () => {
   );
 };
 
-export default SysAdminNavbar;
+export default SuperAdminNavbar;

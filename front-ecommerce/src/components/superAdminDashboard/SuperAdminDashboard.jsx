@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import SysAdminNavbar from "../sysAdminNavbar/SysAdminNavbar";
+import SysAdminNavbar from "../superAdminNavbar/SuperAdminNavbar";
 
 const SuperAdminDashboard = () => {
   return (
