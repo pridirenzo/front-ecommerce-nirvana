@@ -1,13 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Container } from "react-bootstrap";
-import NavBar from "../navbar/NavBar.jsx";
+import AdminNavbar from "../adminNavbar/AdminNavbar";
 
 const AdminDashboard = () => {
   return (
 
     <>
       <div>
-        <NavBar />
+        <AdminNavbar/>
       </div>
 
       <h2 className="d-flex justify-content-center mt-5 mb-5">

@@ -16,22 +16,12 @@ const Navlinks = [
   },
   {
     id: 2,
-    name: 'MERCH',
-    link: '#MERCH',
-  },
-  {
-    id: 3,
-    name: 'DISCOGRAFIA',
-    link: '#MUSIC',
-  },
-  {
-    id: 4,
-    name: 'ACCESORIOS',
-    link: '#ACCESORIES',
+    name: 'PRODUCTOS',
+    link: '#PRODUCTS',
   },
 ];
 
-const Navbar = () => {
+const AdminNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [showButtons, setShowButtons] = useState(false);
@@ -143,4 +133,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

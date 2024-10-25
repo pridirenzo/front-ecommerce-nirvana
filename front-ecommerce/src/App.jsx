@@ -11,10 +11,10 @@ import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
 import { GetProducts } from "./components/api/apiService";
-import Navbar from './components/navbar/NavBar';
 
 function App() {
 
+  // FETCHEO PRODUCTOS
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -27,6 +27,9 @@ function App() {
     }} 
     fetchData()
   }, [])
+
+
+
 
 
 
@@ -64,7 +67,6 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <div>
         <RouterProvider router={router} />
         <Footer/>

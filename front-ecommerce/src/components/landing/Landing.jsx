@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Carousel, Container } from "react-bootstrap";
-import NavBar from "../navbar/NavBar.jsx";
+import PropTypes from "prop-types";
+import Navbar from "../navbar/NavBar";
+
 // textos de prueba, debe mapearse desde el back!!!!!!!
 
 const Landing = ({products}) => {
@@ -8,10 +10,10 @@ const Landing = ({products}) => {
  console.log(products)
   return (
     <>
-
+      <Navbar />
       <div className="animated-text d-flex justify-content-center">
         <Container className="text-center mt-5">
-          <h1 className="d-flex justify-content-center mt-5 mb-5">
+          <h1 id="landingTitle" className="d-flex justify-content-center mt-5 mb-5">
             Bienvenidos ⭐
           </h1>
           <Carousel
@@ -117,7 +119,7 @@ const Landing = ({products}) => {
             <Button variant="dark">Comprar</Button>
           </Card.Body>
         </Card>
-        <span id="MUSIC"></span> {/* Identificador para la sección de contacto */}
+        <span id="MUSIC"></span> 
       </div>
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
@@ -139,7 +141,7 @@ const Landing = ({products}) => {
             <Button variant="dark">Comprar</Button>
           </Card.Body>
         </Card>
-        <span id="ACCESORIES"></span> {/* Identificador para la sección de contacto */}
+        <span id="ACCESORIES"></span> 
       </div>
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
@@ -151,3 +153,7 @@ const Landing = ({products}) => {
 };
 
 export default Landing;
+
+Landing.propTypes = {
+  products: PropTypes.function
+};

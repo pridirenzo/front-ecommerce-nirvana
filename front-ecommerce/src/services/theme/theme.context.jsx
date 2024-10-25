@@ -18,8 +18,12 @@ export const ThemeContextProvider = ({ children }) => {
     console.log("Efecto de tema ejecutado: ", theme); 
     if (theme === "dark") {
       document.body.style.background = "black";
+      // document.getElementById("landingTitle").style.color = "yellow";
+
     } else {
-      document.body.style.background = "white";
+      document.body.style.background = "yellow";
+      // document.getElementById("landingTitle").style.color = "black";
+      
     }
   }, [theme]);
   
