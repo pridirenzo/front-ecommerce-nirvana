@@ -1,12 +1,26 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import SysAdminNavbar from "../superAdminNavbar/SuperAdminNavbar";
+import SuperAdminNavbar from "../superAdminNavbar/SuperAdminNavbar";
+import PropTypes from "prop-types";
 
-const SuperAdminDashboard = () => {
+const SuperAdminDashboard = ({ users }) => {
   return (
     <>
-      <SysAdminNavbar />
-      <h1 className="text-center mb-4">Administrar Usuarios 👥</h1>;
+      <SuperAdminNavbar />
+      <div>
+        <h1 className="text-center mb-4">Administrar Usuarios 👥</h1>;
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>{user.name}</li> // aca mapeariamos usuarios con sus props etc
+          ))}
+        </ul>
+      </div>
     </>
   );
 };
 export default SuperAdminDashboard;
+
+
+SuperAdminDashboard.propTypes = {
+  users: PropTypes.function
+};
+

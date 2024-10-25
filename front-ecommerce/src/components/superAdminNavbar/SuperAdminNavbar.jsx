@@ -17,12 +17,12 @@ const Navlinks = [
   {
     id: 2,
     name: 'PRODUCTOS',
-    link: '#PRODUCTS',
+    link: '/admin',
   },
   {
     id: 3,
     name: 'USUARIOS',
-    link: '#USERS',
+    link: '/superadmin',
   },
 ];
 

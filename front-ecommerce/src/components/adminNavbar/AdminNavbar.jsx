@@ -17,7 +17,7 @@ const Navlinks = [
   {
     id: 2,
     name: 'PRODUCTOS',
-    link: '#PRODUCTS',
+    link: '/admin',
   },
 ];
 

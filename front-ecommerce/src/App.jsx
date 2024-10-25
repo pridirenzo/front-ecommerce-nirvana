@@ -29,6 +29,26 @@ function App() {
   }, [])
 
 
+  // FETCHEO USUARIOS ?
+
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch(
+        "https://localhost:7067/api/User");
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.log("Error al solicitar usuarios a la base de datos:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+
 
 
 
@@ -60,7 +80,7 @@ function App() {
       element: <AdminDashboard/>
     },
     { path: "/superadmin",
-      element: <SuperAdminDashboard/>
+      element: <SuperAdminDashboard users={users}/>
     }
   ]);
 
