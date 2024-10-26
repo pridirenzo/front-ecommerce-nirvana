@@ -21,7 +21,7 @@ function App() {
     const fetchData = async () => {try {
       const Products = await GetProducts()
       console.log(Products.data)
-      setProducts(Products.data)
+      setProducts(Products.data.data)
     } catch (error) {
       console.log(error)
     }} 
