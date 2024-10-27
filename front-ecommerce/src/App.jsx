@@ -11,6 +11,9 @@ import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
 import { GetProducts } from "./components/api/apiService";
+import Prendas from "./components/prendas/Prendas"
+import Music from "./components/Music/Music";
+import Accesories from "./components/accesorios/Accesories";
 
 function App() {
 
@@ -51,8 +54,6 @@ function App() {
 
 
 
-
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -81,7 +82,18 @@ function App() {
     },
     { path: "/superadmin",
       element: <SuperAdminDashboard users={users}/>
+    },
+    { path: "/prendas",
+      element: <Prendas products = {products} />
+    },
+    { path: "/music",
+      element: <Music products = {products} />
+    },
+    { path: "/accesories",
+      element: <Accesories products = {products} />
     }
+    
+
   ]);
 
 
