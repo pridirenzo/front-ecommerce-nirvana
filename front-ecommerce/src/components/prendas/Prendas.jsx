@@ -3,7 +3,7 @@ import { Card, Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
 
-const Prendas = ({products}) => {
+const Prendas = ({productsremeras, productsbuzos}) => {
 
 
   return (
@@ -22,8 +22,7 @@ const Prendas = ({products}) => {
       
       <div className="d-flex justify-content-center mt-4 gap-3">
      
-    {Array.isArray(products) && products
-      .filter(product => product.idCategory === 4) 
+    {Array.isArray(productsremeras) && productsremeras
       .map((product, index) => (
         <Card key={index} className="hover-card" style={{ width: "20rem" }}>
           <Card.Img variant="top" src={product.imageUrl} />
@@ -45,8 +44,7 @@ const Prendas = ({products}) => {
       <h3 className="d-flex justify-content-center mt-5 mb-5">Buzos</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
         
-    {Array.isArray(products) && products
-      .filter(product => product.idCategory === 5)
+    {Array.isArray(productsbuzos) && productsbuzos
       .map((product, index) => (
         <Card key={index} className="hover-card" style={{ width: "20rem" }}>
           <Card.Img variant="top" src={product.imageUrl} />

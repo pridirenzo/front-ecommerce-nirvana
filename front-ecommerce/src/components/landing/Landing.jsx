@@ -5,21 +5,24 @@ import Navbar from "../navbar/NavBar";
 
 // textos de prueba, debe mapearse desde el back!!!!!!! hecho B)
 
-const Landing = ({products}) => {
-
+const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
+  
 
   return (
     <>
       <Navbar />
       <div className="animated-text d-flex justify-content-center">
         <Container className="text-center mt-5">
-          <h1 id="landingTitle" className="d-flex justify-content-center mt-5 mb-5">
+          <h1
+            id="landingTitle"
+            className="d-flex justify-content-center mt-5 mb-5"
+          >
             Bienvenidos ⭐
           </h1>
           <Carousel
             interval={2000} // pasa cada dos segundos
             className="mb-4"
-            style={{ borderRadius: "40px", }}
+            style={{ borderRadius: "40px" }}
           >
             <Carousel.Item>
               <img
@@ -81,71 +84,96 @@ const Landing = ({products}) => {
       </h2>
       <h3 className="d-flex justify-content-center">Prendas 🏷️</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
-     
-    {Array.isArray(products) && products
-      .filter(product => product.idCategory === 4 || product.idCategory === 5 ) 
-      .slice(0, 3)  // Solo toma los primeros 3 productos
-      .map((product, index) => (
-        <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-          <Card.Img variant="top" src={product.imageUrl} />
-          <Card.Body>
-            <Card.Title style={{ color: "yellow" }}>{product.name}</Card.Title>
-            <Card.Text>${product.price}</Card.Text>
-            <Button variant="dark">Comprar</Button>
-          </Card.Body>
-        </Card>
-    ))}
-      <span id="MERCH"></span> {/* Identificador para la sección de contacto */}
+        {Array.isArray(productsprendas) &&
+          productsprendas
+            // .filter(
+            //   (product) => product.idCategory === 4 || product.idCategory === 5
+            // )
+            // .slice(0, 3) // Solo toma los primeros 3 productos
+            .map((product, index) => (
+              <Card
+                key={index}
+                className="hover-card"
+                style={{ width: "20rem" }}
+              >
+                <Card.Img variant="top" src={product.imageUrl} />
+                <Card.Body>
+                  <Card.Title style={{ color: "yellow" }}>
+                    {product.name}
+                  </Card.Title>
+                  <Card.Text>${product.price}</Card.Text>
+                  <Button variant="dark">Comprar</Button>
+                </Card.Body>
+              </Card>
+            ))}
+        <span id="MERCH"></span>{" "}
+        {/* Identificador para la sección de contacto */}
       </div>
 
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
-          Ver todo en PRENDAS 
+          Ver todo en PRENDAS
         </Button>
       </div>
-      <h3 className="d-flex justify-content-center mt-5 mb-5">Discografía 💿</h3>
+      <h3 className="d-flex justify-content-center mt-5 mb-5">
+        Discografía 💿
+      </h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
-        
-    {Array.isArray(products) && products
-      .filter(product => product.idCategory === 6 || product.idCategory === 7 )
-      .slice(0, 3)  // Solo toma los primeros 3 productos
-      .map((product, index) => (
-        <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-          <Card.Img variant="top" src={product.imageUrl} />
-          <Card.Body>
-            <Card.Title style={{ color: "yellow" }}>{product.name}</Card.Title>
-            <Card.Text>${product.price}</Card.Text>
-            <Button variant="dark">Comprar</Button>
-          </Card.Body>
-        </Card>
-    ))}  
+        {Array.isArray(productsmusic) &&
+          productsmusic
+            // .filter(
+            //   (product) => product.idCategory === 6 || product.idCategory === 7
+            // )
+            // .slice(0, 3) // Solo toma los primeros 3 productos
+            .map((product, index) => (
+              <Card
+                key={index}
+                className="hover-card"
+                style={{ width: "20rem" }}
+              >
+                <Card.Img variant="top" src={product.imageUrl} />
+                <Card.Body>
+                  <Card.Title style={{ color: "yellow" }}>
+                    {product.name}
+                  </Card.Title>
+                  <Card.Text>${product.price}</Card.Text>
+                  <Button variant="dark">Comprar</Button>
+                </Card.Body>
+              </Card>
+            ))}
 
-        <span id="MUSIC"></span> 
+        <span id="MUSIC"></span>
       </div>
-     
+
       <div className="d-flex justify-content-center mt-5">
         <Button variant="dark" className="mt-2 mb-5">
-          Ver todo en DISCOGRAFÍA 
+          Ver todo en DISCOGRAFÍA
         </Button>
       </div>
       <h3 className="d-flex justify-content-center mt-5 mb-5">Accesorios 🎩</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
-        
-      {Array.isArray(products) && products
-      .filter(product => product.idCategory === 3 )
-      .slice(0, 3)  // Solo toma los primeros 3 productos
-      .map((product, index) => (
-        <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-          <Card.Img variant="top" src={product.imageUrl} />
-          <Card.Body>
-            <Card.Title style={{ color: "yellow" }}>{product.name}</Card.Title>
-            <Card.Text>${product.price}</Card.Text>
-            <Button variant="dark">Comprar</Button>
-          </Card.Body>
-        </Card>
-    ))}
+        {Array.isArray(productsaccesories) &&
+          productsaccesories
+            // .filter((product) => product.idCategory === 3)
+            // .slice(0, 3) // Solo toma los primeros 3 productos
+            .map((product, index) => (
+              <Card
+                key={index}
+                className="hover-card"
+                style={{ width: "20rem" }}
+              >
+                <Card.Img variant="top" src={product.imageUrl} />
+                <Card.Body>
+                  <Card.Title style={{ color: "yellow" }}>
+                    {product.name}
+                  </Card.Title>
+                  <Card.Text>${product.price}</Card.Text>
+                  <Button variant="dark">Comprar</Button>
+                </Card.Body>
+              </Card>
+            ))}
 
-        <span id="ACCESORIES"></span> 
+        <span id="ACCESORIES"></span>
       </div>
 
       <div className="d-flex justify-content-center mt-5">
@@ -160,5 +188,5 @@ const Landing = ({products}) => {
 export default Landing;
 
 Landing.propTypes = {
-  products: PropTypes.function
+  products: PropTypes.function,
 };

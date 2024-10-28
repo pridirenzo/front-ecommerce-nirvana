@@ -3,7 +3,7 @@ import { Card, Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
 
-const Music = ({products}) => {
+const Music = ({productsvinilos, productscds}) => {
 
 
   return (
@@ -22,8 +22,7 @@ const Music = ({products}) => {
       
       <div className="d-flex justify-content-center mt-4 gap-3">
      
-    {Array.isArray(products) && products
-      .filter(product => product.idCategory === 6) 
+    {Array.isArray(productsvinilos) && productsvinilos
       .map((product, index) => (
         <Card key={index} className="hover-card" style={{ width: "20rem" }}>
           <Card.Img variant="top" src={product.imageUrl} />
@@ -45,8 +44,7 @@ const Music = ({products}) => {
       <h3 className="d-flex justify-content-center mt-5 mb-5">CDs</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
         
-    {Array.isArray(products) && products
-      .filter(product => product.idCategory === 7)
+    {Array.isArray(productscds) && productscds
       .map((product, index) => (
         <Card key={index} className="hover-card" style={{ width: "20rem" }}>
           <Card.Img variant="top" src={product.imageUrl} />

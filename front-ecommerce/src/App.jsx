@@ -10,7 +10,7 @@ import Footer from "./components/footer/Footer";
 import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
-import { GetProducts, GetUsers, createUser } from "./components/api/apiService";
+import { GetUsers, createUser , GetProductsMusic, GetProductsPrendas, GetProductsAccesories, GetProductsVinilos, GetProductsRemeras, GetProductsCDs, GetProductsBuzos} from "./components/api/apiService";
 import Prendas from "./components/prendas/Prendas"
 import Music from "./components/Music/Music";
 import Accesories from "./components/accesorios/Accesories";
@@ -18,13 +18,79 @@ import Accesories from "./components/accesorios/Accesories";
 function App() {
 
   // FETCHEO PRODUCTOS
-  const [products, setProducts] = useState([]);
+  const [productsprendas, setProductsPrendas] = useState([]);
+  const [productsmusic, setProductsMusic] = useState([]);
+  const [productsaccesories, setProductsAccesories] = useState([]);
+  const [productsremeras, setProductsRemeras] = useState([]);
+  const [productsbuzos, setProductsBuzos] = useState([]);
+  const [productsvinilos, setProductsVinilos] = useState([]);
+  const [productscds, setProductsCDs] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {try {
-      const Products = await GetProducts()
-      console.log(Products.data)
-      setProducts(Products.data.data)
+      const Products = await GetProductsPrendas()
+      setProductsPrendas(Products.data)
+    } catch (error) {
+      console.log(error)
+    }} 
+    fetchData()
+  }, [])
+
+   useEffect(() => {
+     const fetchData = async () => {try {
+       const Products = await GetProductsMusic()
+       setProductsMusic(Products.data)
+     } catch (error) {
+       console.log(error)
+     }} 
+     fetchData()
+   }, [])
+
+   useEffect(() => {
+    const fetchData = async () => {try {
+      const Products = await GetProductsAccesories()
+      setProductsAccesories(Products.data)
+    } catch (error) {
+      console.log(error)
+    }} 
+    fetchData()
+  }, [])
+ 
+  useEffect(() => {
+    const fetchData = async () => {try {
+      const Products = await GetProductsRemeras()
+      setProductsRemeras(Products.data)
+    } catch (error) {
+      console.log(error)
+    }} 
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {try {
+      const Products = await GetProductsBuzos()
+      setProductsBuzos(Products.data)
+    } catch (error) {
+      console.log(error)
+    }} 
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {try {
+      const Products = await GetProductsVinilos()
+      setProductsVinilos(Products.data)
+    } catch (error) {
+      console.log(error)
+    }} 
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {try {
+      const Products = await GetProductsCDs()
+      setProductsCDs(Products.data)
     } catch (error) {
       console.log(error)
     }} 
@@ -51,12 +117,13 @@ function App() {
 
 
 
-
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Landing products = {products} />,
+      element: <Landing 
+      productsprendas = {productsprendas}
+      productsmusic = {productsmusic}                   
+      productsaccesories = {productsaccesories} />,
     },
     { path: "/login", 
       element: <LogIn users={users}/> 
@@ -77,19 +144,28 @@ function App() {
       element: <PurchaseDetail/>
     },
     { path: "/admin",
-      element: <AdminDashboard products = {products}/>
+      element: <AdminDashboard
+      productsprendas = {productsprendas}
+      productsmusic = {productsmusic}                   
+      productsaccesories = {productsaccesories} />
     },
     { path: "/superadmin",
       element: <SuperAdminDashboard users={users}/>
     },
     { path: "/prendas",
-      element: <Prendas products = {products} />
+      element: <Prendas 
+      productsremeras = {productsremeras}
+      productsbuzos = {productsbuzos}
+      />
     },
     { path: "/music",
-      element: <Music products = {products} />
+      element: <Music 
+      productsvinilos = {productsvinilos} 
+      productscds = {productscds}
+      />
     },
     { path: "/accesories",
-      element: <Accesories products = {products} />
+      element: <Accesories productsaccesories = {productsaccesories} />
     }
     
 
