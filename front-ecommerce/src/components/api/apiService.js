@@ -8,4 +8,12 @@ export const CreateProducts = async (productData) => { // Asegúrate de recibir 
     const response = await api.post("api/Product", productData);
     return response;
   };
-  
+
+export const GetUsers = () => {
+    return api.get("api/User");
+  }
+
+export const createUser = async (userData) => {
+    const response = await api.post("/api/User", userData);
+    return response.data;
+  };

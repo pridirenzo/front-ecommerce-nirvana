@@ -10,7 +10,7 @@ import Footer from "./components/footer/Footer";
 import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
-import { GetProducts } from "./components/api/apiService";
+import { GetProducts, GetUsers, createUser } from "./components/api/apiService";
 import Prendas from "./components/prendas/Prendas"
 import Music from "./components/Music/Music";
 import Accesories from "./components/accesorios/Accesories";
@@ -32,24 +32,23 @@ function App() {
   }, [])
 
 
-  // FETCHEO USUARIOS ?
+  // FETCHEO USUARIOS 
 
   const [users, setUsers] = useState([]);
 
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch(
-        "https://localhost:7067/api/User");
-      const data = await response.json();
-      setUsers(data);
-    } catch (error) {
-      console.log("Error al solicitar usuarios a la base de datos:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchUsers();
+    const fetchData = async () => {
+      try {
+        const Users = await GetUsers();
+        console.log(Users.data);
+        setUsers(Users.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
+
 
 
 
@@ -60,10 +59,10 @@ function App() {
       element: <Landing products = {products} />,
     },
     { path: "/login", 
-      element: <LogIn /> 
+      element: <LogIn users={users}/> 
     },
     { path: "/register",
-      element: <SignIn />
+      element: <SignIn createUser={() => createUser}/>
     },
     { path: "/profile",
       element: <Profile />
