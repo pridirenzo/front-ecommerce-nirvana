@@ -1,0 +1,15 @@
+.modal-title-custom {
+    color: black !important;
+}
+
+.form-title-custom {
+    color: black;
+}
+
+.form-select-options-custom{
+    color: black !important;
+}
+
+.form-select-options-disabled-custom{
+    color: grey !important;   
+}

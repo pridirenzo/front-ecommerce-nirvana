@@ -1,5 +1,11 @@
 import api from "./api";
 
-export const GetProducts = () => {
-    return api.get("api/Product")
-}   //x cada llamda q le hagas escribis aca, tio, si ahora qres obtener categorias tenes q llamar d aca
+export const GetProducts = async () => {
+  return await api.get("api/Product");
+};
+
+export const CreateProducts = async (productData) => { // Asegúrate de recibir productData como argumento
+    const response = await api.post("api/Product", productData);
+    return response;
+  };
+  

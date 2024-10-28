@@ -78,7 +78,7 @@ function App() {
       element: <PurchaseDetail/>
     },
     { path: "/admin",
-      element: <AdminDashboard/>
+      element: <AdminDashboard products = {products}/>
     },
     { path: "/superadmin",
       element: <SuperAdminDashboard users={users}/>
