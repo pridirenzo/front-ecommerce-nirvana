@@ -129,7 +129,7 @@ function App() {
       element: <LogIn users={users}/> 
     },
     { path: "/register",
-      element: <SignIn createUser={() => createUser}/>
+      element: <SignIn createUser={createUser}/>
     },
     { path: "/profile",
       element: <Profile />
