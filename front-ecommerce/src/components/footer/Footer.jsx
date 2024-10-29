@@ -21,7 +21,7 @@ const Footer = () => {
   };
 
   return (
-    <div className=" flex flex-col ">
+    <div id="landingFooter" style={{backgroundColor: "yellow"}} className=" flex flex-col ">
       <div className="footer-custom py-2 w-full bg-yellow  text-dark relative mt-auto flex-grow-0">
         <div className="footer-custom container mx-auto">
           <div

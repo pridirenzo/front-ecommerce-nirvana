@@ -16,14 +16,21 @@ export const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     console.log("Efecto de tema ejecutado: ", theme); 
+    
+    const navbar = document.getElementById("landingNavbar");
+    const footer = document.getElementById("landingFooter");
+    const title = document.getElementById("landingTitle");
+  
     if (theme === "dark") {
-      document.body.style.background = "black";
-      // document.getElementById("landingTitle").style.color = "yellow";
-
+      document.body.style.backgroundColor = "black";
+      if (navbar) navbar.style.backgroundColor = "yellow";
+      if (footer) footer.style.backgroundColor = "yellow";
+      if (title) title.style.color = "yellow";
     } else {
-      document.body.style.background = "yellow";
-      // document.getElementById("landingTitle").style.color = "black";
-      
+      document.body.style.backgroundColor = "#DDDDDD";
+      if (navbar) navbar.style.backgroundColor = "#A4AAA6";
+      if (footer) footer.style.backgroundColor = "#A4AAA6";
+      if (title) title.style.color = "black";
     }
   }, [theme]);
   

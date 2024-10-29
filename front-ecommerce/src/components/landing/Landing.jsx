@@ -16,6 +16,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           <h1
             id="landingTitle"
             className="d-flex justify-content-center mt-5 mb-5"
+            style={{color: "yellow"}}
           >
             Bienvenidos ⭐
           </h1>

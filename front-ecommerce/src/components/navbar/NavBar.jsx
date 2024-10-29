@@ -59,7 +59,7 @@ const Navbar = () => {
   const { toggleTheme } = useContext(ThemeContext);
 
   return (
-    <nav className="flex justify-between items-center p-4 text-black" style={{ backgroundColor: 'yellow' }}>
+    <nav id= "landingNavbar" style={{backgroundColor: "yellow"}} className="flex justify-between items-center p-4 text-black">
       <div className="flex items-center">
           <img
             src={LogoNirvana}

@@ -1,12 +1,11 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-.mi-navbar {
+ .mi-navbar {
     background-color: #E6D901;
-  }
+ }
 
-.nav-link, .navbar-brand {
+/* .nav-link, .navbar-brand {
     color: black !important; 
-    background-color: #E6D901 !important;
   }
 
 .mi-container {
@@ -21,7 +20,7 @@
 
 .col{
     background-color: #E6D901;
-}
+/* } */ 
 
 
 
