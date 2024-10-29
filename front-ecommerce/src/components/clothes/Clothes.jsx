@@ -3,7 +3,7 @@ import { Card, Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
 
-const Prendas = ({productsremeras, productsbuzos}) => {
+const Clothes = ({productsremeras, productsbuzos}) => {
 
 
   return (
@@ -68,8 +68,8 @@ const Prendas = ({productsremeras, productsbuzos}) => {
   );
 };
 
-export default Prendas;
+export default Clothes;
 
-Prendas.propTypes = {
-  products: PropTypes.function
+Clothes.propTypes = {
+  products: PropTypes.function,
 };

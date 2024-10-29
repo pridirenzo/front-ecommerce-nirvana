@@ -11,9 +11,9 @@ import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
 import { GetUsers, createUser , GetProductsMusic, GetProductsPrendas, GetProductsAccesories, GetProductsVinilos, GetProductsRemeras, GetProductsCDs, GetProductsBuzos} from "./components/api/apiService";
-import Prendas from "./components/prendas/Prendas"
+import Clothes from "./components/clothes/Clothes"
 import Music from "./components/Music/Music";
-import Accesories from "./components/accesorios/Accesories";
+import Accessories from "./components/accessories/Accessories";
 
 function App() {
 
@@ -152,8 +152,8 @@ function App() {
     { path: "/superadmin",
       element: <SuperAdminDashboard users={users}/>
     },
-    { path: "/prendas",
-      element: <Prendas 
+    { path: "/clothes",
+      element: <Clothes 
       productsremeras = {productsremeras}
       productsbuzos = {productsbuzos}
       />
@@ -164,8 +164,8 @@ function App() {
       productscds = {productscds}
       />
     },
-    { path: "/accesories",
-      element: <Accesories productsaccesories = {productsaccesories} />
+    { path: "/accessories",
+      element: <Accessories productsaccesories = {productsaccesories} />
     }
     
 

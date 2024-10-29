@@ -3,7 +3,7 @@ import { Card, Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
 
-const Accesories = ({productsaccesories}) => {
+const Accessories = ({productsaccesories}) => {
 
 
   return (
@@ -52,8 +52,8 @@ const Accesories = ({productsaccesories}) => {
   );
 };
 
-export default Accesories;
+export default Accessories;
 
-Accesories.propTypes = {
+Accessories.propTypes = {
   productsaccesories: PropTypes.function
 };
