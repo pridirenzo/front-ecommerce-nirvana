@@ -14,6 +14,8 @@ import { GetUsers, createUser , GetProductsMusic, GetProductsPrendas, GetProduct
 import Clothes from "./components/clothes/Clothes"
 import Music from "./components/Music/Music";
 import Accessories from "./components/accessories/Accessories";
+import Cart from "./components/cart/Cart";  
+import { CartProvider } from "./components/cart/CartProvider";
 
 function App() {
 
@@ -166,7 +168,9 @@ function App() {
     },
     { path: "/accessories",
       element: <Accessories productsaccesories = {productsaccesories} />
-    }
+    },
+    { path: "/cart", 
+      element: <Cart /> }
     
 
   ]);
@@ -174,10 +178,12 @@ function App() {
 
   return (
     <>
-      <div>
-        <RouterProvider router={router} />
-        <Footer/>
-      </div>
+      <CartProvider> 
+        <div>
+          <RouterProvider router={router} />
+          <Footer/>
+        </div>
+      </CartProvider> {/* con esto nos ahorramos estar instanciando el CartContext en cada component y lo podemos usar directamente*/}
     </>
   );
 }
