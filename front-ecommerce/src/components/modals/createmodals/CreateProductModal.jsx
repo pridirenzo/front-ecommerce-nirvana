@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import '../modalstyle/Modals.css';
 import { CreateProducts } from '../../api/apiService';
+import StockVariantsModal from '../createmodals/StockVariantsModal'
 
 const CreateProductModal = ({ show, handleClose }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -13,21 +14,21 @@ const CreateProductModal = ({ show, handleClose }) => {
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [price, setPrice] = useState('');
-  const [size, setSize] = useState('');
-  const [color, setColor] = useState('');
-  const [stock, setStock] = useState('');
-  const [showSizeColorFields, setShowSizeColorFields] = useState(false);
+  const [productVariants, setProductVariants] = useState([]);
+  const [ShowStockVariantsModal, setShowStockVariantsModal] = useState(false);
+
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
-    if (selectedCategory === '4' || selectedCategory === '5') {
-      setShowSizeColorFields(true);
-    } else {
-      setShowSizeColorFields(false);
-      setSize('');
-      setColor('');
-    }
+  };
+
+  const handleOpenStockVariantsModal = () => setShowStockVariantsModal(true);
+  const handleCloseModal = () => setShowStockVariantsModal(false);
+
+  // Recibe las variantes del modal hijo
+  const handleSaveVariants = (variants) => {
+    setProductVariants(variants);
   };
 
   const handleSubmit = async () => {
@@ -37,24 +38,22 @@ const CreateProductModal = ({ show, handleClose }) => {
       description,
       imageUrl,
       price: {
-        createdAt: new Date().toISOString(), // Asegúrate de que la fecha sea en formato ISO
+        createdAt: new Date().toISOString(),
         value: parseFloat(price)
       },
-      productVariants: [
-        {
-          stock: parseInt(stock, 10),
-          size: showSizeColorFields ? size : null,
-          color: showSizeColorFields ? color : null,
-        }
-      ]
+      productVariants: productVariants.map(variant => ({
+        stock: parseInt(variant.stock, 10),
+        size: variant.size,
+        color: variant.color,
+      })),
     };
     
-    console.log('Enviando datos del producto:', productData); // Verifica los datos que se están enviando
+    console.log('Enviando datos del producto:', productData);
     
     try {
-      const response = await CreateProducts(productData); // Usa la función de creación
+      const response = await CreateProducts(productData);
       console.log('Producto creado:', response.data);
-      handleClose(); // Cierra el modal después de crear el producto
+      handleClose();
     } catch (error) {
       console.error('Error al crear el producto:', error);
     }
@@ -96,28 +95,6 @@ const CreateProductModal = ({ show, handleClose }) => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
-            {showSizeColorFields && (
-              <>
-                <Form.Group className="mb-3">
-                  <Form.Label className='form-title-custom'>Tamaño</Form.Label>
-                  <Form.Select value={size} onChange={(e) => setSize(e.target.value)}>
-                    <option value="" className='form-select-options-custom'>Seleccione un tamaño</option>
-                    <option value="S" className='form-select-options-custom'>S</option>
-                    <option value="M" className='form-select-options-custom'>M</option>
-                    <option value="L" className='form-select-options-custom'>L</option>
-                    <option value="XL" className='form-select-options-custom'>XL</option>
-                  </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label className='form-title-custom'>Color</Form.Label>
-                  <Form.Control type="text"
-                    placeholder="Ingrese el color"
-                    value={color}
-                    onChange={(e) => setColor(e.target.value)}
-                  />
-                </Form.Group>
-              </>
-            )}
             <Form.Group className="mb-3">
               <Form.Label className='form-title-custom'>Link de la imagen del producto</Form.Label>
               <Form.Control
@@ -133,14 +110,7 @@ const CreateProductModal = ({ show, handleClose }) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)} />
             </InputGroup>
-            <Form.Group className="mb-3">
-              <Form.Label className='form-title-custom'>Stock</Form.Label>
-              <Form.Control 
-                placeholder="Cantidad en stock" 
-                value={stock}
-                onChange={(e) => setStock(e.target.value)}
-              />
-            </Form.Group>
+            <Button onClick={handleOpenStockVariantsModal}> Agregar Stock</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -152,6 +122,12 @@ const CreateProductModal = ({ show, handleClose }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <StockVariantsModal
+        show={ShowStockVariantsModal}
+        handleClose={handleCloseModal}
+        onSave={handleSaveVariants}
+      />
     </>
   );
 };
