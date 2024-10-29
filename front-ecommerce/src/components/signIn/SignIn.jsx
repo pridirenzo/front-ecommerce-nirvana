@@ -1,11 +1,18 @@
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
 import PropTypes from 'prop-types';
 
 const SignIn = ({ createUser }) => {
   const navigate = useNavigate();
-  
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    // Tenga al menos 8 caracteres (.{8,})
+    // Contenga al menos una mayúscula ((?=.*[A-Z]))
+    // Contenga al menos un número ((?=.*\d))
+    // Contenga al menos un carácter especial ((?=.*[!@#$%^&*]))
+    return passwordRegex.test(password);
+  };
 
   const handleAccountClick = () => {
     navigate("/login");
@@ -19,8 +26,15 @@ const SignIn = ({ createUser }) => {
     const password = event.target.elements.password.value;
     const confirmPassword = event.target.elements.confirmPassword.value;
 
+    console.log("Formulario enviado");
+
     if (password !== confirmPassword) {
       alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial");
       return;
     }
 
@@ -30,11 +44,16 @@ const SignIn = ({ createUser }) => {
         lastName,
         email,
         password,
-        role: 3,           // Rol predeterminado, ajusta según sea necesario
-        isActive: 1         // Activo por defecto
+        role: 3,
+        isActive: 1
       };
-      await createUser(userData);
+
+      console.log("Datos del usuario a enviar:", userData);
+      const response = await createUser(userData);
+      console.log("Respuesta del servidor:", response);
+
       alert("Revise su correo para la confirmación");
+      navigate("/login");
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
       alert("Error al crear la cuenta");
@@ -100,7 +119,6 @@ const SignIn = ({ createUser }) => {
             />
           </Col>
         </Form.Group>
-
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3" className="d-flex justify-content-between">
             <Button type="submit" variant="dark" className="form-button w-50">
@@ -120,8 +138,8 @@ const SignIn = ({ createUser }) => {
   );
 };
 
-export default SignIn;
-
 SignIn.propTypes = {
   createUser: PropTypes.func.isRequired,
 };
+
+export default SignIn;

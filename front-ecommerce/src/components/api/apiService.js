@@ -107,7 +107,16 @@ export const GetUsers = () => {
     return api.get("api/User");
   }
 
+
 export const createUser = async (userData) => {
-    const response = await api.post("/api/User", userData);
+  try {
+    console.log("Enviando datos del usuario:", userData);
+    const response = await api.post("/api/User/create-and-verify", userData);
+    console.log("Respuesta del servidor:", response);
+  
     return response.data;
-  };
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    throw error;
+  }
+};
