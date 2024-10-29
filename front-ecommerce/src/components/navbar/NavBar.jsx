@@ -61,13 +61,11 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center p-4 text-black" style={{ backgroundColor: 'yellow' }}>
       <div className="flex items-center">
-        <a href="/">
           <img
             src={LogoNirvana}
             alt="LogoNirvana"
             className="w-16 sm:w-24 transition duration-300 ease-in-out transform hover:scale-150 mr-4 cursor-pointer"
           />
-        </a>
         <ul className="hidden md:flex space-x-6">
           {Navlinks.map(({ id, name, link }) => (
             <li key={id} className="py-2 px-4">
