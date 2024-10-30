@@ -1,9 +1,11 @@
 import { Form, Col, Row, Button, Card } from "react-bootstrap";
+import Navbar from "../navbar/NavBar";
 
 const PurchaseDetail = () => {
   // texto de prueba, debe mapearse con los datos del back
   return (
     <>
+      <Navbar/>
       <h1 className="d-flex text-center m-5">Detalle de compra</h1>
       <h2 className="d-flex text-center m-5">Delivery 📦</h2>
       <Row className="m-5">

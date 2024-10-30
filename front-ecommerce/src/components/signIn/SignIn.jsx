@@ -62,11 +62,11 @@ const SignIn = ({ createUser }) => {
 
   return (
     <>
-      <h1 className="d-flex justify-content-center mt-5">Registrarse</h1>
+      <h1 id="registerTitle" className="d-flex justify-content-center mt-5" style={{fontSize: "30px"}}>Registrarse</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label id="nameTitle">Nombre</Form.Label>
             <Form.Control
               required
               placeholder="Ingresá tu nombre"
@@ -77,7 +77,7 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Apellido</Form.Label>
+            <Form.Label id="surnameTitle" >Apellido</Form.Label>
             <Form.Control
               required
               placeholder="Ingresá tu apellido"
@@ -88,7 +88,7 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label id="registerEmailTitle">Email</Form.Label>
             <Form.Control
               required
               placeholder="Ingresá tu email"
@@ -99,7 +99,7 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label id="registerPasswordTitle">Contraseña</Form.Label>
             <Form.Control
               required
               type="password"
@@ -110,7 +110,7 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Confirmá tu contraseña</Form.Label>
+            <Form.Label id="registerPasswordTitle2">Confirmá tu contraseña</Form.Label>
             <Form.Control
               required
               type="password"

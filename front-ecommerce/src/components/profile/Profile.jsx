@@ -1,14 +1,16 @@
 import { Form, Col, Row, Button } from "react-bootstrap";
+import Navbar from "../navbar/NavBar";
 
 const Profile = () => {
   return (
     <>
-      <h1 className="d-flex justify-content-center mt-5 mb-5">
+      <Navbar/>
+      <h1 className="d-flex justify-content-center mt-5 mb-5" style={{fontSize: "30px"}}>
         Hola, NOMBRE!
       </h1>
       <Row className="m-5">
         <Col sm={8}>
-          <h2 className="mb-5">Editar perfil</h2>
+          <h2 className="mb-5" style={{fontSize: "30px"}}>Editar mi perfil</h2>
           <Form>
             <Form.Group as={Row}>
               <Col sm="8">

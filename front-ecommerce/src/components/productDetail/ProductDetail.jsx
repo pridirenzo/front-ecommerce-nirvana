@@ -1,8 +1,10 @@
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import Navbar from "../navbar/NavBar";
 
 const ProductDetail = () => {
   return (
     <>
+      <Navbar/>
       <Container>
         <h1 className="d-flex justify-content-center text-center mt-5">Detalle del producto</h1>
         <Row className="mt-5 mb-5 align-items-start">

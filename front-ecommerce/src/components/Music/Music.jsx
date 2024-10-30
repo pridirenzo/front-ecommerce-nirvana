@@ -11,12 +11,12 @@ const Music = ({productsvinilos, productscds}) => {
       <Navbar />
       <div className="animated-text d-flex justify-content-center">
         <Container className="text-center mt-5">
-          <h1 id="landingTitle" className="d-flex justify-content-center mt-5 mb-5">
+          <h1 id="musicLandingTitle" className="d-flex justify-content-center mt-5 mb-5">
             Discografía
           </h1>
         </Container>
       </div>
-      <h2 className="d-flex justify-content-center mt-5 mb-5">
+      <h2 id="vinylTitle" className="d-flex justify-content-center mt-5 mb-5">
         Vinilos
       </h2>
       
@@ -41,7 +41,7 @@ const Music = ({productsvinilos, productscds}) => {
           Ver todo en Vinilos 
         </Button>
       </div>
-      <h3 className="d-flex justify-content-center mt-5 mb-5">CDs</h3>
+      <h3 id="cdTitle" className="d-flex justify-content-center mt-5 mb-5">CDs</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
         
     {Array.isArray(productscds) && productscds

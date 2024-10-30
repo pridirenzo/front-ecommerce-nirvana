@@ -22,11 +22,11 @@ const LogIn = ({ users }) => {
 
   return (
     <>
-      <h1 className="d-flex justify-content-center mt-5">Iniciar sesión</h1>
+      <h1 id="loginTitle" className="d-flex justify-content-center mt-5" style={{fontSize: "30px"}} >Iniciar sesión</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label id="emailTitle">Email</Form.Label>
             <Form.Control
               required
               placeholder="Ingresá tu email"
@@ -38,7 +38,7 @@ const LogIn = ({ users }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label id="passTitle">Contraseña</Form.Label>
             <Form.Control
               required
               type="password"
@@ -46,7 +46,7 @@ const LogIn = ({ users }) => {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <p className="mt-4">¿Olvidaste tu contraseña?</p>
+            <p className="mt-4" id="pass2Title">¿Olvidaste tu contraseña?</p>
             <Button
               type="submit"
               variant="dark"

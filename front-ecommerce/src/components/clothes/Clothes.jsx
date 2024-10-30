@@ -16,7 +16,7 @@ const Clothes = ({productsremeras, productsbuzos}) => {
           </h1>
         </Container>
       </div>
-      <h2 className="d-flex justify-content-center mt-5 mb-5">
+      <h2 id="shirtTitle" className="d-flex justify-content-center mt-5 mb-5">
         Remeras
       </h2>
       
@@ -41,7 +41,7 @@ const Clothes = ({productsremeras, productsbuzos}) => {
           Ver todo en Remeras 
         </Button>
       </div>
-      <h3 className="d-flex justify-content-center mt-5 mb-5">Buzos</h3>
+      <h3 id="jumperTitle" className="d-flex justify-content-center mt-5 mb-5">Buzos</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
         
     {Array.isArray(productsbuzos) && productsbuzos
