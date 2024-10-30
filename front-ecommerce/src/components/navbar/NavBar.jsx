@@ -16,18 +16,18 @@ const Navlinks = [
   },
   {
     id: 2,
-    name: 'MERCH',
-    link: '#MERCH',
+    name: 'PRENDAS',
+    link: '/clothes',
   },
   {
     id: 3,
     name: 'DISCOGRAFIA',
-    link: '#MUSIC',
+    link: '/music',
   },
   {
     id: 4,
     name: 'ACCESORIOS',
-    link: '#ACCESORIES',
+    link: '/accessories',
   },
 ];
 
@@ -119,17 +119,17 @@ const Navbar = () => {
           <div className="flex flex-col">
             <a
               href="/login"
-              className="text-xl font-bold text-black"
+              className="text-xs  ml-2 mb-2 text-black"
               onClick={() => handleNavClick('/login')}
             >
               Login
             </a>
             <a
               href="/register"
-              className="text-xl font-bold text-black"
+              className="text-xs  ml-2  text-black"
               onClick={() => handleNavClick('/register')}
             >
-              Register
+              Registro
             </a>
           </div>
         )}
