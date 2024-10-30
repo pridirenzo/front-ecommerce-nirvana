@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
+
 import { useEffect, useState } from "react";
 import {
   GetUsers,
@@ -29,6 +30,7 @@ import { CartProvider } from "./components/cart/CartProvider";
 import ResetPassword from "./components/resetPassword/ResetPassword";
 import NewPassword from "./components/newResetPassword/NewResetPassword";
 import NewResetPassword from "./components/newResetPassword/NewResetPassword";
+import SalesDashboard from "./components/salesDashboard/SalesDashboard";
 // import ProtectedSuperAdmin from "./routes/ProtectedSuperAdmin";
 // import Protected from "./routes/Protected";
 // import ProtectedBuy from "./routes/ProtectedBuy";
@@ -229,6 +231,9 @@ function App() {
     },
     { path: "/newresetpassword",
       element: <NewResetPassword/>
+    },
+    { path: "/salesdashboard",
+      element: <SalesDashboard/>
     }
   ]);
 

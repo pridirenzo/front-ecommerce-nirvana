@@ -24,6 +24,11 @@ const Navlinks = [
     name: 'USUARIOS',
     link: '/superadmin',
   },
+  {
+    id: 4,
+    name: 'PEDIDOS',
+    link: '/salesdashboard',
+  },
 ];
 
 const SuperAdminNavbar = () => {

@@ -19,6 +19,11 @@ const Navlinks = [
     name: 'PRODUCTOS',
     link: '/admin',
   },
+  {
+    id: 3,
+    name: 'PEDIDOS',
+    link: '/salesdashboard',
+  },
 ];
 
 const AdminNavbar = () => {

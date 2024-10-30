@@ -47,6 +47,7 @@ export const ThemeContextProvider = ({ children }) => {
     const newPasswordText1 = document.getElementById("newPasswordText1");
     const newPass1 = document.getElementById("newPass1");
     const newPass2 = document.getElementById("newPass2");
+    const salesTitle = document.getElementById("salesDashTitle");
   
     if (theme === "dark") {
       document.body.style.backgroundColor = "black";
@@ -80,6 +81,7 @@ export const ThemeContextProvider = ({ children }) => {
       if (newPasswordText1) newPasswordText1.style.color = "yellow";
       if (newPass1) newPass1.style.color = "yellow";
       if (newPass2) newPass2.style.color = "yellow";
+      if (salesTitle) salesTitle.style.color = "yellow";
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";
@@ -112,6 +114,7 @@ export const ThemeContextProvider = ({ children }) => {
       if (newPasswordText1) newPasswordText1.style.color = "black";
       if (newPass1) newPass1.style.color = "black";
       if (newPass2) newPass2.style.color = "black";
+      if (salesTitle) salesTitle.style.color = "black";
     }
   }, [theme]);
   
