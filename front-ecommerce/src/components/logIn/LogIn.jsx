@@ -2,6 +2,7 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const LogIn = ({ users }) => {
   const [email, setEmail] = useState("");
@@ -46,7 +47,9 @@ const LogIn = ({ users }) => {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <p className="mt-4" id="pass2Title">¿Olvidaste tu contraseña?</p>
+            <Link to="/resetpassword" className="mt-4" id="forgot-pass" style={{ textDecoration: "none", color: "red", fontSize: "13px"}}>
+              ¿Olvidaste tu contraseña?
+            </Link>
             <Button
               type="submit"
               variant="dark"

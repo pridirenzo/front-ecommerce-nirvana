@@ -41,7 +41,12 @@ export const ThemeContextProvider = ({ children }) => {
     const jumper = document.getElementById("jumperTitle");
     const superadmin = document.getElementById("superadminDashTitle");
     const supAdminNav = document.getElementById("supAdminNav");
-
+    const resetPassword = document.getElementById("resetPasswordTitle");
+    const passwordText = document.getElementById("explanationPasswordText");
+    const newPasswordTitle = document.getElementById("newPasswordTitle");
+    const newPasswordText1 = document.getElementById("newPasswordText1");
+    const newPass1 = document.getElementById("newPass1");
+    const newPass2 = document.getElementById("newPass2");
   
     if (theme === "dark") {
       document.body.style.backgroundColor = "black";
@@ -69,6 +74,12 @@ export const ThemeContextProvider = ({ children }) => {
       if (jumper) jumper.style.color = "yellow";
       if (superadmin) superadmin.style.color = "yellow";
       if (supAdminNav) supAdminNav.style.backgroundColor = "yellow";
+      if (resetPassword) resetPassword.style.color = "yellow";
+      if (passwordText) passwordText.style.color = "yellow";
+      if (newPasswordTitle) newPasswordTitle.style.color = "yellow";
+      if (newPasswordText1) newPasswordText1.style.color = "yellow";
+      if (newPass1) newPass1.style.color = "yellow";
+      if (newPass2) newPass2.style.color = "yellow";
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";
@@ -95,6 +106,12 @@ export const ThemeContextProvider = ({ children }) => {
       if (jumper) jumper.style.color = "black";
       if (superadmin) superadmin.style.color = "black";
       if (supAdminNav) supAdminNav.style.backgroundColor = "#A4AAA6";
+      if (resetPassword) resetPassword.style.color = "black";
+      if (passwordText) passwordText.style.color = "black";
+      if (newPasswordTitle) newPasswordTitle.style.color = "black";
+      if (newPasswordText1) newPasswordText1.style.color = "black";
+      if (newPass1) newPass1.style.color = "black";
+      if (newPass2) newPass2.style.color = "black";
     }
   }, [theme]);
   

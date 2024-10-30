@@ -26,6 +26,9 @@ import Music from "./components/Music/Music";
 import Accessories from "./components/accessories/Accessories";
 import Cart from "./components/cart/Cart";
 import { CartProvider } from "./components/cart/CartProvider";
+import ResetPassword from "./components/resetPassword/ResetPassword";
+import NewPassword from "./components/newResetPassword/NewResetPassword";
+import NewResetPassword from "./components/newResetPassword/NewResetPassword";
 // import ProtectedSuperAdmin from "./routes/ProtectedSuperAdmin";
 // import Protected from "./routes/Protected";
 // import ProtectedBuy from "./routes/ProtectedBuy";
@@ -217,7 +220,16 @@ function App() {
       path: "/accessories",
       element: <Accessories productsaccesories={productsaccesories} />,
     },
-    { path: "/cart", element: <Cart /> },
+    { path: "/cart", 
+      element: <Cart /> 
+    },
+    {
+      path: "/resetpassword",
+      element: <ResetPassword/>
+    },
+    { path: "/newresetpassword",
+      element: <NewResetPassword/>
+    }
   ]);
 
   return (
