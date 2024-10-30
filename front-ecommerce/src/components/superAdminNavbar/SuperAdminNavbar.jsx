@@ -54,7 +54,7 @@ const SuperAdminNavbar = () => {
   const { toggleTheme } = useContext(ThemeContext);
 
   return (
-    <nav className="flex justify-between items-center p-4 text-black" style={{ backgroundColor: 'yellow' }}>
+    <nav id="supAdminNav" className="flex justify-between items-center p-4 text-black">
       <div className="flex items-center">
         <a href="/">
           <img

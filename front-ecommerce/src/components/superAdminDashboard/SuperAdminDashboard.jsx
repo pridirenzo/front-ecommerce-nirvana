@@ -20,9 +20,9 @@ const SuperAdminDashboard = ({ users }) => {
 
   return (
     <>
-      <SuperAdminNavbar />
+      <SuperAdminNavbar/>
       <div className="container">
-        <h1 className="text-center mb-4 mt-4" style={{fontSize: "30px"}}>Administrar Usuarios 👥</h1>
+        <h1 id="superadminDashTitle" className="text-center mb-4 mt-4" style={{fontSize: "30px"}}>Administrar Usuarios 👥</h1>
         <Table striped bordered hover>
           <thead>
             <tr>

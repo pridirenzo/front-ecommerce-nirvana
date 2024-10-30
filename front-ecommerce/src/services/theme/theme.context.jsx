@@ -39,7 +39,8 @@ export const ThemeContextProvider = ({ children }) => {
     const cd = document.getElementById("cdTitle");
     const shirt = document.getElementById("shirtTitle");
     const jumper = document.getElementById("jumperTitle");
-   
+    const superadmin = document.getElementById("superadminDashTitle");
+    const supAdminNav = document.getElementById("supAdminNav");
 
   
     if (theme === "dark") {
@@ -66,6 +67,8 @@ export const ThemeContextProvider = ({ children }) => {
       if (cd) cd.style.color = "yellow";
       if (shirt) shirt.style.color = "yellow";
       if (jumper) jumper.style.color = "yellow";
+      if (superadmin) superadmin.style.color = "yellow";
+      if (supAdminNav) supAdminNav.style.backgroundColor = "yellow";
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";
@@ -90,6 +93,8 @@ export const ThemeContextProvider = ({ children }) => {
       if (cd) cd.style.color = "black";
       if (shirt) shirt.style.color = "black";
       if (jumper) jumper.style.color = "black";
+      if (superadmin) superadmin.style.color = "black";
+      if (supAdminNav) supAdminNav.style.backgroundColor = "#A4AAA6";
     }
   }, [theme]);
   

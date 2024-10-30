@@ -80,10 +80,10 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           </Carousel>
         </Container>
       </div>
-      <h2 id="merchTitle" className="d-flex justify-content-center mt-5 mb-5">
+      <h2 id="merchTitle" className="d-flex justify-content-center mt-5 mb-5" style={{fontSize: "35px"}}>
         Merchandising disponible
       </h2>
-      <h3 id="clothesTitle" className="d-flex justify-content-center">Prendas 🏷️</h3>
+      <h3 id="clothesTitle" className="d-flex justify-content-center" style={{fontSize: "25px"}} >Prendas 🏷️</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsprendas) &&
           productsprendas
@@ -116,7 +116,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           Ver todo en PRENDAS
         </Button>
       </div>
-      <h3 id="musicTitle" className="d-flex justify-content-center mt-5 mb-5">
+      <h3 id="musicTitle" className="d-flex justify-content-center mt-5 mb-5" style={{fontSize: "25px"}}>
         Discografía 💿
       </h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
@@ -151,7 +151,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           Ver todo en DISCOGRAFÍA
         </Button>
       </div>
-      <h3 id="accessoriesTitle" className="d-flex justify-content-center mt-5 mb-5">Accesorios 🎩</h3>
+      <h3 id="accessoriesTitle" className="d-flex justify-content-center mt-5 mb-5" style={{fontSize: "25px"}}>Accesorios 🎩</h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsaccesories) &&
           productsaccesories
