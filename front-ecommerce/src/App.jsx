@@ -10,15 +10,30 @@ import Footer from "./components/footer/Footer";
 import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
-import { GetUsers, createUser , GetProductsMusic, GetProductsPrendas, GetProductsAccesories, GetProductsVinilos, GetProductsRemeras, GetProductsCDs, GetProductsBuzos} from "./components/api/apiService";
-import Clothes from "./components/clothes/Clothes"
+import {
+  GetUsers,
+  createUser,
+  GetProductsMusic,
+  GetProductsPrendas,
+  GetProductsAccesories,
+  GetProductsVinilos,
+  GetProductsRemeras,
+  GetProductsCDs,
+  GetProductsBuzos,
+} from "./components/api/apiService";
+import Clothes from "./components/clothes/Clothes";
 import Music from "./components/Music/Music";
 import Accessories from "./components/accessories/Accessories";
-import Cart from "./components/cart/Cart";  
+import Cart from "./components/cart/Cart";
 import { CartProvider } from "./components/cart/CartProvider";
+// import ProtectedSuperAdmin from "./routes/ProtectedSuperAdmin";
+// import Protected from "./routes/Protected";
+// import ProtectedBuy from "./routes/ProtectedBuy";
+// import ProtectedLogin from "./routes/ProtectedLogin";
+
+// descomentar cuando se implementen rutas protegidas
 
 function App() {
-
   // FETCHEO PRODUCTOS
   const [productsprendas, setProductsPrendas] = useState([]);
   const [productsmusic, setProductsMusic] = useState([]);
@@ -28,79 +43,91 @@ function App() {
   const [productsvinilos, setProductsVinilos] = useState([]);
   const [productscds, setProductsCDs] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const Products = await GetProductsPrendas();
+        setProductsPrendas(Products.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {try {
-      const Products = await GetProductsPrendas()
-      setProductsPrendas(Products.data)
-    } catch (error) {
-      console.log(error)
-    }} 
-    fetchData()
-  }, [])
-
-   useEffect(() => {
-     const fetchData = async () => {try {
-       const Products = await GetProductsMusic()
-       setProductsMusic(Products.data)
-     } catch (error) {
-       console.log(error)
-     }} 
-     fetchData()
-   }, [])
-
-   useEffect(() => {
-    const fetchData = async () => {try {
-      const Products = await GetProductsAccesories()
-      setProductsAccesories(Products.data)
-    } catch (error) {
-      console.log(error)
-    }} 
-    fetchData()
-  }, [])
- 
-  useEffect(() => {
-    const fetchData = async () => {try {
-      const Products = await GetProductsRemeras()
-      setProductsRemeras(Products.data)
-    } catch (error) {
-      console.log(error)
-    }} 
-    fetchData()
-  }, [])
+    const fetchData = async () => {
+      try {
+        const Products = await GetProductsMusic();
+        setProductsMusic(Products.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {try {
-      const Products = await GetProductsBuzos()
-      setProductsBuzos(Products.data)
-    } catch (error) {
-      console.log(error)
-    }} 
-    fetchData()
-  }, [])
+    const fetchData = async () => {
+      try {
+        const Products = await GetProductsAccesories();
+        setProductsAccesories(Products.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {try {
-      const Products = await GetProductsVinilos()
-      setProductsVinilos(Products.data)
-    } catch (error) {
-      console.log(error)
-    }} 
-    fetchData()
-  }, [])
+    const fetchData = async () => {
+      try {
+        const Products = await GetProductsRemeras();
+        setProductsRemeras(Products.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {try {
-      const Products = await GetProductsCDs()
-      setProductsCDs(Products.data)
-    } catch (error) {
-      console.log(error)
-    }} 
-    fetchData()
-  }, [])
+    const fetchData = async () => {
+      try {
+        const Products = await GetProductsBuzos();
+        setProductsBuzos(Products.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const Products = await GetProductsVinilos();
+        setProductsVinilos(Products.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
-  // FETCHEO USUARIOS 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const Products = await GetProductsCDs();
+        setProductsCDs(Products.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // FETCHEO USUARIOS
 
   const [users, setUsers] = useState([]);
 
@@ -117,73 +144,91 @@ function App() {
     fetchData();
   }, []);
 
-
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Landing 
-      productsprendas = {productsprendas}
-      productsmusic = {productsmusic}                   
-      productsaccesories = {productsaccesories} />,
+      element: (
+        <Landing
+          productsprendas={productsprendas}
+          productsmusic={productsmusic}
+          productsaccesories={productsaccesories}
+        />
+      ),
     },
     { path: "/login", 
-      element: <LogIn users={users}/> 
+      element: <LogIn users={users} /> 
     },
-    { path: "/register",
-      element: <SignIn createUser={createUser}/>
+    { path: "/register", 
+      element: <SignIn createUser={createUser} /> 
     },
-    { path: "/profile",
-      element: <Profile />
+    { path: "/profile", 
+      element: 
+      //<ProtectedLogin>
+        <Profile />
+      //</ProtectedLogin> 
     },
-    { path: "/product",
-      element: <ProductDetail />
+    { path: "/product", 
+      element: <ProductDetail /> 
     },
-    { path: "*",
-      element: <NotFound/>
+    { path: "*", 
+      element: <NotFound /> 
     },
-    { path: "/purchase",
-      element: <PurchaseDetail/>
-    },
+    { path: "/purchase", 
+      element: 
+        // <ProtectedBuy>
+          <PurchaseDetail /> 
+        // </ProtectedBuy>
+      },
     { path: "/admin",
-      element: <AdminDashboard
-      productsprendas = {productsprendas}
-      productsmusic = {productsmusic}                   
-      productsaccesories = {productsaccesories} />
+      element: (
+        // <Protected> 
+          <AdminDashboard
+            productsprendas={productsprendas}
+            productsmusic={productsmusic}
+            productsaccesories={productsaccesories}
+          />
+        // </Protected> 
+      ),
     },
-    { path: "/superadmin",
-      element: <SuperAdminDashboard users={users}/>
+    {
+      path: "/superadmin",
+      element: (
+        //<ProtectedSuperAdmin>
+          <SuperAdminDashboard users={users} />
+        //</ProtectedSuperAdmin>
+      ),
     },
-    { path: "/clothes",
-      element: <Clothes 
-      productsremeras = {productsremeras}
-      productsbuzos = {productsbuzos}
-      />
+    {
+      path: "/clothes",
+      element: (
+        <Clothes
+          productsremeras={productsremeras}
+          productsbuzos={productsbuzos}
+        />
+      ),
     },
-    { path: "/music",
-      element: <Music 
-      productsvinilos = {productsvinilos} 
-      productscds = {productscds}
-      />
+    {
+      path: "/music",
+      element: (
+        <Music productsvinilos={productsvinilos} productscds={productscds} />
+      ),
     },
-    { path: "/accessories",
-      element: <Accessories productsaccesories = {productsaccesories} />
+    {
+      path: "/accessories",
+      element: <Accessories productsaccesories={productsaccesories} />,
     },
-    { path: "/cart", 
-      element: <Cart /> }
-    
-
+    { path: "/cart", element: <Cart /> },
   ]);
-
 
   return (
     <>
-      <CartProvider> 
+      <CartProvider>
         <div>
           <RouterProvider router={router} />
-          <Footer/>
+          <Footer />
         </div>
-      </CartProvider> {/* con esto nos ahorramos estar instanciando el CartContext en cada component y lo podemos usar directamente*/}
+      </CartProvider>{" "}
+      {/* con esto nos ahorramos estar instanciando el CartContext en cada component y lo podemos usar directamente*/}
     </>
   );
 }

@@ -3,19 +3,20 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../services/authentication/user.context";
 
-const ProtectedSuperAdmin = ({ children }) => {
+const ProtectedLogin = ({ children }) => {
   const { user } = useContext(UserContext);
 
-  if (user && user.role === "sysadmin") {
+  if (user ) {
     return children;
   } else {
-    alert("Es necesario que tenga permiso de SuperAdmin");
+    alert("Es necesario que inicie sesion");
     return <Navigate to="/"></Navigate>;
   }
 };
 
-export default ProtectedSuperAdmin;
+export default ProtectedLogin;
 
-ProtectedSuperAdmin.propTypes = {
-  children: PropTypes.node.isRequired,
+ProtectedLogin.propTypes = {
+  loggedIn: PropTypes.bool,
+  children: PropTypes.object,
 };
