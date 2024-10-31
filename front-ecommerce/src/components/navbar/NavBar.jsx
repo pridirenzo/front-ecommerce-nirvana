@@ -7,6 +7,7 @@ import solyluna from '../../../public/solyluna.png';
 import { Form } from "react-bootstrap";
 import search from "../icons/search.svg";
 import { InputGroup } from "react-bootstrap"
+import { UserContext } from "../../services/authentication/user.context"; 
 
 const Navlinks = [
   {
@@ -33,8 +34,8 @@ const Navlinks = [
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const [showButtons, setShowButtons] = useState(false);
+  const [showButtons, setShowButtons] = useState(false); 
+  const { user, setUser } = useContext(UserContext);
 
   const handleAccountClick = () => {
     setShowButtons(!showButtons);
@@ -58,14 +59,21 @@ const Navbar = () => {
   
   const { toggleTheme } = useContext(ThemeContext);
 
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+    navigate('/');  
+  };
+  
+
   return (
-    <nav id= "landingNavbar" style={{backgroundColor: "yellow"}} className="flex justify-between items-center p-4 text-black">
+    <nav id="landingNavbar" style={{ backgroundColor: "yellow" }} className="flex justify-between items-center p-4 text-black">
       <div className="flex items-center">
-          <img
-            src={LogoNirvana}
-            alt="LogoNirvana"
-            className="w-16 sm:w-24 transition duration-300 ease-in-out transform hover:scale-150 mr-4 cursor-pointer"
-          />
+        <img
+          src={LogoNirvana}
+          alt="LogoNirvana"
+          className="w-16 sm:w-24 transition duration-300 ease-in-out transform hover:scale-150 mr-4 cursor-pointer"
+        />
         <ul className="hidden md:flex space-x-6">
           {Navlinks.map(({ id, name, link }) => (
             <li key={id} className="py-2 px-4">
@@ -86,9 +94,7 @@ const Navbar = () => {
       >
         <GiHamburgerMenu className="h-6 w-6 text-black" />
       </button>
-      <ul
-        className={`md:hidden ${menuOpen ? 'block' : 'hidden'}`}
-      >
+      <ul className={`md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
         {Navlinks.map(({ id, name, link }) => (
           <li key={id} className="py-2 px-4">
             <a
@@ -102,43 +108,52 @@ const Navbar = () => {
         ))}
       </ul>
       <Form className="custom-form me-3">
-          <InputGroup>
-            <Form.Control placeholder="Buscar" aria-label="Buscar" />
-            <Button variant="outline-secondary">
-              <img src={search} alt="search" />
-            </Button>
-          </InputGroup>
+        <InputGroup>
+          <Form.Control placeholder="Buscar" aria-label="Buscar" />
+          <Button variant="outline-secondary">
+            <img src={search} alt="search" />
+          </Button>
+        </InputGroup>
       </Form>
       <div className="d-flex align-items-center">
-        <i
-          className="icon-hover bi bi-person-circle bg-transparent text-black text-2xl"
-          
-            onClick={handleAccountClick}
-        ></i>
-        {showButtons && (
-          <div className="flex flex-col">
-            <a
-              href="/login"
-              className="text-xs  ml-2 mb-2 text-black"
-              onClick={() => handleNavClick('/login')}
-            >
-              Login
-            </a>
-            <a
-              href="/register"
-              className="text-xs  ml-2  text-black"
-              onClick={() => handleNavClick('/register')}
-            >
-              Registro
-            </a>
-          </div>
+        {!user ? (
+          <>
+            <i
+              className="icon-hover bi bi-person-circle bg-transparent text-black text-2xl"
+              onClick={handleAccountClick}
+            ></i>
+            {showButtons && (
+              <div className="flex flex-col">
+                <a
+                  href="/login"
+                  className="text-xs ml-2 mb-2 text-black"
+                  onClick={() => handleNavClick('/login')}
+                >
+                  Login
+                </a>
+                <a
+                  href="/register"
+                  className="text-xs ml-2 text-black"
+                  onClick={() => handleNavClick('/register')}
+                >
+                  Registro
+                </a>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <span className="ml-2 text-black text-xl">{user.firstName} {user.lastName} </span>
+            <button className="ml-4 text-black" onClick={handleLogout}>Cerrar sesión</button>
+          </>
         )}
       </div>
       <Button variant="link" onClick={toggleTheme}>
-      <img src={solyluna} alt="Sol y luna" className="p-2 w-11 h-11" />
+        <img src={solyluna} alt="Sol y luna" className="p-2 w-11 h-11" />
       </Button>
     </nav>
   );
+  
 };
 
 export default Navbar;
