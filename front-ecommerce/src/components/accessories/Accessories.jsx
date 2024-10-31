@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
 import { CartContext } from "../cart/CartContext";
 import { useNavigate } from "react-router-dom";
+import ProtectedBuy from "../../routes/ProtectedBuy";
 
 const Accesories = ({ productsaccesories }) => {
   const { addToCart } = useContext(CartContext);
@@ -40,9 +41,11 @@ const Accesories = ({ productsaccesories }) => {
                   {product.name}
                 </Card.Title>
                 <Card.Text>${product.price}</Card.Text>
-                <Button variant="dark" onClick={() => handleAddToCart(product)}>
-                  Comprar
-                </Button>
+                <ProtectedBuy onBuy={() => handleAddToCart(product)}>
+                  <Button variant="dark">
+                    Comprar
+                  </Button>
+                </ProtectedBuy>
               </Card.Body>
             </Card>
           ))}

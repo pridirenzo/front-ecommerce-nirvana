@@ -1,9 +1,32 @@
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 const SignIn = ({ createUser }) => {
   const navigate = useNavigate();
+  
+  // Estado para las dimensiones de la ventana
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
+
+  // Función para actualizar las dimensiones de la ventana
+  const handleResize = () => {
+    setDimensions({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
+  };
+
+  // useEffect para agregar y limpiar el listener de resize
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
@@ -26,8 +49,6 @@ const SignIn = ({ createUser }) => {
     const password = event.target.elements.password.value;
     const confirmPassword = event.target.elements.confirmPassword.value;
 
-    console.log("Formulario enviado");
-
     if (password !== confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
@@ -48,10 +69,7 @@ const SignIn = ({ createUser }) => {
         isActive: 1
       };
 
-      console.log("Datos del usuario a enviar:", userData);
       const response = await createUser(userData);
-      console.log("Respuesta del servidor:", response);
-
       alert("Revise su correo para la confirmación");
       navigate("/login");
     } catch (error) {
@@ -77,7 +95,7 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label id="surnameTitle" >Apellido</Form.Label>
+            <Form.Label id="surnameTitle">Apellido</Form.Label>
             <Form.Control
               required
               placeholder="Ingresá tu apellido"
@@ -134,6 +152,14 @@ const SignIn = ({ createUser }) => {
           </Col>
         </Form.Group>
       </Form>
+      <div style={{ marginTop: "20px", display: "flex", alignItems: "center" }}>
+        <span style={{ fontSize: "0.8em", marginRight: "10px" }}>
+          Alto de pantalla: {dimensions.height}px 🖥️
+        </span>
+        <span style={{ fontSize: "0.8em" }}>
+          Ancho de pantalla: {dimensions.width}px 🖥️
+        </span>
+      </div>
     </>
   );
 };

@@ -31,12 +31,13 @@ import ResetPassword from "./components/resetPassword/ResetPassword";
 import NewPassword from "./components/newResetPassword/NewResetPassword";
 import NewResetPassword from "./components/newResetPassword/NewResetPassword";
 import SalesDashboard from "./components/salesDashboard/SalesDashboard";
-// import ProtectedSuperAdmin from "./routes/ProtectedSuperAdmin";
-// import Protected from "./routes/Protected";
-// import ProtectedBuy from "./routes/ProtectedBuy";
-// import ProtectedLogin from "./routes/ProtectedLogin";
+import ProtectedSuperAdmin from "./routes/ProtectedSuperAdmin";
+import Protected from "./routes/Protected";
+import ProtectedBuy from "./routes/ProtectedBuy";
+import ProtectedLogin from "./routes/ProtectedLogin";
+import { UserContextProvider } from "./services/authentication/user.context"
 
-// descomentar cuando se implementen rutas protegidas
+
 
 function App() {
   // FETCHEO PRODUCTOS
@@ -168,9 +169,9 @@ function App() {
     },
     { path: "/profile", 
       element: 
-      //<ProtectedLogin>
+      <ProtectedLogin>
         <Profile />
-      //</ProtectedLogin> 
+      </ProtectedLogin> 
     },
     { path: "/product", 
       element: <ProductDetail /> 
@@ -180,27 +181,27 @@ function App() {
     },
     { path: "/purchase", 
       element: 
-        // <ProtectedBuy>
+         <ProtectedBuy>
           <PurchaseDetail /> 
-        // </ProtectedBuy>
+         </ProtectedBuy>
       },
     { path: "/admin",
       element: (
-        // <Protected> 
+         //<Protected> 
           <AdminDashboard
             productsprendas={productsprendas}
             productsmusic={productsmusic}
             productsaccesories={productsaccesories}
           />
-        // </Protected> 
+         //</Protected> 
       ),
     },
     {
       path: "/superadmin",
       element: (
-        //<ProtectedSuperAdmin>
+        <ProtectedSuperAdmin>
           <SuperAdminDashboard users={users} />
-        //</ProtectedSuperAdmin>
+        </ProtectedSuperAdmin>
       ),
     },
     {
@@ -238,16 +239,14 @@ function App() {
   ]);
 
   return (
-    <>
+    <UserContextProvider>
       <CartProvider>
-        <div>
-          <RouterProvider router={router} />
-          <Footer />
-        </div>
-      </CartProvider>{" "}
-      {/* con esto nos ahorramos estar instanciando el CartContext en cada component y lo podemos usar directamente*/}
-    </>
+        <RouterProvider router={router} />
+        <Footer />
+      </CartProvider>
+    </UserContextProvider>
   );
+
 }
 
 export default App;

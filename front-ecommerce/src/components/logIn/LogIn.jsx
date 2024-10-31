@@ -1,20 +1,23 @@
 import { Form, Col, Row, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../services/authentication/user.context"; 
 
 const LogIn = ({ users }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = users.find((user) => user.email === email && user.password === password);
-
     if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
       navigate("/");
     } else {
       setError("Credenciales incorrectas");
@@ -23,7 +26,9 @@ const LogIn = ({ users }) => {
 
   return (
     <>
-      <h1 id="loginTitle" className="d-flex justify-content-center mt-5" style={{fontSize: "30px"}} >Iniciar sesión</h1>
+      <h1 id="loginTitle" className="d-flex justify-content-center mt-5" style={{ fontSize: "30px" }}>
+        Iniciar sesión
+      </h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
@@ -47,7 +52,7 @@ const LogIn = ({ users }) => {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <Link to="/resetpassword" className="mt-4" id="forgot-pass" style={{ textDecoration: "none", color: "red", fontSize: "13px"}}>
+            <Link to="/resetpassword" className="mt-4" id="forgot-pass" style={{ textDecoration: "none", color: "red", fontSize: "13px" }}>
               ¿Olvidaste tu contraseña?
             </Link>
             <Button
@@ -65,8 +70,6 @@ const LogIn = ({ users }) => {
   );
 };
 
-export default LogIn;
-
 LogIn.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
@@ -75,3 +78,6 @@ LogIn.propTypes = {
     })
   ).isRequired,
 };
+
+export default LogIn;
+
