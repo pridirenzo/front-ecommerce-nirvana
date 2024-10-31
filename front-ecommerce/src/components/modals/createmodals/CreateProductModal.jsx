@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import '../modalstyle/Modals.css';
 import { CreateProducts } from '../../api/apiService';
-import StockVariantsModal from '../createmodals/StockVariantsModal'
+import StockVariantsModal from '../createmodals/StockVariantsModal';
 
 const CreateProductModal = ({ show, handleClose }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -15,20 +15,31 @@ const CreateProductModal = ({ show, handleClose }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [price, setPrice] = useState('');
   const [productVariants, setProductVariants] = useState([]);
-  const [ShowStockVariantsModal, setShowStockVariantsModal] = useState(false);
-
+  const [color, setColor] = useState('');
+  const [showStockVariantsModal, setShowStockVariantsModal] = useState(false);
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
   };
 
-  const handleOpenStockVariantsModal = () => setShowStockVariantsModal(true);
-  const handleCloseModal = () => setShowStockVariantsModal(false);
+  const handleColorChange = (event) => {
+    setColor(event.target.value);
+  };
 
-  // Recibe las variantes del modal hijo
+  const handleOpenStockVariantsModal = () => {
+    setShowStockVariantsModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowStockVariantsModal(false);
+  };
+
   const handleSaveVariants = (variants) => {
-    setProductVariants(variants);
+    setProductVariants(variants.map(variant => ({
+      ...variant,
+      color: color
+    })));
   };
 
   const handleSubmit = async () => {
@@ -47,9 +58,9 @@ const CreateProductModal = ({ show, handleClose }) => {
         color: variant.color,
       })),
     };
-    
+
     console.log('Enviando datos del producto:', productData);
-    
+
     try {
       const response = await CreateProducts(productData);
       console.log('Producto creado:', response.data);
@@ -59,9 +70,11 @@ const CreateProductModal = ({ show, handleClose }) => {
     }
   };
 
+  const isClothingCategory = category === '4' || category === '5';
+
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show && !showStockVariantsModal} onHide={handleClose} backdrop="static" backdropClassName="modal-backdrop">
         <Modal.Header closeButton>
           <Modal.Title className='modal-title-custom'>Añadir un nuevo producto</Modal.Title>
         </Modal.Header>
@@ -80,11 +93,11 @@ const CreateProductModal = ({ show, handleClose }) => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label className='form-title-custom'>Nombre de producto</Form.Label>
-              <Form.Control 
-                placeholder="Nombre" 
-                value={productName} 
-                onChange={(e) => setProductName(e.target.value)} 
-                autoFocus 
+              <Form.Control
+                placeholder="Nombre"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -103,6 +116,16 @@ const CreateProductModal = ({ show, handleClose }) => {
                 onChange={(e) => setImageUrl(e.target.value)}
               />
             </Form.Group>
+            {isClothingCategory && (
+              <Form.Group className="mb-3">
+                <Form.Label className='form-title-custom'>Color</Form.Label>
+                <Form.Control
+                  placeholder="Color"
+                  value={color}
+                  onChange={handleColorChange}
+                />
+              </Form.Group>
+            )}
             <Form.Label className='form-title-custom'>Precio</Form.Label>
             <InputGroup className="mb-3">
               <InputGroup.Text>$</InputGroup.Text>
@@ -110,23 +133,23 @@ const CreateProductModal = ({ show, handleClose }) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)} />
             </InputGroup>
-            <Button onClick={handleOpenStockVariantsModal}> Agregar Stock</Button>
+            <Button onClick={handleOpenStockVariantsModal}> Agregar stock</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cerrar
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Save Changes
+            Guardar nuevo producto
           </Button>
         </Modal.Footer>
       </Modal>
-
       <StockVariantsModal
-        show={ShowStockVariantsModal}
+        show={showStockVariantsModal}
         handleClose={handleCloseModal}
         onSave={handleSaveVariants}
+        isClothingCategory={isClothingCategory}
       />
     </>
   );
