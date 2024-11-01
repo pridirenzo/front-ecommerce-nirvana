@@ -204,7 +204,7 @@ function App() {
       path: "/superadmin",
       element: (
         <ProtectedSuperAdmin>
-          <SuperAdminDashboard users={users} />
+          <SuperAdminDashboard users={users} setUsers={setUsers}/>
         </ProtectedSuperAdmin>
       ),
     },
