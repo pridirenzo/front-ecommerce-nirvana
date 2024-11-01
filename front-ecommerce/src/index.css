@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 *{
   color: #E6D901;
   font-family: "Abril Fatface", 'Courier New';
@@ -69,3 +68,5 @@
   transform: scale(1.1);
   color:#E6D901;
 }
+
+.icon-hover, .bi-cart2, .bi-person-circle, .GiHamburgerMenu, .search-icon { color: #000}
