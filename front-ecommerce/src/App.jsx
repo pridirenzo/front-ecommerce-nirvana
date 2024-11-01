@@ -181,9 +181,9 @@ function App() {
     },
     { path: "/purchase", 
       element: 
-         <ProtectedBuy>
+         <ProtectedLogin>
           <PurchaseDetail /> 
-         </ProtectedBuy>
+         </ProtectedLogin>
       },
     { path: "/admin",
       element: (
@@ -224,7 +224,11 @@ function App() {
       element: <Accessories productsaccesories={productsaccesories} />,
     },
     { path: "/cart", 
-      element: <Cart /> 
+      element: (
+        <ProtectedLogin>
+          <Cart />
+        </ProtectedLogin>
+      ), 
     },
     {
       path: "/resetpassword",
@@ -234,7 +238,11 @@ function App() {
       element: <NewResetPassword/>
     },
     { path: "/salesdashboard",
-      element: <SalesDashboard/>
+      element:(
+        <Protected>
+          <SalesDashboard/>
+        </Protected>
+      ),
     }
   ]);
 
