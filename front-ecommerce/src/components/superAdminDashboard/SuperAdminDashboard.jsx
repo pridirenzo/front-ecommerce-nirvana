@@ -4,12 +4,12 @@ import SuperAdminNavbar from "../superAdminNavbar/SuperAdminNavbar";
 import PropTypes from "prop-types";
 import { Table, Modal, Button } from "react-bootstrap";
 
-const SuperAdminDashboard = ({ users }) => {
+const SuperAdminDashboard = ({ users, setUsers }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [newUser, setNewUser] = useState({ firstName: "", email: "", password: "", role: 3 }); // Default role is "Cliente"
+  const [newUser, setNewUser] = useState({ firstName: "", email: "", password: "", role: 3 });
 
   const handleCloseEdit = () => setShowEditModal(false);
   const handleCloseDelete = () => setShowDeleteModal(false);
@@ -26,27 +26,88 @@ const SuperAdminDashboard = ({ users }) => {
   };
 
   const handleShowAdd = () => {
-    setNewUser({ firstName: "", email: "", password: "", role: 3 }); // Reiniciar campos
+    setNewUser({ firstName: "", email: "", password: "", role: 3 });
     setShowAddModal(true);
   };
 
   const getRoleName = (role) => {
     switch (role) {
-      case 1:
-        return "Super Admin";
-      case 2:
-        return "Admin";
-      case 3:
-        return "Cliente";
-      default:
-        return "Desconocido";
+      case 1: return "Super Admin";
+      case 2: return "Admin";
+      case 3: return "Cliente";
+      default: return "Desconocido";
     }
   };
 
-  const handleAddUser = () => {
-    // Aquí puedes agregar la lógica para guardar el nuevo usuario
-    console.log("Nuevo usuario:", newUser);
-    handleCloseAdd();
+  const handleAddUser = async () => {
+    try {
+      const response = await fetch(`https://localhost:7037/api/User/create-and-verify`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      if (response.ok) {
+        const addedUser = await response.json();
+        setUsers((prevUsers) => [...prevUsers, addedUser]); 
+        handleCloseAdd();
+      } else {
+        console.error('Error al agregar el usuario:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
+  };
+
+  const handleEditUser = async () => {
+    if (!selectedUser) return; 
+    const updatedUser = {
+      ...selectedUser,
+      firstName: selectedUser.firstName,
+      email: selectedUser.email,
+      role: selectedUser.role,
+    };
+
+    try {
+      const response = await fetch(`https://localhost:7037/api/User/${selectedUser.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUser),
+      });
+
+      if (response.ok) {
+        const modifiedUser = await response.json();
+        setUsers((prevUsers) =>
+          prevUsers.map((user) => (user.id === modifiedUser.id ? modifiedUser : user))
+        ); // Actualiza el usuario en la lista
+        handleCloseEdit();
+      } else {
+        console.error('Error al editar el usuario:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
+  };
+
+  const handleDeleteUser = async (userId) => {
+    try {
+      const response = await fetch(`https://localhost:7037/api/User/${userId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+        handleCloseDelete();
+      } else {
+        console.error('Error al eliminar el usuario de la base de datos');
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
   };
 
   return (
@@ -92,12 +153,12 @@ const SuperAdminDashboard = ({ users }) => {
         {/* Modal para Agregar Usuario */}
         <Modal show={showAddModal} onHide={handleCloseAdd}>
           <Modal.Header closeButton>
-            <Modal.Title style={{color: "black"}}>Agregar Usuario</Modal.Title>
+            <Modal.Title style={{ color: "black" }}>Agregar Usuario</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
               <div className="form-group">
-                <label style={{color: "black"}}>Nombre</label>
+                <label style={{ color: "black" }}>Nombre</label>
                 <input
                   type="text"
                   className="form-control"
@@ -106,7 +167,7 @@ const SuperAdminDashboard = ({ users }) => {
                 />
               </div>
               <div className="form-group">
-                <label style={{color: "black"}}>Email</label>
+                <label style={{ color: "black" }}>Email</label>
                 <input
                   type="email"
                   className="form-control"
@@ -115,7 +176,7 @@ const SuperAdminDashboard = ({ users }) => {
                 />
               </div>
               <div className="form-group">
-                <label style={{color: "black"}}>Contraseña</label>
+                <label style={{ color: "black" }}>Contraseña</label>
                 <input
                   type="password"
                   className="form-control"
@@ -124,15 +185,16 @@ const SuperAdminDashboard = ({ users }) => {
                 />
               </div>
               <div className="form-group">
-                <label style={{color: "black"}}>Rol</label>
-                <select style={{color: "black"}}
+                <label style={{ color: "black" }}>Rol</label>
+                <select
+                  style={{ color: "black" }}
                   className="form-control"
                   value={newUser.role}
                   onChange={(e) => setNewUser({ ...newUser, role: parseInt(e.target.value) })}
                 >
-                  <option style={{color: "black"}} value={1}>Super Admin</option>
-                  <option style={{color: "black"}} value={2}>Admin</option>
-                  <option style={{color: "black"}} value={3}>Cliente</option>
+                  <option style={{ color: "black" }} value={1}>Super Admin</option>
+                  <option style={{ color: "black" }} value={2}>Admin</option>
+                  <option style={{ color: "black" }} value={3}>Cliente</option>
                 </select>
               </div>
             </form>
@@ -150,20 +212,42 @@ const SuperAdminDashboard = ({ users }) => {
         {/* Modal para Editar Usuario */}
         <Modal show={showEditModal} onHide={handleCloseEdit}>
           <Modal.Header closeButton>
-            <Modal.Title style={{color: "black"}}>Editar Usuario</Modal.Title>
+            <Modal.Title style={{ color: "black" }}>Editar Usuario</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {selectedUser && (
               <form>
                 <div className="form-group">
-                  <label style={{color: "black"}} >Nombre</label>
-                  <input type="text" className="form-control" defaultValue={selectedUser.firstName} />
+                  <label style={{ color: "black" }}>Nombre</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={selectedUser.firstName}
+                    onChange={(e) => setSelectedUser({ ...selectedUser, firstName: e.target.value })}
+                  />
                 </div>
                 <div className="form-group">
-                  <label style={{color: "black"}}>Email</label>
-                  <input type="email" className="form-control" defaultValue={selectedUser.email} />
+                  <label style={{ color: "black" }}>Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    value={selectedUser.email}
+                    onChange={(e) => setSelectedUser({ ...selectedUser, email: e.target.value })}
+                  />
                 </div>
-                {/* Puedes agregar más campos según sea necesario */}
+                <div className="form-group">
+                  <label style={{ color: "black" }}>Rol</label>
+                  <select
+                    style={{ color: "black" }}
+                    className="form-control"
+                    value={selectedUser.role}
+                    onChange={(e) => setSelectedUser({ ...selectedUser, role: parseInt(e.target.value) })}
+                  >
+                    <option style={{ color: "black" }} value={1}>Super Admin</option>
+                    <option style={{ color: "black" }} value={2}>Admin</option>
+                    <option style={{ color: "black" }} value={3}>Cliente</option>
+                  </select>
+                </div>
               </form>
             )}
           </Modal.Body>
@@ -171,10 +255,7 @@ const SuperAdminDashboard = ({ users }) => {
             <Button variant="dark" onClick={handleCloseEdit}>
               Cancelar
             </Button>
-            <Button variant="success" onClick={() => {
-              // Lógica para guardar cambios
-              handleCloseEdit();
-            }}>
+            <Button variant="success" onClick={handleEditUser}>
               Guardar Cambios
             </Button>
           </Modal.Footer>
@@ -183,19 +264,16 @@ const SuperAdminDashboard = ({ users }) => {
         {/* Modal para Eliminar Usuario */}
         <Modal show={showDeleteModal} onHide={handleCloseDelete}>
           <Modal.Header closeButton>
-            <Modal.Title style={{color: "black"}}>Eliminar Usuario</Modal.Title>
+            <Modal.Title style={{ color: "black" }}>Eliminar Usuario</Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{color: "black"}}>
+          <Modal.Body style={{ color: "black" }}>
             ¿Estás seguro de que deseas eliminar a {selectedUser ? selectedUser.firstName : ''}?
           </Modal.Body>
           <Modal.Footer>
             <Button variant="dark" onClick={handleCloseDelete}>
               Cancelar
             </Button>
-            <Button variant="danger" onClick={() => {
-              // Lógica para eliminar el usuario
-              handleCloseDelete();
-            }}>
+            <Button variant="danger" onClick={() => handleDeleteUser(selectedUser.id)}>
               Eliminar
             </Button>
           </Modal.Footer>
@@ -214,6 +292,7 @@ SuperAdminDashboard.propTypes = {
       role: PropTypes.number.isRequired,
     })
   ).isRequired,
+  setUsers: PropTypes.func.isRequired,
 };
 
 export default SuperAdminDashboard;
