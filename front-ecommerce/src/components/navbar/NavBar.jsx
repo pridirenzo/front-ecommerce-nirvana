@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { FaUserCircle, FaCartPlus, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import LogoNirvana from '../../../public/LogoNirvana.png';
 import Button from "react-bootstrap/Button";
 import { ThemeContext } from "../../services/theme/theme.context";
@@ -18,8 +20,9 @@ const Navlinks = [
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
-
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleAccountClick = () => {
     setShowButtons(!showButtons);
@@ -44,9 +47,10 @@ const Navbar = () => {
   const { toggleTheme } = useContext(ThemeContext);
 
   const handleLogout = () => {
+    navigate('/');
     setUser(null);
     localStorage.removeItem("user");
-    navigate('/');
+    localStorage.removeItem("cart");
   };
 
   const RoleButtons = () => {
@@ -65,23 +69,23 @@ const Navbar = () => {
               </a>
             </li>
             <li className="py-2 px-4">
-                <a
-                  href="/admin"
-                  className="text-xl font-bold text-black hover:text-gray-600 duration-300"
-                  onClick={() => handleNavClick('/admin')}
-                >
-                  PRODUCTOS
-                </a>
-              </li>
-              <li className="py-2 px-4">
-                <a
-                  href="/salesdashboard"
-                  className="text-xl font-bold text-black hover:text-gray-600 duration-300"
-                  onClick={() => handleNavClick('/salesdashboard')}
-                >
-                  VENTAS
-                </a>
-              </li>
+              <a
+                href="/admin"
+                className="text-xl font-bold text-black hover:text-gray-600 duration-300"
+                onClick={() => handleNavClick('/admin')}
+              >
+                PRODUCTOS
+              </a>
+            </li>
+            <li className="py-2 px-4">
+              <a
+                href="/salesdashboard"
+                className="text-xl font-bold text-black hover:text-gray-600 duration-300"
+                onClick={() => handleNavClick('/salesdashboard')}
+              >
+                VENTAS
+              </a>
+            </li>
           </>
         );
       case 2:
@@ -108,28 +112,7 @@ const Navbar = () => {
           </>
         );
       case 3:
-        return (
-          <>
-            <li className="py-2 px-4">
-              <a
-                href="/profile"
-                className="text-xl font-bold text-black hover:text-gray-600 duration-300"
-                onClick={() => handleNavClick('/profile')}
-              >
-                PERFIL
-              </a>
-            </li>
-            <li className="py-2 px-4">
-              <a
-                href="/cart"
-                className="text-xl font-bold text-black hover:text-gray-600 duration-300"
-                onClick={() => handleNavClick('/cart')}
-              >
-                <i className="bi bi-cart2"></i>
-              </a>
-            </li>
-          </>
-        );
+        return null; // No mostrar botones adicionales aquí para el rol 3
       default:
         return null;
     }
@@ -176,7 +159,7 @@ const Navbar = () => {
             <li key={id} className="py-2 px-4">
               <a
                 href={link}
-                className="text-xl font-bold text-black hover:text-gray-600 duration-300 "
+                className="text-xl font-bold text-black hover:text-gray-600 duration-300"
                 onClick={() => handleNavClick(link)}
               >
                 {name}
@@ -186,14 +169,14 @@ const Navbar = () => {
         }
         {RoleButtons()}
       </ul>
-        <Form className="custom-form me-3 ">
-          <InputGroup>
-            <Form.Control placeholder="Buscar" aria-label="Buscar" />
-            <Button variant="outline-secondary">
-              <img src={search} alt="search" />
-            </Button>
-          </InputGroup>
-        </Form> 
+      <Form className="custom-form me-3">
+        <InputGroup>
+          <Form.Control placeholder="Buscar" aria-label="Buscar" />
+          <Button variant="outline-secondary">
+            <img src={search} alt="search" />
+          </Button>
+        </InputGroup>
+      </Form>
       <div className="d-flex align-items-center">
         {!user ? (
           <>
@@ -223,7 +206,38 @@ const Navbar = () => {
         ) : (
           <>
             <span className="ml-2 text-black text-xl">{user.firstName} {user.lastName} </span>
-            <button className="ml-4 text-black" onClick={handleLogout}>Cerrar sesión</button>
+            <div className="relative ml-4">
+              <button className="flex items-center" onClick={() => setUserMenuOpen(!userMenuOpen)}>
+                <FaUserCircle className="text-2xl text-black" />
+              </button>
+              {userMenuOpen && (
+                <ul className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
+                  <li className="py-2 px-4 hover:bg-gray-200">
+                    <a
+                      href="/profile"
+                      className="flex items-center text-black"
+                      onClick={() => handleNavClick('/profile')}
+                    >
+                      <FaUserAlt className="mr-2" /> PERFIL
+                    </a>
+                  </li>
+                  <li className="py-2 px-4 hover:bg-gray-200">
+                    <a
+                      href="/cart"
+                      className="flex items-center text-black"
+                      onClick={() => handleNavClick('/cart')}
+                    >
+                      <FaCartPlus className="mr-2" /> CARRITO
+                    </a>
+                  </li>
+                  <li className="py-2 px-4 hover:bg-gray-200">
+                    <button className="flex items-center text-black" onClick={handleLogout}>
+                      <FaSignOutAlt className="mr-2" /> CERRAR SESIÓN
+                    </button>
+                  </li>
+                </ul>
+              )}
+            </div>
           </>
         )}
       </div>
@@ -235,6 +249,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 
