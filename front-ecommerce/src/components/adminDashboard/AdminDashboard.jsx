@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Container } from "react-bootstrap";
-import AdminNavbar from "../adminNavbar/AdminNavbar";
+import Navbar from "../navbar/NavBar";
 import { useState } from "react";
 import CreateProductModal from "../modals/createmodals/CreateProductModal"
 
@@ -17,7 +17,7 @@ const AdminDashboard = ({productsprendas, productsmusic, productsaccesories}) =>
   return (
     <>
       <div>
-        <AdminNavbar/>
+        <Navbar/>
       </div>
 
       <h2 className="d-flex justify-content-center mt-5 mb-5">

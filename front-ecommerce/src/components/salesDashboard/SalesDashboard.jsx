@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SuperAdminNavbar from "../superAdminNavbar/SuperAdminNavbar";
+import Navbar from "../navbar/NavBar";
 import PropTypes from "prop-types";
 // import { Table, Modal, Button } from "react-bootstrap";
 
@@ -38,7 +38,7 @@ const SalesDashboard = ({ orders }) => {
 
   return (
     <>
-      <SuperAdminNavbar />
+      <Navbar />
       <div className="container">
         <h1 id="salesDashTitle" className="text-center mb-4 mt-4" style={{ fontSize: "30px" }}>
           Administrar Ventas 🛒
