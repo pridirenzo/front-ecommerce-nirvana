@@ -120,3 +120,40 @@ export const createUser = async (userData) => {
     throw error;
   }
 };
+
+export const createUser2 = async (userData) => {
+  try {
+    console.log("Enviando datos del usuario:", userData);
+    const response = await api.post("/api/User/only-create", userData);
+    console.log("Respuesta del servidor:", response);
+  
+    return response.data;
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    throw error;
+  }
+};
+
+
+export const updateUser = async (userId, userData) => {
+  try {
+    const updatedUserData = {
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      password: userData.password, 
+      role: userData.role,
+      isActive: userData.isActive,
+      id: userId, 
+    };
+
+    console.log("Actualizando datos del usuario:", userId, updatedUserData);
+    const response = await api.put(`/api/User`, updatedUserData);
+    console.log("Respuesta del servidor:", response);
+    
+    return response.data;
+  } catch (error) {
+    console.error("Error en la solicitud de actualización:", error);
+    throw error;
+  }
+};

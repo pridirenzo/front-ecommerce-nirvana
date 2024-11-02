@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import {
   GetUsers,
   createUser,
+  createUser2,
   GetProductsMusic,
   GetProductsPrendas,
   GetProductsAccesories,
@@ -20,6 +21,7 @@ import {
   GetProductsRemeras,
   GetProductsCDs,
   GetProductsBuzos,
+  updateUser,
 } from "./components/api/apiService";
 import Clothes from "./components/clothes/Clothes";
 import Music from "./components/Music/Music";
@@ -204,7 +206,7 @@ function App() {
       path: "/superadmin",
       element: (
         <ProtectedSuperAdmin>
-          <SuperAdminDashboard users={users} setUsers={setUsers}/>
+          <SuperAdminDashboard users={users} setUsers={setUsers} createUser2={createUser2} updateUser={updateUser} />
         </ProtectedSuperAdmin>
       ),
     },
