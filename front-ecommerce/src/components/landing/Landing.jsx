@@ -54,7 +54,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
             <Carousel.Item>
               <img
                 className="d-block w-100 carousel-image"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.billboard.com%2Ffiles%2Fmedia%2FNirvana-1990s-billboard-bw-portrait-1548-compressed.jpg&f=1&nofb=1&ipt=9e6f565aa4e0f37da7c9266b08ff91a1e74ca9ea8c6c861e3912243135cf96a3&ipo=images"
+                src="https://www.billboard.com/wp-content/uploads/media/Nirvana-1990s-billboard-bw-portrait-1548.jpg?w=942&h=623&crop=1"
                 alt="Third slide"
                 style={{
                   objectFit: "cover",
