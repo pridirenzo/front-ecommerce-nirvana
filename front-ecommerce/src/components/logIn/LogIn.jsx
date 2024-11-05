@@ -3,24 +3,35 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../services/authentication/user.context"; 
+import { UserContext } from "../../services/authentication/user.context";
+ 
 
-const LogIn = ({ users }) => {
+const LogIn = ({ ClientLog }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const user = users.find((user) => user.email === email && user.password === password);
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
-      navigate("/");
-    } else {
-      setError("Credenciales incorrectas");
+    try {
+      const credentials = { email, password }; 
+      const response = await ClientLog(credentials);  
+      const token = response.data.token;
+      
+      const user = response.data.user;
+      
+      if (user) {
+        localStorage.setItem("userToken", token);
+        setUser(user);
+        navigate("/");
+      } else {
+        setError("Credenciales incorrectas");
+      }
+    } catch (error) {
+      setError("Error al iniciar sesión");
+      console.error("Error al iniciar sesión:", error);
     }
   };
 
@@ -70,14 +81,23 @@ const LogIn = ({ users }) => {
   );
 };
 
+
 LogIn.propTypes = {
-  users: PropTypes.arrayOf(
+  ClientLog: PropTypes.arrayOf(
     PropTypes.shape({
       email: PropTypes.string.isRequired,
-      password: PropTypes.string.isRequired,
     })
   ).isRequired,
 };
 
 export default LogIn;
 
+
+
+
+
+
+
+  
+
+  

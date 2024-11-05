@@ -11,7 +11,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [newUser, setNewUser] = useState({ firstName: "", lastName: "", email: "", password: "", role: 3 });
   const [successMessage, setSuccessMessage] = useState("");
-  const [existingPassword, setExistingPassword] = useState('');
+  
 
   const handleCloseEdit = () => setShowEditModal(false);
   const handleCloseDelete = () => setShowDeleteModal(false);
@@ -28,7 +28,6 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
 
   const handleShowEdit = (user) => {
     setSelectedUser(user);
-    setExistingPassword(user.password);
     setShowEditModal(true);
   };
 
@@ -71,6 +70,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
       };
 
       const response = await createUser2(userData);
+      console.log('Nuevo usuario creado:', response.data);
       setUsers((prevUsers) => [...prevUsers, response.data]);
       alert("Usuario creado con exito");
       handleCloseAdd();
@@ -89,13 +89,12 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
       email: selectedUser.email,
       role: selectedUser.role,
       isActive: selectedUser.isActive !== undefined ? selectedUser.isActive : 1,
-      password: existingPassword, // Mantiene la contraseña existente
     };
   
     try {
       const response = await updateUser(selectedUser.id, updatedUser);
       setUsers((prevUsers) =>
-        prevUsers.map((user) => (user.id === response.id ? response : user))
+        prevUsers.map((user) => (user.id === selectedUser.id ? { ...user, ...updatedUser } : user))
       );
       handleCloseEdit();
       setSuccessMessage('Usuario editado exitosamente.');
@@ -104,6 +103,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
       alert('Error en la solicitud, por favor intenta nuevamente.');
     }
   };
+  
 
   const handleDeleteUser = async (userId) => {
     try {
@@ -158,7 +158,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.id}>
+              <tr key={user.id}> 
                 <td>{user.id}</td>
                 <td>{user.firstName}</td>
                 <td>{user.email}</td>

@@ -98,15 +98,18 @@ export const GetProductsCDs = async ( filters, sortBy, isDescending, page, pageS
 
 
 
-export const CreateProducts = async (productData) => { // Asegúrate de recibir productData como argumento
+export const CreateProducts = async (productData) => { 
     const response = await api.post("api/Product", productData);
     return response;
   };
 
-export const GetUsers = () => {
+export const GetUsers = () => {  //para mapeo
     return api.get("api/User");
   }
 
+export const ClientLog = (credentials) => {  
+    return api.post("/api/Client/Login", credentials);
+}  
 
 export const createUser = async (userData) => {
   try {
@@ -121,7 +124,7 @@ export const createUser = async (userData) => {
   }
 };
 
-export const createUser2 = async (userData) => {
+export const createUser2 = async (userData) => {   //post sin mail
   try {
     console.log("Enviando datos del usuario:", userData);
     const response = await api.post("/api/User/only-create", userData);
