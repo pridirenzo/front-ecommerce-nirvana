@@ -196,7 +196,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
         <Button
           variant="dark"
           className="mt-2 mb-5"
-          onClick={() => handleNavClick("/accesories")}
+          onClick={() => handleNavClick("/accessories")}
         >
           Ver todo en ACCESORIOS
         </Button>

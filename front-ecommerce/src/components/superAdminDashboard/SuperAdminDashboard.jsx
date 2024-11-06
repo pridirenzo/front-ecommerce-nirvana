@@ -293,7 +293,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
                     <option value={0}>Inactivo</option>
                   </select>
                 </div>
-                <Button variant="success" onClick={handleEditUser}>
+                <Button variant="success" onClick={handleEditUser} className="mt-2">
                   Guardar Cambios
                 </Button>
               </form>

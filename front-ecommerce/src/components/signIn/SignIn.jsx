@@ -2,6 +2,7 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import Navbar from "../navbar/NavBar";
 
 const SignIn = ({ createUser }) => {
   const navigate = useNavigate();
@@ -80,6 +81,7 @@ const SignIn = ({ createUser }) => {
 
   return (
     <>
+    <Navbar/>
       <h1 id="registerTitle" className="d-flex justify-content-center mt-5" style={{fontSize: "30px"}}>Registrarse</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
@@ -139,12 +141,12 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3" className="d-flex justify-content-between">
-            <Button type="submit" variant="dark" className="form-button w-50">
+            <Button type="submit" variant="dark" className="form-button w-50 mb-2">
               REGISTRARME
             </Button>
             <Button
               variant="dark"
-              className="align-self-center form-button"
+              className="align-self-center form-button mb-2"
               onClick={handleAccountClick}
             >
               Ya tengo cuenta
@@ -152,14 +154,14 @@ const SignIn = ({ createUser }) => {
           </Col>
         </Form.Group>
       </Form>
-      <div style={{ marginTop: "20px", display: "flex", alignItems: "center" }}>
+      {/* <div style={{ marginTop: "20px", display: "flex", alignItems: "center" }}>
         <span id="heightText" style={{ fontSize: "0.8em", marginRight: "10px" }}>
           Alto de pantalla: {dimensions.height}px 🖥️
         </span>
         <span id="widthText" style={{ fontSize: "0.8em" }}>
           Ancho de pantalla: {dimensions.width}px 🖥️
         </span>
-      </div>
+      </div> */}
     </>
   );
 };

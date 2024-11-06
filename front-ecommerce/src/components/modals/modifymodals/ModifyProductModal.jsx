@@ -42,6 +42,7 @@ const ModifyProductModal = ({ show, handleClose, product }) => {
       const response = await UpdateProduct(updatedProduct); // Usa la función de ApiService
       console.log('Producto actualizado:', response);
       handleClose();
+      window.location.reload();
     } catch (error) {
       console.error('Error al actualizar el producto:', error);
     }

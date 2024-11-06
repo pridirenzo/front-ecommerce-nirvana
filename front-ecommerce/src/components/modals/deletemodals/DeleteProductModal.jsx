@@ -12,6 +12,7 @@ const DeleteProductModal = ({ show, handleClose, productId }) => {
         const response = await DeleteProduct(productId);
         console.log('Producto eliminado:', response);
         handleClose();
+        window.location.reload();
       } catch (error) {
         console.error('Error al eliminar el producto:', error);
       }

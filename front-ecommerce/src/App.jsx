@@ -43,6 +43,7 @@ import LandingRemeras from "./components/landingproducts/landingremeras";
 import LandingVinilos from "./components/landingproducts/LandingVinilos";
 import LandingCDs from "./components/landingproducts/LandingCDs";
 import LandingAccesorios from "./components/landingproducts/LandingAccesorios";
+import Accesories from "./components/accessories/Accessories";
 
 
 function App() {
@@ -181,9 +182,9 @@ function App() {
     {
       path: "/profile",
       element: (
-        <ProtectedLogin>
+        //<ProtectedLogin>
           <Profile />
-        </ProtectedLogin>
+        //</ProtectedLogin>
       ),
     },
     { path: "/product", element: <ProductDetail /> },
@@ -191,9 +192,9 @@ function App() {
     {
       path: "/purchase",
       element: (
-        <ProtectedLogin>
+        //<ProtectedLogin>
           <PurchaseDetail />
-        </ProtectedLogin>
+        //</ProtectedLogin>
       ),
     },
     {
@@ -237,11 +238,17 @@ function App() {
       ),
     },
     {
+      path: "/accessories",
+      element: (
+        <Accesories productsaccesories={productsaccesories}/>
+      ),
+    },
+    {
       path: "/cart",
       element: (
-        <ProtectedLogin>
+        //<ProtectedLogin>
           <Cart />
-        </ProtectedLogin>
+        //</ProtectedLogin>
       ),
     },
     {
@@ -252,16 +259,16 @@ function App() {
     {
       path: "/salesdashboard",
       element: (
-        <Protected>
+        //<Protected>
           <SalesDashboard />
-        </Protected>
+        //</Protected>
       ),
     },
     { path: "/tees", element: <LandingRemeras /> },
     { path: "/sweatshirts", element: <LandingBuzos /> },
     { path: "/vinyls", element: <LandingVinilos /> },
     { path: "/cds", element: <LandingCDs /> },
-    { path: "/accessories", element: <LandingAccesorios /> },
+    { path: "/accesories", element: <LandingAccesorios /> },
   ]);
 
   return (

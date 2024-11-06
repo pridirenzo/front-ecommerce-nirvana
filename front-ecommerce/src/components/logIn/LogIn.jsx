@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { UserContext } from "../../services/authentication/user.context";
+import Navbar from "../navbar/NavBar";
 
 const LogIn = ({ ClientLog }) => {
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ const LogIn = ({ ClientLog }) => {
 
   return (
     <>
+    <Navbar/>
       <h1 id="loginTitle" className="d-flex justify-content-center mt-5" style={{ fontSize: "30px" }}>
         Iniciar sesión
       </h1>
@@ -66,7 +68,7 @@ const LogIn = ({ ClientLog }) => {
             <Button
               type="submit"
               variant="dark"
-              className="form-button mt-4 w-100"
+              className="form-button mt-5 w-100 mb-5"
             >
               INICIAR SESIÓN
             </Button>

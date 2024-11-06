@@ -169,14 +169,14 @@ const Navbar = () => {
         }
         {RoleButtons()}
       </ul>
-      <Form className="custom-form me-3">
+      {/* <Form className="custom-form me-3">
         <InputGroup>
           <Form.Control placeholder="Buscar" aria-label="Buscar" />
           <Button variant="outline-secondary">
             <img src={search} alt="search" />
           </Button>
         </InputGroup>
-      </Form>
+      </Form> */}
       <div className="d-flex align-items-center">
         {!user ? (
           <>
@@ -242,7 +242,7 @@ const Navbar = () => {
         )}
       </div>
       <Button variant="link" onClick={toggleTheme}>
-        <img src={solyluna} alt="Sol y luna" className="p-2 w-11 h-11" />
+        <i className='bi bi-circle-half p-2'></i>
       </Button>
     </nav>
   );
