@@ -6,6 +6,7 @@ import Navbar from "../navbar/NavBar";
 import { CartContext } from "../cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import ProtectedBuy from "../../routes/ProtectedBuy";
+import CardProduct from '../cardProduct/CardProduct';
 
 const Accesories = ({ productsaccesories }) => {
   const { addToCart } = useContext(CartContext);
@@ -30,24 +31,7 @@ const Accesories = ({ productsaccesories }) => {
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsaccesories) &&
           productsaccesories.map((product, index) => (
-            <Card
-              key={index}
-              className="hover-card"
-              style={{ width: "20rem" }}
-            >
-              <Card.Img variant="top" src={product.imageUrl} />
-              <Card.Body>
-                <Card.Title style={{ color: "yellow" }}>
-                  {product.name}
-                </Card.Title>
-                <Card.Text>${product.price}</Card.Text>
-                <ProtectedBuy onBuy={() => handleAddToCart(product)}>
-                  <Button variant="dark">
-                    Comprar
-                  </Button>
-                </ProtectedBuy>
-              </Card.Body>
-            </Card>
+           <CardProduct key={id} product={product} handleAddToCart={handleAddToCart}/> 
           ))}
         <span id="MERCH"></span> {/* Identificador para la sección de contacto */}
       </div>

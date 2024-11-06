@@ -2,7 +2,7 @@ import Landing from "./components/landing/Landing";
 import LogIn from "./components/logIn/LogIn";
 import SignIn from "./components/signIn/SignIn";
 import Profile from "./components/profile/Profile";
-import ProductDetail from "./components/productDetail/productDetail";
+import ProductDetail from "./components/productDetail/ProductDetail";
 import PurchaseDetail from "./components/purchaseDetail/PurchaseDetail";
 import NotFound from "./routes/NotFound";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -177,7 +177,7 @@ function App() {
         <Profile />
       </ProtectedLogin> 
     },
-    { path: "/product", 
+    { path: "/product/:id", 
       element: <ProductDetail /> 
     },
     { path: "*", 

@@ -2,8 +2,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
+import CardProduct from "../cardProduct/CardProduct";
+import { useNavigate } from "react-router-dom";
 
 const Clothes = ({productsremeras, productsbuzos}) => {
+
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate("/cart");
+  };
 
 
   return (
@@ -24,14 +32,7 @@ const Clothes = ({productsremeras, productsbuzos}) => {
      
     {Array.isArray(productsremeras) && productsremeras
       .map((product, index) => (
-        <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-          <Card.Img variant="top" src={product.imageUrl} />
-          <Card.Body>
-            <Card.Title style={{ color: "yellow" }}>{product.name}</Card.Title>
-            <Card.Text>${product.price}</Card.Text>
-            <Button variant="dark">Comprar</Button>
-          </Card.Body>
-        </Card>
+        <CardProduct product={product} handleAddToCart={handleAddToCart}/>
     ))}
       <span id="MERCH"></span> {/* Identificador para la sección de contacto */}
       </div>
@@ -46,14 +47,7 @@ const Clothes = ({productsremeras, productsbuzos}) => {
         
     {Array.isArray(productsbuzos) && productsbuzos
       .map((product, index) => (
-        <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-          <Card.Img variant="top" src={product.imageUrl} />
-          <Card.Body>
-            <Card.Title style={{ color: "yellow" }}>{product.name}</Card.Title>
-            <Card.Text>${product.price}</Card.Text>
-            <Button variant="dark">Comprar</Button>
-          </Card.Body>
-        </Card>
+        <CardProduct product={product} handleAddToCart={handleAddToCart}/>
     ))}  
 
         <span id="MUSIC"></span> 

@@ -2,11 +2,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Carousel, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
-
+import CardProduct from "../cardProduct/CardProduct"
 // textos de prueba, debe mapearse desde el back!!!!!!! hecho B)
 
 const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
-  
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate("/cart");
+  };
 
   return (
     <>
@@ -92,20 +95,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
             // )
             // .slice(0, 3) // Solo toma los primeros 3 productos
             .map((product, index) => (
-              <Card
-                key={index}
-                className="hover-card"
-                style={{ width: "20rem" }}
-              >
-                <Card.Img variant="top" src={product.imageUrl} />
-                <Card.Body>
-                  <Card.Title style={{ color: "yellow" }}>
-                    {product.name}
-                  </Card.Title>
-                  <Card.Text>${product.price}</Card.Text>
-                  <Button variant="dark">Comprar</Button>
-                </Card.Body>
-              </Card>
+              <CardProduct key={index} product={product} handleAddToCart={handleAddToCart}/> 
             ))}
         <span id="MERCH"></span>{" "}
         {/* Identificador para la sección de contacto */}
@@ -127,20 +117,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
             // )
             // .slice(0, 3) // Solo toma los primeros 3 productos
             .map((product, index) => (
-              <Card
-                key={index}
-                className="hover-card"
-                style={{ width: "20rem" }}
-              >
-                <Card.Img variant="top" src={product.imageUrl} />
-                <Card.Body>
-                  <Card.Title style={{ color: "yellow" }}>
-                    {product.name}
-                  </Card.Title>
-                  <Card.Text>${product.price}</Card.Text>
-                  <Button variant="dark">Comprar</Button>
-                </Card.Body>
-              </Card>
+              <CardProduct key={index} product={product} handleAddToCart={handleAddToCart}/> 
             ))}
 
         <span id="MUSIC"></span>
@@ -158,20 +135,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
             // .filter((product) => product.idCategory === 3)
             // .slice(0, 3) // Solo toma los primeros 3 productos
             .map((product, index) => (
-              <Card
-                key={index}
-                className="hover-card"
-                style={{ width: "20rem" }}
-              >
-                <Card.Img variant="top" src={product.imageUrl} />
-                <Card.Body>
-                  <Card.Title style={{ color: "yellow" }}>
-                    {product.name}
-                  </Card.Title>
-                  <Card.Text>${product.price}</Card.Text>
-                  <Button variant="dark">Comprar</Button>
-                </Card.Body>
-              </Card>
+              <CardProduct key={index} product={product} handleAddToCart={handleAddToCart}/> 
             ))}
 
         <span id="ACCESORIES"></span>
