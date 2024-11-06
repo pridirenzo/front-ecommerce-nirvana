@@ -74,6 +74,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
       setUsers((prevUsers) => [...prevUsers, response.data]);
       alert("Usuario creado con exito");
       handleCloseAdd();
+      window.location.reload();  //linea que hace el reload, borrar cuando se arregle error de id
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
       alert("Error al crear la cuenta");
@@ -92,7 +93,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
     };
   
     try {
-      const response = await updateUser(selectedUser.id, updatedUser);
+      await updateUser(selectedUser.id, updatedUser);
       setUsers((prevUsers) =>
         prevUsers.map((user) => (user.id === selectedUser.id ? { ...user, ...updatedUser } : user))
       );
