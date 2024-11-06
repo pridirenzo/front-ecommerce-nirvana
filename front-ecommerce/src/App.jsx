@@ -228,10 +228,6 @@ function App() {
         <Music productsvinilos={productsvinilos} productscds={productscds} />
       ),
     },
-    {
-      path: "/accessories",
-      element: <Accessories productsaccesories={productsaccesories} />,
-    },
     { path: "/cart", 
       element: (
         <ProtectedLogin>
@@ -256,7 +252,7 @@ function App() {
     { path: "/tees",
       element: <LandingRemeras/>
     },
-    { path: "/sweetshirts",
+    { path: "/sweatshirts",
       element: <LandingBuzos/>
     },
     { path: "/vinyls",
@@ -265,7 +261,7 @@ function App() {
     { path: "/cds",
       element: <LandingCDs/>
     },
-    { path: "/accesories",
+    { path: "/accessories",
       element: <LandingAccesorios/>
     }
 
