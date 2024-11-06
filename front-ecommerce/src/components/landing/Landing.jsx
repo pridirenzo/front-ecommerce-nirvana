@@ -7,7 +7,18 @@ import Navbar from "../navbar/NavBar";
 
 const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
   
-
+  const handleNavClick = (link) => {
+    if (link.startsWith('#')) {
+      const targetId = link.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      window.location.href = link;
+    }
+  };
+  
   return (
     <>
       <Navbar />
@@ -87,10 +98,6 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsprendas) &&
           productsprendas
-            // .filter(
-            //   (product) => product.idCategory === 4 || product.idCategory === 5
-            // )
-            // .slice(0, 3) // Solo toma los primeros 3 productos
             .map((product, index) => (
               <Card
                 key={index}
@@ -112,7 +119,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
       </div>
 
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5">
+        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick('/clothes')}>
           Ver todo en PRENDAS
         </Button>
       </div>
@@ -122,10 +129,6 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsmusic) &&
           productsmusic
-            // .filter(
-            //   (product) => product.idCategory === 6 || product.idCategory === 7
-            // )
-            // .slice(0, 3) // Solo toma los primeros 3 productos
             .map((product, index) => (
               <Card
                 key={index}
@@ -147,7 +150,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
       </div>
 
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5">
+        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick('/music')}>
           Ver todo en DISCOGRAFÍA
         </Button>
       </div>
@@ -155,8 +158,6 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsaccesories) &&
           productsaccesories
-            // .filter((product) => product.idCategory === 3)
-            // .slice(0, 3) // Solo toma los primeros 3 productos
             .map((product, index) => (
               <Card
                 key={index}
@@ -178,7 +179,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
       </div>
 
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5">
+        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick('/accesories')}>
           Ver todo en ACCESORIOS
         </Button>
       </div>
