@@ -6,13 +6,13 @@ import { useState, useEffect } from 'react';
 const SignIn = ({ createUser }) => {
   const navigate = useNavigate();
   
-  // Estado para las dimensiones de la ventana
+  // estado para las dimensiones de la ventana
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
   });
 
-  // Función para actualizar las dimensiones de la ventana
+  // función para actualizar las dimensiones de la ventana
   const handleResize = () => {
     setDimensions({
       height: window.innerHeight,
@@ -153,10 +153,10 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
       </Form>
       <div style={{ marginTop: "20px", display: "flex", alignItems: "center" }}>
-        <span style={{ fontSize: "0.8em", marginRight: "10px" }}>
+        <span id="heightText" style={{ fontSize: "0.8em", marginRight: "10px" }}>
           Alto de pantalla: {dimensions.height}px 🖥️
         </span>
-        <span style={{ fontSize: "0.8em" }}>
+        <span id="widthText" style={{ fontSize: "0.8em" }}>
           Ancho de pantalla: {dimensions.width}px 🖥️
         </span>
       </div>

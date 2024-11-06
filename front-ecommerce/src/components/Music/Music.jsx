@@ -29,7 +29,7 @@ const Music = ({ productsvinilos, productscds }) => {
           </h1>
         </Container>
       </div>
-      <h2 id="vinylTitle" className="d-flex justify-content-center mt-5 mb-5">
+      <h2 style={{fontSize: "25px"}} id="vinylTitle" className="d-flex justify-content-center mt-5 mb-5">
         Vinilos
       </h2>
 
@@ -60,7 +60,7 @@ const Music = ({ productsvinilos, productscds }) => {
           Ver todo en Vinilos
         </Button>
       </div>
-      <h3 id="cdTitle" className="d-flex justify-content-center mt-5 mb-5">
+      <h3 style={{fontSize: "25px"}} id="cdTitle" className="d-flex justify-content-center mt-5 mb-5">
         CDs
       </h3>
       <div className="d-flex justify-content-center mt-4 gap-3">

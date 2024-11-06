@@ -11,10 +11,10 @@ import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
 import {
-  GetUsers,    //para mapeo
-  ClientLog,    
-  createUser,   //con mailing 
-  createUser2,    
+  GetUsers, //para mapeo
+  ClientLog,
+  createUser, //con mailing
+  createUser2,
   GetProductsMusic,
   GetProductsPrendas,
   GetProductsAccesories,
@@ -37,17 +37,15 @@ import ProtectedSuperAdmin from "./routes/ProtectedSuperAdmin";
 import Protected from "./routes/Protected";
 import ProtectedBuy from "./routes/ProtectedBuy";
 import ProtectedLogin from "./routes/ProtectedLogin";
-import { UserContextProvider } from "./services/authentication/user.context"
-import LandingBuzos from "./components/landingproducts/LandingBuzos"
+import { UserContextProvider } from "./services/authentication/user.context";
+import LandingBuzos from "./components/landingproducts/LandingBuzos";
 import LandingRemeras from "./components/landingproducts/landingremeras";
 import LandingVinilos from "./components/landingproducts/LandingVinilos";
 import LandingCDs from "./components/landingproducts/LandingCDs";
 import LandingAccesorios from "./components/landingproducts/LandingAccesorios";
 
 
-
 function App() {
-  // FETCHEO PRODUCTOS
   const [productsprendas, setProductsPrendas] = useState([]);
   const [productsmusic, setProductsMusic] = useState([]);
   const [productsaccesories, setProductsAccesories] = useState([]);
@@ -56,6 +54,7 @@ function App() {
   const [productsvinilos, setProductsVinilos] = useState([]);
   const [productscds, setProductsCDs] = useState([]);
 
+  // fetcheo prendas
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -68,6 +67,7 @@ function App() {
     fetchData();
   }, []);
 
+  // fetcheo discografia
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -80,6 +80,7 @@ function App() {
     fetchData();
   }, []);
 
+  // fetcheo accesorios
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -92,6 +93,7 @@ function App() {
     fetchData();
   }, []);
 
+  // fetcheo remeras
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -104,6 +106,7 @@ function App() {
     fetchData();
   }, []);
 
+  // fetcheo buzos
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -116,6 +119,7 @@ function App() {
     fetchData();
   }, []);
 
+  // fetcheo vinilos
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -128,6 +132,7 @@ function App() {
     fetchData();
   }, []);
 
+  // fetcheo cds
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -140,7 +145,9 @@ function App() {
     fetchData();
   }, []);
 
+  // -----------------------------
   // FETCHEO USUARIOS
+  // -------------------------------
 
   const [users, setUsers] = useState([]);
 
@@ -156,9 +163,7 @@ function App() {
     };
     fetchData();
   }, []);
- 
-
-
+  // ----------------------------------------------------------------------------
 
   const router = createBrowserRouter([
     {
@@ -171,46 +176,48 @@ function App() {
         />
       ),
     },
-    { path: "/login", 
-      element: <LogIn ClientLog={ClientLog} /> 
-    },
-    { path: "/register", 
-      element: <SignIn createUser={createUser} /> 
-    },
-    { path: "/profile", 
-      element: 
-      <ProtectedLogin>
-        <Profile />
-      </ProtectedLogin> 
-    },
-    { path: "/product", 
-      element: <ProductDetail /> 
-    },
-    { path: "*", 
-      element: <NotFound /> 
-    },
-    { path: "/purchase", 
-      element: 
-         <ProtectedLogin>
-          <PurchaseDetail /> 
-         </ProtectedLogin>
-      },
-    { path: "/admin",
+    { path: "/login", element: <LogIn ClientLog={ClientLog} /> },
+    { path: "/register", element: <SignIn createUser={createUser} /> },
+    {
+      path: "/profile",
       element: (
-         //<Protected> 
-          <AdminDashboard
-            productsprendas={productsprendas}
-            productsmusic={productsmusic}
-            productsaccesories={productsaccesories}
-          />
-         //</Protected> 
+        <ProtectedLogin>
+          <Profile />
+        </ProtectedLogin>
+      ),
+    },
+    { path: "/product", element: <ProductDetail /> },
+    { path: "*", element: <NotFound /> },
+    {
+      path: "/purchase",
+      element: (
+        <ProtectedLogin>
+          <PurchaseDetail />
+        </ProtectedLogin>
+      ),
+    },
+    {
+      path: "/admin",
+      element: (
+        //<Protected>
+        <AdminDashboard
+          productsprendas={productsprendas}
+          productsmusic={productsmusic}
+          productsaccesories={productsaccesories}
+        />
+        //</Protected>
       ),
     },
     {
       path: "/superadmin",
       element: (
         //<ProtectedSuperAdmin>
-          <SuperAdminDashboard users={users} setUsers={setUsers} createUser2={createUser2} updateUser={updateUser} />
+        <SuperAdminDashboard
+          users={users}
+          setUsers={setUsers}
+          createUser2={createUser2}
+          updateUser={updateUser}
+        />
         //</ProtectedSuperAdmin>
       ),
     },
@@ -229,43 +236,32 @@ function App() {
         <Music productsvinilos={productsvinilos} productscds={productscds} />
       ),
     },
-    { path: "/cart", 
+    {
+      path: "/cart",
       element: (
         <ProtectedLogin>
           <Cart />
         </ProtectedLogin>
-      ), 
+      ),
     },
     {
       path: "/resetpassword",
-      element: <ResetPassword/>
+      element: <ResetPassword />,
     },
-    { path: "/newresetpassword",
-      element: <NewResetPassword/>
-    },
-    { path: "/salesdashboard",
-      element:(
+    { path: "/newresetpassword", element: <NewResetPassword /> },
+    {
+      path: "/salesdashboard",
+      element: (
         <Protected>
-          <SalesDashboard/>
+          <SalesDashboard />
         </Protected>
       ),
     },
-    { path: "/tees",
-      element: <LandingRemeras/>
-    },
-    { path: "/sweatshirts",
-      element: <LandingBuzos/>
-    },
-    { path: "/vinyls",
-      element: <LandingVinilos/>
-    },
-    { path: "/cds",
-      element: <LandingCDs/>
-    },
-    { path: "/accessories",
-      element: <LandingAccesorios/>
-    }
-
+    { path: "/tees", element: <LandingRemeras /> },
+    { path: "/sweatshirts", element: <LandingBuzos /> },
+    { path: "/vinyls", element: <LandingVinilos /> },
+    { path: "/cds", element: <LandingCDs /> },
+    { path: "/accessories", element: <LandingAccesorios /> },
   ]);
 
   return (
@@ -276,7 +272,6 @@ function App() {
       </CartProvider>
     </UserContextProvider>
   );
-
 }
 
 export default App;

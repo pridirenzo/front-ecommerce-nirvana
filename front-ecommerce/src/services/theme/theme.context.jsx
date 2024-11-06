@@ -4,6 +4,7 @@ export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
 
+  // contexto para el manejo de tema claro/oscuro, seteo en almacenamiento local y tmb en un estado
   const storedTheme = localStorage.getItem("theme") || "light";
   const [theme, setTheme] = useState(storedTheme);
 
@@ -48,7 +49,12 @@ export const ThemeContextProvider = ({ children }) => {
     const newPass1 = document.getElementById("newPass1");
     const newPass2 = document.getElementById("newPass2");
     const salesTitle = document.getElementById("salesDashTitle");
+    const height = document.getElementById("heightText");
+    const width = document.getElementById("widthText");
+    const musicButton1 = document.getElementById("musicButton1");
+    const musicButton2 = document.getElementById("musicButton2");
   
+    // me aseguro de que los textos y elementos se muestren con el color acorde al tema
     if (theme === "dark") {
       document.body.style.backgroundColor = "black";
       if (navbar) navbar.style.backgroundColor = "yellow";
@@ -82,6 +88,10 @@ export const ThemeContextProvider = ({ children }) => {
       if (newPass1) newPass1.style.color = "yellow";
       if (newPass2) newPass2.style.color = "yellow";
       if (salesTitle) salesTitle.style.color = "yellow";
+      if (height) height.style.color = "yellow";
+      if (width) width.style.color = "yellow";
+      if (musicButton1) musicButton1.style.color = "yellow";
+      if (musicButton2) musicButton2.style.color = "yellow";
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";
@@ -115,6 +125,10 @@ export const ThemeContextProvider = ({ children }) => {
       if (newPass1) newPass1.style.color = "black";
       if (newPass2) newPass2.style.color = "black";
       if (salesTitle) salesTitle.style.color = "black";
+      if (height) height.style.color = "black";
+      if (width) width.style.color = "black";
+      if (musicButton1) musicButton1.style.color = "black";
+      if (musicButton2) musicButton2.style.color = "black";
     }
   }, [theme]);
   
