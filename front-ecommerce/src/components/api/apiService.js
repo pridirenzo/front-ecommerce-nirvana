@@ -78,7 +78,7 @@ export const GetProductsRemeras = async (
     },
   });
   return response.data;
-};
+}; //Este GetAll trae 3 remeras
 
 export const GetProductsBuzos = async (
   filters,

@@ -35,6 +35,11 @@ import Protected from "./routes/Protected";
 import ProtectedBuy from "./routes/ProtectedBuy";
 import ProtectedLogin from "./routes/ProtectedLogin";
 import { UserContextProvider } from "./services/authentication/user.context"
+import LandingBuzos from "./components/landingproducts/LandingBuzos"
+import LandingRemeras from "./components/landingproducts/landingremeras";
+import LandingVinilos from "./components/landingproducts/LandingVinilos";
+import LandingCDs from "./components/landingproducts/LandingCDs";
+import LandingAccesorios from "./components/landingproducts/LandingAccesorios";
 
 
 
@@ -247,7 +252,23 @@ function App() {
           <SalesDashboard/>
         </Protected>
       ),
+    },
+    { path: "/tees",
+      element: <LandingRemeras/>
+    },
+    { path: "/sweetshirts",
+      element: <LandingBuzos/>
+    },
+    { path: "/vinyls",
+      element: <LandingVinilos/>
+    },
+    { path: "/cds",
+      element: <LandingCDs/>
+    },
+    { path: "/accesories",
+      element: <LandingAccesorios/>
     }
+
   ]);
 
   return (
