@@ -187,7 +187,7 @@ function App() {
         //</ProtectedLogin>
       ),
     },
-    { path: "/product", element: <ProductDetail /> },
+    { path: "/product/:id", element: <ProductDetail /> },
     { path: "*", element: <NotFound /> },
     {
       path: "/purchase",
