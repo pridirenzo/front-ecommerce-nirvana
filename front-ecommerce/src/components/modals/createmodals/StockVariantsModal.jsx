@@ -29,7 +29,7 @@ function StockVariantsModal({ show, handleClose, onSave, isClothingCategory }) {
   };
 
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static" backdropClassName="modal-backdrop-second">
+    <Modal show={show} onHide={handleClose} backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title  className='modal-title-custom'>Agregar stock</Modal.Title>
       </Modal.Header>
@@ -85,5 +85,3 @@ function StockVariantsModal({ show, handleClose, onSave, isClothingCategory }) {
 }
 
 export default StockVariantsModal;
-
-       

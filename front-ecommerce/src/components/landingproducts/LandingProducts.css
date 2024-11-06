@@ -1,0 +1,27 @@
+.pagination {
+    justify-content: center;
+  }
+  
+  .pagination .page-item .page-link {
+    color: #fff; /* Color del texto */
+    background-color: #343a40; /* Color de fondo */
+    border: 1px solid #343a40; /* Color del borde */
+  }
+  
+  .pagination .page-item .page-link:hover {
+    color: #212529; /* Color del texto al pasar el cursor */
+    background-color: #fff; /* Color de fondo al pasar el cursor */
+    border-color: #343a40; /* Color del borde al pasar el cursor */
+  }
+  
+  .pagination .page-item.active .page-link {
+    color: #212529; /* Color del texto */
+    background-color: #E6D901; /* Color de fondo del item activo */
+    border-color: #E6D901; /* Color del borde del item activo */
+  }
+  
+  .pagination .page-item.active .page-link:hover {
+    background-color: #D7CB03; /* Color de fondo al pasar el cursor por el item activo */
+    border-color: #D7CB03; /* Color del borde al pasar el cursor por el item activo */
+  }
+  

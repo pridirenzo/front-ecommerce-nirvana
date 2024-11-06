@@ -13,16 +13,4 @@
 .form-select-options-disabled-custom{
     color: grey !important;   
 }
-
-/* Fondo estándar del modal */
-.modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Fondo más oscuro para el modal superior */
-  .modal-backdrop.modal-backdrop-second {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  
-  
   
