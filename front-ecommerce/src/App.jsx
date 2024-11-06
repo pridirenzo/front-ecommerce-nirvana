@@ -11,8 +11,10 @@ import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState } from "react";
 import {
-  GetUsers,
-  createUser,
+  GetUsers,    //para mapeo
+  ClientLog,    
+  createUser,   //con mailing 
+  createUser2,    
   GetProductsMusic,
   GetProductsPrendas,
   GetProductsAccesories,
@@ -20,6 +22,7 @@ import {
   GetProductsRemeras,
   GetProductsCDs,
   GetProductsBuzos,
+  updateUser,
 } from "./components/api/apiService";
 import Clothes from "./components/clothes/Clothes";
 import Music from "./components/Music/Music";
@@ -153,8 +156,6 @@ function App() {
     };
     fetchData();
   }, []);
-
-
  
 
 
@@ -171,7 +172,7 @@ function App() {
       ),
     },
     { path: "/login", 
-      element: <LogIn users={users} /> 
+      element: <LogIn ClientLog={ClientLog} /> 
     },
     { path: "/register", 
       element: <SignIn createUser={createUser} /> 
@@ -208,9 +209,9 @@ function App() {
     {
       path: "/superadmin",
       element: (
-        <ProtectedSuperAdmin>
-          <SuperAdminDashboard users={users} setUsers={setUsers}/>
-        </ProtectedSuperAdmin>
+        //<ProtectedSuperAdmin>
+          <SuperAdminDashboard users={users} setUsers={setUsers} createUser2={createUser2} updateUser={updateUser} />
+        //</ProtectedSuperAdmin>
       ),
     },
     {
