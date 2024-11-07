@@ -16,7 +16,7 @@ const LandingRemeras = ({ products }) => {
     const fetchProducts = async () => {
       try {
 
-        const response = await axios.get('http://localhost:5286/api/Product', {
+        const response = await axios.get('https://localhost:7037/api/Product', {
           params: {
             filters: 'idCategory:4:1',
             SortBy: 'id',
@@ -43,7 +43,7 @@ const LandingRemeras = ({ products }) => {
   }, [currentPage]);
 
   console.log(productsRemeras);
-  
+
 
   const handleAddToCart = (product) => {
     addToCart(product);

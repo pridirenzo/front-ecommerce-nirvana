@@ -1,4 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Carousel, Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
@@ -43,11 +43,19 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
 
       {/* Botón de reproducción de música */}
       {!isPlaying ? (
-        <Button id="musicButton1" onClick={handlePlayMusic} style={{ fontSize: "12px", margin: "10px" }}>
+        <Button
+          id="musicButton1"
+          onClick={handlePlayMusic}
+          style={{ fontSize: "12px", margin: "10px" }}
+        >
           Reproducir Música 🎧
         </Button>
       ) : (
-        <Button id="musicButton2" onClick={handlePauseMusic} style={{ fontSize: "12px", margin: "10px" }}>
+        <Button
+          id="musicButton2"
+          onClick={handlePauseMusic}
+          style={{ fontSize: "12px", margin: "10px" }}
+        >
           Pausar Música 🎧
         </Button>
       )}
@@ -57,7 +65,7 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           <h1
             id="landingTitle"
             className="d-flex justify-content-center mt-5 mb-5"
-            style={{ color: "yellow" }}
+            style={{ color: "#FFE603" }}
           >
             Bienvenidos ⭐
           </h1>
@@ -88,12 +96,20 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
         </Container>
       </div>
 
-      <h2 id="merchTitle" className="d-flex justify-content-center mt-5 mb-5" style={{ fontSize: "35px" }}>
+      <h2
+        id="merchTitle"
+        className="d-flex justify-content-center mt-5 mb-5"
+        style={{ fontSize: "35px" }}
+      >
         Merchandising disponible
       </h2>
 
       {/* Sección de Prendas */}
-      <h3 id="clothesTitle" className="d-flex justify-content-center" style={{ fontSize: "25px" }}>
+      <h3
+        id="clothesTitle"
+        className="d-flex justify-content-center"
+        style={{ fontSize: "25px" }}
+      >
         Prendas 🏷️
       </h3>
       <Container>
@@ -101,20 +117,31 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           {Array.isArray(productsprendas) &&
             productsprendas.map((product, index) => (
               <Col key={index} xs={12} sm={6} md={4} lg={3}>
-                <CardProduct product={product} handleAddToCart={handleAddToCart} />
+                <CardProduct
+                  product={product}
+                  handleAddToCart={handleAddToCart}
+                />
               </Col>
             ))}
         </Row>
       </Container>
 
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick("/clothes")}>
+        <Button
+          variant="dark"
+          className="mt-2 mb-5"
+          onClick={() => handleNavClick("/clothes")}
+        >
           Ver todo en PRENDAS
         </Button>
       </div>
 
       {/* Sección de Discografía */}
-      <h3 id="musicTitle" className="d-flex justify-content-center mt-5 mb-5" style={{ fontSize: "25px" }}>
+      <h3
+        id="musicTitle"
+        className="d-flex justify-content-center mt-5 mb-5"
+        style={{ fontSize: "25px" }}
+      >
         Discografía 💿
       </h3>
       <Container>
@@ -122,20 +149,31 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           {Array.isArray(productsmusic) &&
             productsmusic.map((product, index) => (
               <Col key={index} xs={12} sm={6} md={4} lg={3}>
-                <CardProduct product={product} handleAddToCart={handleAddToCart} />
+                <CardProduct
+                  product={product}
+                  handleAddToCart={handleAddToCart}
+                />
               </Col>
             ))}
         </Row>
       </Container>
 
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick("/music")}>
+        <Button
+          variant="dark"
+          className="mt-2 mb-5"
+          onClick={() => handleNavClick("/music")}
+        >
           Ver todo en DISCOGRAFÍA
         </Button>
       </div>
 
       {/* Sección de Accesorios */}
-      <h3 id="accessoriesTitle" className="d-flex justify-content-center mt-5 mb-5" style={{ fontSize: "25px" }}>
+      <h3
+        id="accessoriesTitle"
+        className="d-flex justify-content-center mt-5 mb-5"
+        style={{ fontSize: "25px" }}
+      >
         Accesorios 🎩
       </h3>
       <Container>
@@ -143,14 +181,21 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
           {Array.isArray(productsaccesories) &&
             productsaccesories.map((product, index) => (
               <Col key={index} xs={12} sm={6} md={4} lg={3}>
-                <CardProduct product={product} handleAddToCart={handleAddToCart} />
+                <CardProduct
+                  product={product}
+                  handleAddToCart={handleAddToCart}
+                />
               </Col>
             ))}
         </Row>
       </Container>
 
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick("/accessories")}>
+        <Button
+          variant="dark"
+          className="mt-2 mb-5"
+          onClick={() => handleNavClick("/accessories")}
+        >
           Ver todo en ACCESORIOS
         </Button>
       </div>

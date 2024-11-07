@@ -69,7 +69,7 @@ const AdminDashboard = ({
             <Card className="hover-card" style={{ width: "20rem" }}>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title style={{ color: "yellow" }}>
+                <Card.Title style={{ color: "#FFE603" }}>
                   {product.name}
                 </Card.Title>
                 <Card.Text>${product.price}</Card.Text>
@@ -104,7 +104,7 @@ const AdminDashboard = ({
             <Card className="hover-card" style={{ width: "20rem" }}>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title style={{ color: "yellow" }}>
+                <Card.Title style={{ color: "#FFE603" }}>
                   {product.name}
                 </Card.Title>
                 <Card.Text>${product.price}</Card.Text>
@@ -137,7 +137,7 @@ const AdminDashboard = ({
             <Card className="hover-card" style={{ width: "20rem" }}>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title style={{ color: "yellow" }}>
+                <Card.Title style={{ color: "#FFE603" }}>
                   {product.name}
                 </Card.Title>
                 <Card.Text>${product.price}</Card.Text>

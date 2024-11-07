@@ -21,8 +21,12 @@ const Footer = () => {
   };
 
   return (
-    <div id="landingFooter" style={{backgroundColor: "yellow"}} className=" flex flex-col ">
-      <div className="footer-custom py-2 w-full bg-yellow  text-dark relative mt-auto flex-grow-0">
+    <div
+      id="landingFooter"
+      style={{ backgroundColor: "#FFE603" }}
+      className=" flex flex-col "
+    >
+      <div className="footer-custom py-2 w-full bg-#FFE603  text-dark relative mt-auto flex-grow-0">
         <div className="footer-custom container mx-auto">
           <div
             className="footer-custom"
@@ -87,9 +91,7 @@ const Footer = () => {
                   <Modal.Body>
                     <img src="https://d2r9epyceweg5n.cloudfront.net/stores/001/642/173/rte/Tabla%20talles%20Remeras.png"></img>
                   </Modal.Body>
-                  <Modal.Footer
-                    className="bg-dark"
-                  >
+                  <Modal.Footer className="bg-dark">
                     <Button variant="secondary" onClick={handleCloseModal}>
                       Cerrar
                     </Button>

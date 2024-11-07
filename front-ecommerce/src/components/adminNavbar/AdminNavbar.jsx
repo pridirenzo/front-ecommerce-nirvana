@@ -1,28 +1,28 @@
-import { useState, useContext } from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import LogoNirvana from '../../../public/LogoNirvana.png';
-import Button from "react-bootstrap/Button"
+import { useState, useContext } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import LogoNirvana from "../../../public/LogoNirvana.png";
+import Button from "react-bootstrap/Button";
 import { ThemeContext } from "../../services/theme/theme.context";
-import solyluna from '../../../public/solyluna.png';
+import solyluna from "../../../public/solyluna.png";
 import { Form } from "react-bootstrap";
 import search from "../icons/search.svg";
-import { InputGroup } from "react-bootstrap"
+import { InputGroup } from "react-bootstrap";
 
 const Navlinks = [
   {
     id: 1,
-    name: 'INICIO',
-    link: '/',
+    name: "INICIO",
+    link: "/",
   },
   {
     id: 2,
-    name: 'PRODUCTOS',
-    link: '/admin',
+    name: "PRODUCTOS",
+    link: "/admin",
   },
   {
     id: 3,
-    name: 'PEDIDOS',
-    link: '/salesdashboard',
+    name: "PEDIDOS",
+    link: "/salesdashboard",
   },
 ];
 
@@ -36,11 +36,11 @@ const AdminNavbar = () => {
   };
 
   const handleNavClick = (link) => {
-    if (link.startsWith('#')) {
+    if (link.startsWith("#")) {
       const targetId = link.substring(1);
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     } else {
       window.location.href = link;
@@ -50,11 +50,14 @@ const AdminNavbar = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  
+
   const { toggleTheme } = useContext(ThemeContext);
 
   return (
-    <nav className="flex justify-between items-center p-4 text-black" style={{ backgroundColor: 'yellow' }}>
+    <nav
+      className="flex justify-between items-center p-4 text-black"
+      style={{ backgroundColor: "#FFE603" }}
+    >
       <div className="flex items-center">
         <a href="/">
           <img
@@ -83,9 +86,7 @@ const AdminNavbar = () => {
       >
         <GiHamburgerMenu className="h-6 w-6 text-black" />
       </button>
-      <ul
-        className={`md:hidden ${menuOpen ? 'block' : 'hidden'}`}
-      >
+      <ul className={`md:hidden ${menuOpen ? "block" : "hidden"}`}>
         {Navlinks.map(({ id, name, link }) => (
           <li key={id} className="py-2 px-4">
             <a
@@ -99,32 +100,31 @@ const AdminNavbar = () => {
         ))}
       </ul>
       <Form className="custom-form me-3">
-          <InputGroup>
-            <Form.Control placeholder="Buscar" aria-label="Buscar" />
-            <Button variant="outline-secondary">
-              <img src={search} alt="search" />
-            </Button>
-          </InputGroup>
+        <InputGroup>
+          <Form.Control placeholder="Buscar" aria-label="Buscar" />
+          <Button variant="outline-secondary">
+            <img src={search} alt="search" />
+          </Button>
+        </InputGroup>
       </Form>
       <div className="d-flex align-items-center">
         <i
           className="icon-hover bi bi-person-circle bg-transparent text-black text-2xl"
-          
-            onClick={handleAccountClick}
+          onClick={handleAccountClick}
         ></i>
         {showButtons && (
           <div className="flex flex-col">
             <a
               href="/login"
               className="text-xl font-bold text-black"
-              onClick={() => handleNavClick('/login')}
+              onClick={() => handleNavClick("/login")}
             >
               Login
             </a>
             <a
               href="/register"
               className="text-xl font-bold text-black"
-              onClick={() => handleNavClick('/register')}
+              onClick={() => handleNavClick("/register")}
             >
               Register
             </a>
@@ -132,7 +132,7 @@ const AdminNavbar = () => {
         )}
       </div>
       <Button variant="link" onClick={toggleTheme}>
-      <img src={solyluna} alt="Sol y luna" className="p-2 w-11 h-11" />
+        <img src={solyluna} alt="Sol y luna" className="p-2 w-11 h-11" />
       </Button>
     </nav>
   );

@@ -119,7 +119,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav id="landingNavbar" style={{ backgroundColor: "yellow" }} className="flex justify-between items-center p-4 text-black">
+    <nav id="landingNavbar" style={{ backgroundColor: "#FFE603" }} className="flex justify-between items-center p-4 text-black">
       <div className="flex items-center">
         <a href="/">
           <img

@@ -29,7 +29,11 @@ const Music = ({ productsvinilos, productscds }) => {
           </h1>
         </Container>
       </div>
-      <h2 style={{fontSize: "25px"}} id="vinylTitle" className="d-flex justify-content-center mt-5 mb-5">
+      <h2
+        style={{ fontSize: "25px" }}
+        id="vinylTitle"
+        className="d-flex justify-content-center mt-5 mb-5"
+      >
         Vinilos
       </h2>
 
@@ -39,7 +43,7 @@ const Music = ({ productsvinilos, productscds }) => {
             <Card key={index} className="hover-card" style={{ width: "20rem" }}>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title style={{ color: "yellow" }}>
+                <Card.Title style={{ color: "#FFE603" }}>
                   {product.name}
                 </Card.Title>
                 <Card.Text>${product.price}</Card.Text>
@@ -60,7 +64,11 @@ const Music = ({ productsvinilos, productscds }) => {
           Ver todo en Vinilos
         </Button>
       </div>
-      <h3 style={{fontSize: "25px"}} id="cdTitle" className="d-flex justify-content-center mt-5 mb-5">
+      <h3
+        style={{ fontSize: "25px" }}
+        id="cdTitle"
+        className="d-flex justify-content-center mt-5 mb-5"
+      >
         CDs
       </h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
@@ -69,7 +77,7 @@ const Music = ({ productsvinilos, productscds }) => {
             <Card key={index} className="hover-card" style={{ width: "20rem" }}>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
-                <Card.Title style={{ color: "yellow" }}>
+                <Card.Title style={{ color: "#FFE603" }}>
                   {product.name}
                 </Card.Title>
                 <Card.Text>${product.price}</Card.Text>

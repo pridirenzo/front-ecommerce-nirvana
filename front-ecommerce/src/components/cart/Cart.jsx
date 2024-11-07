@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { CartContext } from './CartContext';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
+import { useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import Navbar from "../navbar/NavBar";
 
@@ -9,17 +9,19 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handleRemoveItem = (index) => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+    if (
+      window.confirm("¿Estás seguro de que quieres eliminar este producto?")
+    ) {
       setCartItems(cartItems.filter((item, i) => i !== index));
     }
   };
 
   const handleContinueShopping = () => {
-    navigate('/accessories'); // por ahora accessories, luego a inicio
+    navigate("/accessories"); // por ahora accessories, luego a inicio
   };
 
   const handleAddDeliveryDetails = () => {
-    navigate('/purchase'); 
+    navigate("/purchase");
   };
 
   // Calcular el total a pagar
@@ -29,7 +31,9 @@ const Cart = () => {
     <>
       <Navbar />
       <div className="container mx-auto p-4">
-        <h2 className="hover:text-primary text-white text-2xl font-bold mb-4">Carrito de Compras</h2>
+        <h2 className="hover:text-primary text-white text-2xl font-bold mb-4">
+          Carrito de Compras
+        </h2>
         {cartItems.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -41,26 +45,55 @@ const Cart = () => {
                 >
                   <Card.Img variant="top" src={item.imageUrl} />
                   <Card.Body>
-                    <Card.Title style={{ color: "yellow" }}>
+                    <Card.Title style={{ color: "#FFE603" }}>
                       {item.name}
                     </Card.Title>
                     <Card.Text>{item.description}</Card.Text>
-                    <Card.Text className="font-bold">Precio: ${item.price}</Card.Text>
-                    <Button variant="dark" onClick={() => handleRemoveItem(index)}>Eliminar</Button>
+                    <Card.Text className="font-bold">
+                      Precio: ${item.price}
+                    </Card.Text>
+                    <Button
+                      variant="dark"
+                      onClick={() => handleRemoveItem(index)}
+                    >
+                      Eliminar
+                    </Button>
                   </Card.Body>
                 </Card>
               ))}
             </div>
             <div className="mt-4">
-              <h3 className="text-white">Total a pagar: ${totalPrice.toFixed(2)}</h3>
-              <Button variant="dark" className="mt-4" onClick={handleContinueShopping}>Seguir comprando</Button>
-              <Button variant="dark" className="mt-4" onClick={handleAddDeliveryDetails}>Añadir detalles de entrega</Button>
+              <h3 className="text-white">
+                Total a pagar: ${totalPrice.toFixed(2)}
+              </h3>
+              <Button
+                variant="dark"
+                className="mt-4"
+                onClick={handleContinueShopping}
+              >
+                Seguir comprando
+              </Button>
+              <Button
+                variant="dark"
+                className="mt-4"
+                onClick={handleAddDeliveryDetails}
+              >
+                Añadir detalles de entrega
+              </Button>
             </div>
           </>
         ) : (
           <div>
-            <p className="text-white text-lg font-semibold mt-2">Tu carrito está vacío.</p>
-            <Button variant="dark" className="mt-4" onClick={handleContinueShopping}>Añadir productos</Button>
+            <p className="text-white text-lg font-semibold mt-2">
+              Tu carrito está vacío.
+            </p>
+            <Button
+              variant="dark"
+              className="mt-4"
+              onClick={handleContinueShopping}
+            >
+              Añadir productos
+            </Button>
           </div>
         )}
       </div>
@@ -69,9 +102,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
-
-
-
-

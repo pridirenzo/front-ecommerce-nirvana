@@ -13,7 +13,7 @@ const LandingBuzos = () => {
     const fetchProducts = async () => {
       try {
 
-        const response = await axios.get('https://localhost:7037/api/Product', {
+        const response = await axios.get('http://localhost:5286/api/Product', {
           params: {
             filters: 'idCategory:5:1',
             SortBy: 'id',
@@ -39,6 +39,11 @@ const LandingBuzos = () => {
     fetchProducts();
   }, [currentPage]);
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate("/cart");
+  };
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -57,14 +62,7 @@ const LandingBuzos = () => {
 
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsBuzos) && productsBuzos.map((product, index) => (
-          <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-            <Card.Img variant="top" src={product.imageUrl} />
-            <Card.Body>
-              <Card.Title style={{ color: "yellow" }}>{product.name}</Card.Title>
-              <Card.Text>${product.price}</Card.Text>
-              <Button variant="dark">Comprar</Button>
-            </Card.Body>
-          </Card>
+           <CardProduct key={product.id} product={product} handleAddToCart={handleAddToCart}/>
         ))}
       </div>
 

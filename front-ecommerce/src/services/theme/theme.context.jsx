@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
-
   // contexto para el manejo de tema claro/oscuro, seteo en almacenamiento local y tmb en un estado
   const storedTheme = localStorage.getItem("theme") || "light";
   const [theme, setTheme] = useState(storedTheme);
@@ -16,8 +15,8 @@ export const ThemeContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("Efecto de tema ejecutado: ", theme); 
-    
+    console.log("Efecto de tema ejecutado: ", theme);
+
     const navbar = document.getElementById("landingNavbar");
     const footer = document.getElementById("landingFooter");
     const title = document.getElementById("landingTitle");
@@ -53,45 +52,45 @@ export const ThemeContextProvider = ({ children }) => {
     const width = document.getElementById("widthText");
     const musicButton1 = document.getElementById("musicButton1");
     const musicButton2 = document.getElementById("musicButton2");
-  
+
     // me aseguro de que los textos y elementos se muestren con el color acorde al tema
     if (theme === "dark") {
       document.body.style.backgroundColor = "black";
-      if (navbar) navbar.style.backgroundColor = "yellow";
-      if (footer) footer.style.backgroundColor = "yellow";
-      if (title) title.style.color = "yellow";
-      if (merch) merch.style.color = "yellow";
-      if (clothes) clothes.style.color = "yellow";
-      if (music) music.style.color = "yellow";
-      if (accessories) accessories.style.color = "yellow";
-      if (login) login.style.color = "yellow";
-      if (email) email.style.color = "yellow";
-      if (password) password.style.color = "yellow";
-      if (password2) password2.style.color = "yellow";
-      if (register) register.style.color = "yellow";
-      if (name) name.style.color = "yellow";
-      if (surname) surname.style.color = "yellow";
-      if (registerEmail) registerEmail.style.color = "yellow";
-      if (registerPassword) registerPassword.style.color = "yellow";
-      if (registerPassword2) registerPassword2.style.color = "yellow";
-      if (discography) discography.style.color = "yellow";
-      if (vinyl) vinyl.style.color = "yellow";
-      if (cd) cd.style.color = "yellow";
-      if (shirt) shirt.style.color = "yellow";
-      if (jumper) jumper.style.color = "yellow";
-      if (superadmin) superadmin.style.color = "yellow";
-      if (supAdminNav) supAdminNav.style.backgroundColor = "yellow";
-      if (resetPassword) resetPassword.style.color = "yellow";
-      if (passwordText) passwordText.style.color = "yellow";
-      if (newPasswordTitle) newPasswordTitle.style.color = "yellow";
-      if (newPasswordText1) newPasswordText1.style.color = "yellow";
-      if (newPass1) newPass1.style.color = "yellow";
-      if (newPass2) newPass2.style.color = "yellow";
-      if (salesTitle) salesTitle.style.color = "yellow";
-      if (height) height.style.color = "yellow";
-      if (width) width.style.color = "yellow";
-      if (musicButton1) musicButton1.style.color = "yellow";
-      if (musicButton2) musicButton2.style.color = "yellow";
+      if (navbar) navbar.style.backgroundColor = "#FFE603";
+      if (footer) footer.style.backgroundColor = "#FFE603";
+      if (title) title.style.color = "#FFE603";
+      if (merch) merch.style.color = "#FFE603";
+      if (clothes) clothes.style.color = "#FFE603";
+      if (music) music.style.color = "#FFE603";
+      if (accessories) accessories.style.color = "#FFE603";
+      if (login) login.style.color = "#FFE603";
+      if (email) email.style.color = "#FFE603";
+      if (password) password.style.color = "#FFE603";
+      if (password2) password2.style.color = "#FFE603";
+      if (register) register.style.color = "#FFE603";
+      if (name) name.style.color = "#FFE603";
+      if (surname) surname.style.color = "#FFE603";
+      if (registerEmail) registerEmail.style.color = "#FFE603";
+      if (registerPassword) registerPassword.style.color = "#FFE603";
+      if (registerPassword2) registerPassword2.style.color = "#FFE603";
+      if (discography) discography.style.color = "#FFE603";
+      if (vinyl) vinyl.style.color = "#FFE603";
+      if (cd) cd.style.color = "#FFE603";
+      if (shirt) shirt.style.color = "#FFE603";
+      if (jumper) jumper.style.color = "#FFE603";
+      if (superadmin) superadmin.style.color = "#FFE603";
+      if (supAdminNav) supAdminNav.style.backgroundColor = "#FFE603";
+      if (resetPassword) resetPassword.style.color = "#FFE603";
+      if (passwordText) passwordText.style.color = "#FFE603";
+      if (newPasswordTitle) newPasswordTitle.style.color = "#FFE603";
+      if (newPasswordText1) newPasswordText1.style.color = "#FFE603";
+      if (newPass1) newPass1.style.color = "#FFE603";
+      if (newPass2) newPass2.style.color = "#FFE603";
+      if (salesTitle) salesTitle.style.color = "#FFE603";
+      if (height) height.style.color = "#FFE603";
+      if (width) width.style.color = "#FFE603";
+      if (musicButton1) musicButton1.style.color = "#FFE603";
+      if (musicButton2) musicButton2.style.color = "#FFE603";
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";
@@ -131,7 +130,6 @@ export const ThemeContextProvider = ({ children }) => {
       if (musicButton2) musicButton2.style.color = "black";
     }
   }, [theme]);
-  
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -141,6 +139,5 @@ export const ThemeContextProvider = ({ children }) => {
 };
 
 ThemeContextProvider.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-  
+  children: PropTypes.node.isRequired,
+};
