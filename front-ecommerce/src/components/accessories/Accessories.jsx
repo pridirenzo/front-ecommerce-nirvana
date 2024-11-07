@@ -31,7 +31,7 @@ const Accesories = ({ productsaccesories }) => {
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsaccesories) &&
           productsaccesories.map((product, index) => (
-           <CardProduct key={id} product={product} handleAddToCart={handleAddToCart}/> 
+           <CardProduct key={product.id} product={product} handleAddToCart={handleAddToCart}/> 
           ))}
         <span id="MERCH"></span> {/* Identificador para la sección de contacto */}
       </div>

@@ -3,8 +3,11 @@ import { Container, Card, Button, Pagination } from 'react-bootstrap';
 import Navbar from '../navbar/NavBar';
 import axios from 'axios';
 import '../landingproducts/LandingProducts.css';
+import CardProduct from '../../cardProduct/CardProduct';
+import PropTypes from "prop-types";
 
-const LandingRemeras = () => {
+
+const LandingRemeras = ({ products }) => {
   const [productsRemeras, setProductsRemeras] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -13,7 +16,7 @@ const LandingRemeras = () => {
     const fetchProducts = async () => {
       try {
 
-        const response = await axios.get('https://localhost:7037/api/Product', {
+        const response = await axios.get('http://localhost:5286/api/Product', {
           params: {
             filters: 'idCategory:4:1',
             SortBy: 'id',
@@ -39,6 +42,14 @@ const LandingRemeras = () => {
     fetchProducts();
   }, [currentPage]);
 
+  console.log(productsRemeras);
+  
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate("/cart");
+  };
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -56,15 +67,8 @@ const LandingRemeras = () => {
       </div>
 
       <div className="d-flex justify-content-center mt-4 gap-3">
-        {Array.isArray(productsRemeras) && productsRemeras.map((product, index) => (
-          <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-            <Card.Img variant="top" src={product.imageUrl} />
-            <Card.Body>
-              <Card.Title style={{ color: "yellow" }}>{product.name}</Card.Title>
-              <Card.Text>${product.price}</Card.Text>
-              <Button variant="dark">Comprar</Button>
-            </Card.Body>
-          </Card>
+        {Array.isArray(productsRemeras) && productsRemeras.map((product) => (
+          <CardProduct key={product.id} product={product} handleAddToCart={handleAddToCart}/>
         ))}
       </div>
 
@@ -86,5 +90,12 @@ const LandingRemeras = () => {
     </>
   );
 };
+
+
+
+LandingRemeras.propTypes = {
+  products: PropTypes.object.isRequired
+};
+
 
 export default LandingRemeras;
