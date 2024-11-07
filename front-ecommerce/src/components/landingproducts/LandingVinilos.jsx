@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Card, Button, Pagination } from 'react-bootstrap';
-import Navbar from '../navbar/NavBar';
-import axios from 'axios';
-import '../landingproducts/LandingProducts.css';
+import React, { useState, useEffect } from "react";
+import { Container, Card, Button, Pagination } from "react-bootstrap";
+import Navbar from "../navbar/NavBar";
+import axios from "axios";
+import "../landingproducts/LandingProducts.css";
+import CardProduct from "../cardProduct/CardProduct";
 
 const LandingVinilos = () => {
   const [productsVinilos, setProductsVinilos] = useState([]);
@@ -12,15 +13,14 @@ const LandingVinilos = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-
-        const response = await axios.get('http://localhost:5286/api/Product', {
+        const response = await axios.get("https://localhost:7037/api/Product", {
           params: {
-            filters: 'idCategory:6:1',
-            SortBy: 'id',
+            filters: "idCategory:6:1",
+            SortBy: "id",
             IsDescending: true,
             Page: currentPage,
             PageSize: 4,
-          }
+          },
         });
 
         if (response.data && response.data.data) {
@@ -31,7 +31,7 @@ const LandingVinilos = () => {
           setProductsVinilos([]);
         }
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
         setProductsVinilos([]);
       }
     };
@@ -51,24 +51,29 @@ const LandingVinilos = () => {
   return (
     <>
       <Navbar />
-
       <div className="animated-text d-flex justify-content-center">
         <Container className="text-center mt-5">
-          <h1 id="landingTitle" className="d-flex justify-content-center mt-5 mb-5">
+          <h1
+            id="landingTitle"
+            className="d-flex justify-content-center mt-5 mb-5"
+          >
             Vinilos
           </h1>
         </Container>
       </div>
-
       <div className="d-flex justify-content-center mt-4 gap-3">
-        {Array.isArray(productsVinilos) && productsVinilos.map((product, index) => (
-           <CardProduct key={product.id} product={product} handleAddToCart={handleAddToCart}/>
-        ))}
+        {Array.isArray(productsVinilos) &&
+          productsVinilos.map((product, index) => (
+            <CardProduct
+              key={product.id}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            />
+          ))}
       </div>
-
       <div className="d-flex justify-content-center mt-5 mb-5">
         <Pagination>
-          {[...Array(totalPages > 0 ? totalPages : 1).keys()].map(number => (
+          {[...Array(totalPages > 0 ? totalPages : 1).keys()].map((number) => (
             <Pagination.Item
               key={number + 1}
               active={number + 1 === currentPage}
@@ -79,8 +84,8 @@ const LandingVinilos = () => {
           ))}
         </Pagination>
       </div>
-
-      <span id="VINILOS"></span> {/* Identificador para la sección de contacto */}
+      <span id="VINILOS"></span>{" "}
+      {/* Identificador para la sección de contacto */}
     </>
   );
 };

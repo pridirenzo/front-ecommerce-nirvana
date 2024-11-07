@@ -1,0 +1,33 @@
+.breadcrumb-item.active::before{
+  color:#7C7C7C !important
+}
+
+.breadcrumb .breadcrumb-item.active {
+    color: #FFE603; /* Color del texto del breadcrumb activo */
+    background-color: unset;
+  }
+
+.breadcrumb .breadcrumb-item.active:hover {
+    color: #FFE603; /* Color del texto del breadcrumb activo */
+    background-color: unset;
+}  
+
+.breadcrumb .breadcrumb-item {
+    color: whitesmoke; /* Color del texto del breadcrumb activo */
+}
+
+.breadcrumb .breadcrumb-item:hover {
+  color: #D8D8D8; /* Color del texto del breadcrumb activo */
+  
+}
+
+.h2 {
+    color:#FFE603 !important
+}
+ 
+.h3 {
+  color:#FFC107 !important
+}
+
+
+

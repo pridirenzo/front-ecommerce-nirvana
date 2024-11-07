@@ -2,8 +2,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
+import CardProduct from "../cardProduct/CardProduct";
 
 const Music = ({ productsvinilos, productscds }) => {
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate("/cart");
+  };
+
   const handleNavClick = (link) => {
     if (link.startsWith("#")) {
       const targetId = link.substring(1);
@@ -40,16 +46,11 @@ const Music = ({ productsvinilos, productscds }) => {
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsvinilos) &&
           productsvinilos.map((product, index) => (
-            <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-              <Card.Img variant="top" src={product.imageUrl} />
-              <Card.Body>
-                <Card.Title style={{ color: "#FFE603" }}>
-                  {product.name}
-                </Card.Title>
-                <Card.Text>${product.price}</Card.Text>
-                <Button variant="dark">Comprar</Button>
-              </Card.Body>
-            </Card>
+            <CardProduct
+              key={product.id}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            />
           ))}
         <span id="MERCH"></span>{" "}
         {/* Identificador para la sección de contacto */}
@@ -74,16 +75,11 @@ const Music = ({ productsvinilos, productscds }) => {
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productscds) &&
           productscds.map((product, index) => (
-            <Card key={index} className="hover-card" style={{ width: "20rem" }}>
-              <Card.Img variant="top" src={product.imageUrl} />
-              <Card.Body>
-                <Card.Title style={{ color: "#FFE603" }}>
-                  {product.name}
-                </Card.Title>
-                <Card.Text>${product.price}</Card.Text>
-                <Button variant="dark">Comprar</Button>
-              </Card.Body>
-            </Card>
+            <CardProduct
+              key={product.id}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            />
           ))}
 
         <span id="MUSIC"></span>
