@@ -1,7 +1,17 @@
-import { useState } from "react";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Container,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "react-bootstrap";
+import { useLocation, Link } from "react-router-dom";
 import NavBar from "../navbar/NavBar";
+import CardProduct from "../cardProduct/CardProduct";
+import "../productDetail/ProductDetailStyle.css"
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1); // Control de cantidad
@@ -10,7 +20,23 @@ const ProductDetail = () => {
   const location = useLocation();
   const products = location.state.product;
 
-  const categories = ["Prendas", "Discografia", "Accesorios", "Remeras", "Buzos", "Vinilos", "CDs"];
+  const categories = [
+    "Prendas",
+    "Discografia",
+    "Accesorios",
+    "Remeras",
+    "Buzos",
+    "Vinilos",
+    "CDs",
+  ];
+  const categoryRoutes = {
+    4: "/tees",
+    5: "/sweatshirts",
+    6: "/vinyls",
+    7: "/cds",
+    3: "/accessories",
+    // Agrega más rutas según sea necesario
+  };
 
   const handleQuantityChange = (amount) => {
     if (quantity + amount > 0) {
@@ -24,11 +50,25 @@ const ProductDetail = () => {
 
   return (
     <>
-      <NavBar/>
-      <Container className="text-white" style={{ backgroundColor: "#010101", padding: "20px", maxWidth: "800px" }}>
+      <NavBar />
+      <Container
+        className="text-white"
+        style={{
+          backgroundColor: "#010101",
+          padding: "20px",
+          maxWidth: "800px",
+        }}
+      >
         <Row className="mt-4">
           <Col xs="12">
-            <p className="text-uppercase text-warning">{categories[products.idCategory - 1]} &gt; {products.name}</p>
+            <Breadcrumb>
+              <BreadcrumbItem>
+                <Link to={categoryRoutes[products.idCategory]}>
+                  {categories[products.idCategory - 1]}
+                </Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem active>{products.name}</BreadcrumbItem>
+            </Breadcrumb>
           </Col>
         </Row>
 
@@ -43,26 +83,30 @@ const ProductDetail = () => {
           </Col>
 
           <Col sm="6" className="text-start">
-            {/* Aumentamos el tamaño del nombre del producto con Tailwind */}
-            <h2 className="text-warning text-4xl">{products.name}</h2>
-            <h3>{products.price.value}</h3>
+            <h2 className="text-4xl mb-3">{products.name}</h2>
+            <h3 style={{color:"white"}} className="text-3xl">${products.price}</h3>
 
-            {/* Selector de cantidad */}
-            <div className="d-flex align-items-center mt-3">
+            <div className=" align-items-center mt-3">
               <p className="me-3">Cantidad</p>
-              <Button variant="light" onClick={() => handleQuantityChange(-1)}>-</Button>
+              
+              <Fragment className="align-self-end">
+              <Button variant="dark" onClick={() => handleQuantityChange(-1)}>
+               <b >-</b>
+              </Button>
               <span className="mx-3">{quantity}</span>
-              <Button variant="light" onClick={() => handleQuantityChange(1)}>+</Button>
+              <Button variant="dark" onClick={() => handleQuantityChange(1)}>
+                <b style={{color:"white"}}>+</b>
+              </Button>
+              </Fragment>
             </div>
 
-            {/* Selector de tamaño */}
             <div className="mt-3">
               <p>Tamaño</p>
               <div className="d-flex">
                 {["S", "M", "L", "XL", "XXL"].map((sizeOption) => (
                   <Button
                     key={sizeOption}
-                    variant={size === sizeOption ? "warning" : "outline-light"}
+                    variant={size === sizeOption ? "warning" : "dark"}
                     onClick={() => handleSizeChange(sizeOption)}
                     className="me-2"
                   >
@@ -72,11 +116,9 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Botón de Comprar */}
-            <Button variant="warning" className="mt-4 w-100">
+            <Button variant="warning" className="mt-4 w-100 mb-5">
               Comprar
             </Button>
-
           </Col>
         </Row>
       </Container>

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
-import CardProduct from "../../cardProduct/CardProduct";
+import CardProduct from "../cardProduct/CardProduct";
 import { useNavigate } from "react-router-dom";
 
 const Clothes = ({ productsremeras, productsbuzos }) => {

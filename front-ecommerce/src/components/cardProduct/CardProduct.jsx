@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Button, Carousel, Container } from "react-bootstrap";
 //import ProtectedBuy from '../../routes/ProtectedBuy';
 
+
 const CardProduct = ({ product, handleAddToCart }) => {
   const navigate = useNavigate();
 
@@ -15,7 +16,6 @@ const CardProduct = ({ product, handleAddToCart }) => {
     });
   };
 
-  console.log(product.name);
 
   return (
     <Card className="hover-card" style={{ width: "20rem" }}>

@@ -45,7 +45,6 @@ import LandingCDs from "./components/landingproducts/LandingCDs";
 import LandingAccesorios from "./components/landingproducts/LandingAccesorios";
 import Accesories from "./components/accessories/Accessories";
 
-
 function App() {
   const [productsprendas, setProductsPrendas] = useState([]);
   const [productsmusic, setProductsMusic] = useState([]);
@@ -183,7 +182,7 @@ function App() {
       path: "/profile",
       element: (
         //<ProtectedLogin>
-          <Profile />
+        <Profile />
         //</ProtectedLogin>
       ),
     },
@@ -193,7 +192,7 @@ function App() {
       path: "/purchase",
       element: (
         //<ProtectedLogin>
-          <PurchaseDetail />
+        <PurchaseDetail />
         //</ProtectedLogin>
       ),
     },
@@ -239,15 +238,13 @@ function App() {
     },
     {
       path: "/accessories",
-      element: (
-        <Accesories productsaccesories={productsaccesories}/>
-      ),
+      element: <Accesories productsaccesories={productsaccesories} />,
     },
     {
       path: "/cart",
       element: (
         //<ProtectedLogin>
-          <Cart />
+        <Cart />
         //</ProtectedLogin>
       ),
     },
@@ -260,7 +257,7 @@ function App() {
       path: "/salesdashboard",
       element: (
         //<Protected>
-          <SalesDashboard />
+        <SalesDashboard />
         //</Protected>
       ),
     },

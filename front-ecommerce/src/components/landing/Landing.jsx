@@ -3,7 +3,7 @@ import { Card, Button, Carousel, Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import Navbar from "../navbar/NavBar";
-import CardProduct from "../../cardProduct/CardProduct";
+import CardProduct from "../cardProduct/CardProduct";
 
 const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
   // AUDIO--------------
