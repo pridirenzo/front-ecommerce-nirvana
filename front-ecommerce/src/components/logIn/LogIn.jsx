@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { UserContext } from "../../services/authentication/user.context";
 import Navbar from "../navbar/NavBar";
 
+
 const LogIn = ({ ClientLog }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +13,7 @@ const LogIn = ({ ClientLog }) => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -32,6 +34,8 @@ const LogIn = ({ ClientLog }) => {
       console.error("Error al iniciar sesión:", error);
     }
   };
+
+    
 
   return (
     <>

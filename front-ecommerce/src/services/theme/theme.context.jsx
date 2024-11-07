@@ -89,8 +89,8 @@ export const ThemeContextProvider = ({ children }) => {
       if (salesTitle) salesTitle.style.color = "#FFE603";
       if (height) height.style.color = "#FFE603";
       if (width) width.style.color = "#FFE603";
-      if (musicButton1) musicButton1.style.color = "#FFE603";
-      if (musicButton2) musicButton2.style.color = "#FFE603";
+      if (musicButton1) musicButton1.style.color = "black";
+      if (musicButton2) musicButton2.style.color = "black";
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";

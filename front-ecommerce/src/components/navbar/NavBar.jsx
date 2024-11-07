@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { FaUserCircle, FaCartPlus, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
+import { FaUserCircle, FaVolumeUp, FaVolumeMute, FaCartPlus, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import LogoNirvana from '../../../public/LogoNirvana.png';
 import Button from "react-bootstrap/Button";
@@ -10,6 +10,8 @@ import { Form } from "react-bootstrap";
 import search from "../icons/search.svg";
 import { InputGroup } from "react-bootstrap";
 import { UserContext } from "../../services/authentication/user.context";
+import { useMusic } from '../../services/music/music.context';
+
 
 const Navlinks = [
   { id: 1, name: 'PRENDAS', link: '/clothes' },
@@ -23,6 +25,7 @@ const Navbar = () => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const { isPlaying, handlePlayMusic, handlePauseMusic } = useMusic(); // consumiendo el contexto de música. para encapsular todo el código y hacerlo más ordenado (?)
 
   const handleAccountClick = () => {
     setShowButtons(!showButtons);
@@ -145,6 +148,23 @@ const Navbar = () => {
           {RoleButtons()}
         </ul>
       </div>
+      <div className="d-flex align-items-center">
+        {!isPlaying ? (
+          <FaVolumeUp
+            id="musicButton1"
+            onClick={handlePlayMusic}
+            style={{ fontSize: "30px", margin: "10px", cursor: "pointer", color: "black"}}
+          />
+        ) : (
+          <FaVolumeMute
+            id="musicButton2"
+            onClick={handlePauseMusic}
+            style={{ fontSize: "30px", margin: "10px", cursor: "pointer", color: "black"}}
+          />
+        )}
+        </div>
+          
+
       <div className="md:hidden flex items-center">
         <button
           className="ml-auto text-black focus:outline-none"
@@ -246,6 +266,13 @@ const Navbar = () => {
       </Button>
     </nav>
   );
+
+
+
+
+
+
+
 };
 
 export default Navbar;

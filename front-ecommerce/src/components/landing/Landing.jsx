@@ -1,24 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Carousel, Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
-import { useRef, useState } from "react";
 import Navbar from "../navbar/NavBar";
 import CardProduct from "../../cardProduct/CardProduct";
 
+
 const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
-  // AUDIO--------------
-  const audioRef = useRef(new Audio("smells_like_teen_spirit.mp3"));
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlayMusic = () => {
-    audioRef.current.play();
-    setIsPlaying(true);
-  };
-
-  const handlePauseMusic = () => {
-    audioRef.current.pause();
-    setIsPlaying(false);
-  };
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -41,24 +28,6 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
     <>
       <Navbar />
 
-      {/* Botón de reproducción de música */}
-      {!isPlaying ? (
-        <Button
-          id="musicButton1"
-          onClick={handlePlayMusic}
-          style={{ fontSize: "12px", margin: "10px" }}
-        >
-          Reproducir Música 🎧
-        </Button>
-      ) : (
-        <Button
-          id="musicButton2"
-          onClick={handlePauseMusic}
-          style={{ fontSize: "12px", margin: "10px" }}
-        >
-          Pausar Música 🎧
-        </Button>
-      )}
 
       <div className="animated-text d-flex justify-content-center">
         <Container className="text-center mt-5">
