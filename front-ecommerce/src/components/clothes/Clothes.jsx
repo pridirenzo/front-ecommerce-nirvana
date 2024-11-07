@@ -97,3 +97,5 @@ Clothes.propTypes = {
   productsremeras: PropTypes.object.isRequired,
   productsbuzos: PropTypes.object.isRequired,
 };
+
+//:)
