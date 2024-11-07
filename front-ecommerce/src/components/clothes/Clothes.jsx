@@ -98,4 +98,4 @@ Clothes.propTypes = {
   productsbuzos: PropTypes.object.isRequired,
 };
 
-//:)
+//:) :P
