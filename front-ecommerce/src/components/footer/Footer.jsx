@@ -84,7 +84,7 @@ const Footer = () => {
                   className="bg-transparent"
                 >
                   <Modal.Header className="bg-dark" closeButton>
-                    <Modal.Title className="bg-dark">
+                    <Modal.Title className="bg-dark" style={{color: "#FFE603"}}>
                       Tabla de talles
                     </Modal.Title>
                   </Modal.Header>
@@ -106,12 +106,12 @@ const Footer = () => {
                   className="bg-transparent"
                 >
                   <Modal.Header className="bg-dark" closeButton>
-                    <Modal.Title>Ayuda y soporte</Modal.Title>
+                    <Modal.Title style={{color: "#FFE603"}}>Ayuda y soporte</Modal.Title>
                   </Modal.Header>
                   <Modal.Body className="bg-dark">
-                    <h1 style={{ fontSize: "20px" }}>Necesitás ayuda?</h1>
+                    <h1 style={{ fontSize: "20px", color: "#FFE603"}}>Necesitás ayuda?</h1>
                     <br></br>
-                    <p>
+                    <p style={{color: "#FFE603"}}>
                       Estamos acá para ofrecerte el mejor soporte en cada paso
                       de tu experiencia en Nirvana Merch. Si tenés preguntas,
                       por favor contactate a nuestro correo oficial:
@@ -134,12 +134,12 @@ const Footer = () => {
                   className="bg-transparent"
                 >
                   <Modal.Header className="bg-dark" closeButton>
-                    <Modal.Title>
+                    <Modal.Title style={{color: "#FFE603"}}>
                       Política de cambios y devoluciones
                     </Modal.Title>
                   </Modal.Header>
                   <Modal.Body className="bg-dark">
-                    <p>
+                    <p style={{color: "#FFE603"}}>
                       En Nirvana Merch, queremos que estés satisfecho con tu
                       compra. Si necesitas realizar un cambio o devolución,
                       revisa nuestras políticas: Plazo: podés solicitar cambios
@@ -166,10 +166,10 @@ const Footer = () => {
                   className="bg-transparent"
                 >
                   <Modal.Header className="bg-dark" closeButton>
-                    <Modal.Title>Términos y condiciones</Modal.Title>
+                    <Modal.Title style={{color: "#FFE603"}}>Términos y condiciones</Modal.Title>
                   </Modal.Header>
                   <Modal.Body className="bg-dark">
-                    <p>
+                    <p style={{color: "#FFE603"}}>
                       Al acceder y utilizar Nirvana Merch, aceptas cumplir con
                       los siguientes términos y condiciones: <br></br>
                       Uso del Sitio: Los usuarios deben tener al menos 18 años o
@@ -208,10 +208,10 @@ const Footer = () => {
                   className="bg-transparent"
                 >
                   <Modal.Header className="bg-dark" closeButton>
-                    <Modal.Title>Cookies</Modal.Title>
+                    <Modal.Title style={{color: "#FFE603"}}>Cookies</Modal.Title>
                   </Modal.Header>
                   <Modal.Body className="bg-dark">
-                    <p>
+                    <p style={{color: "#FFE603"}}>
                       En Nirvana Merch utilizamos cookies para mejorar tu
                       experiencia de navegación. Las cookies permiten almacenar
                       preferencias, analizar el uso del sitio y ofrecer
