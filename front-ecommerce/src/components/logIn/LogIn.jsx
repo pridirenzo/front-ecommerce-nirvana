@@ -4,39 +4,42 @@ import { useNavigate, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { UserContext } from "../../services/authentication/user.context";
 import Navbar from "../navbar/NavBar";
-
+import jwt_decode from "jwt-decode"; // Importación correcta
 
 const LogIn = ({ ClientLog }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const credentials = { email, password }; 
-      const response = await ClientLog(credentials);  
-      const token = response.data.token;
-      const user = response.data.user;
-
-      if (user) {
+      const credentials = { email, password };
+      const response = await ClientLog(credentials);
+      
+      const token = response.data; 
+      if (token) {
+        console.log("entro al if");
+        const decodedUser = jwt_decode(token); // Uso correcto de jwt_decode
+        console.log("cargo el jwt");
         localStorage.setItem("userToken", token);
-        setUser(user);
-        navigate("/");
+        console.log("se seto el jwt");
+        //localStorage.setItem("userData", JSON.stringify(decodedUser));
+        console.log("devolvio el json");
+        setUser(decodedUser);
+        navigate("/");  
       } else {
         setError("Credenciales incorrectas");
       }
     } catch (error) {
-      setError("Error al iniciar sesión");
       console.error("Error al iniciar sesión:", error);
+      setError("Error al iniciar sesión");
     }
   };
-
     
-
   return (
     <>
     <Navbar/>
@@ -89,10 +92,3 @@ LogIn.propTypes = {
 };
 
 export default LogIn;
-
-
-
-
-  
-
-  

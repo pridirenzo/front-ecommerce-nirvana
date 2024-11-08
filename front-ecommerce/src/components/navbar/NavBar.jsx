@@ -54,12 +54,14 @@ const Navbar = () => {
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("cart");
+    localStorage.removeItem("userToken");
+    
   };
 
   const RoleButtons = () => {
     if (!user) return null;
     switch (user.role) {
-      case 1:
+      case "Sysadmin":
         return (
           <>
             <li className="py-2 px-4">
@@ -91,7 +93,7 @@ const Navbar = () => {
             </li>
           </>
         );
-      case 2:
+      case "Admin":
         return (
           <>
             <li className="py-2 px-4">
@@ -114,7 +116,7 @@ const Navbar = () => {
             </li>
           </>
         );
-      case 3:
+      case "Client":
         return null; // No mostrar botones adicionales aquí para el rol 3
       default:
         return null;

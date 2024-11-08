@@ -6,7 +6,7 @@ import { UserContext } from "../services/authentication/user.context";
 const Protected = ({ children }) => {
   const { user } = useContext(UserContext);
 
-  if (user && (user.role === 2 || user.role ===3)) {
+  if (user && (user.role == "Admin" || user.role == "Sysadmin")) {
     return children;
   } else {
     alert("Es necesario que tenga permiso de Admin o SysAdmin");

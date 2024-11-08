@@ -1,13 +1,19 @@
 import { Form, Col, Row, Button } from "react-bootstrap";
 import Navbar from "../navbar/NavBar";
+import { UserContext } from "../../services/authentication/user.context";
+import { useContext } from "react";
 
 const Profile = () => {
+  
+  const { user } = useContext(UserContext);
+  
   return (
     <>
       <Navbar/>
       <h1 className="d-flex justify-content-center mt-5 mb-5" style={{fontSize: "30px"}}>
-        Hola, NOMBRE!
-      </h1>
+        Hola {user.given_name} 
+      </h1> 
+      {/* hay que validar que cuando venga no venga user, no rompa*/}
       <Row className="m-5">
         <Col sm={8}>
           <h2 className="mb-5" style={{fontSize: "30px"}}>Editar mi perfil</h2>
