@@ -19,7 +19,7 @@ const Cart = () => {
   };
 
   const handleAddDeliveryDetails = () => {
-    navigate("/purchase");
+    navigate("/purchase", { state: { cartItems } } );
   };
 
   const totalPrice = cartItems.reduce(
@@ -84,7 +84,7 @@ const Cart = () => {
               </Button>
               <Button
                 variant="dark"
-                className="mt-4 ml-3"
+                className="mt-4"
                 onClick={handleAddDeliveryDetails}
               >
                 Añadir detalles de entrega
