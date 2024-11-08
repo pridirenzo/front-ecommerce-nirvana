@@ -6,15 +6,16 @@ const PurchaseDetail = () => {
   return (
     <>
       <Navbar/>
-      <h1 className="d-flex text-center m-5" style={{ color: "#FFE603" }}>Detalle de compra</h1>
-      <h2 className="d-flex text-center m-5" style={{ color: "#FFE603" }}>Delivery 📦</h2>
+      <h1 className="text-4xl d-flex text-center m-5" style={{ color: "#FFE603" }}>Detalle de compra</h1>
+  
       <Row className="m-5">
+      <h2 className="text-2xl d-flex text-center" style={{ color: "#FFE603" }}>Datos de usuario 👤</h2>
         <Col sm="8">
           <Form>
             <Row className="m-5">
               <Col sm="4">
                 <Form.Group>
-                  <Form.Label>Nombre</Form.Label>
+                  <Form.Label style={{ color: "#FFE603" }}>Nombre</Form.Label>
                   <Form.Control
                     required
                     placeholder="Ingresá tu nombre"
@@ -24,7 +25,7 @@ const PurchaseDetail = () => {
               </Col>
               <Col sm="4">
               <Form.Group>
-                  <Form.Label>Apellido</Form.Label>
+                  <Form.Label style={{ color: "#FFE603" }}>Apellido</Form.Label>
                   <Form.Control
                     required
                     type="text"
@@ -33,24 +34,26 @@ const PurchaseDetail = () => {
                 </Form.Group>
               </Col>
             </Row>
+
+            <h2 className="text-2xl d-flex text-center " style={{ color: "#FFE603" }}>Dirección del envío 📦</h2>
             <Row className="m-5">
               <Col sm="4">
                 <Form.Group>
-                  <Form.Label>Apellido</Form.Label>
+                  <Form.Label style={{ color: "#FFE603" }}>Calle</Form.Label>
                   <Form.Control
                     required
                     type="text"
-                    placeholder="Ingresá tu apellido"
+                    placeholder="Ingresá tu calle"
                   />
                 </Form.Group>
               </Col>
               <Col sm="4">
                 <Form.Group>
-                  <Form.Label>Dirección</Form.Label>
+                  <Form.Label style={{ color: "#FFE603" }}>Altura</Form.Label>
                   <Form.Control
                     required
                     type="text"
-                    placeholder="Ingresá tu dirección"
+                    placeholder="Ingresá tu altura"
                   />
                 </Form.Group>
               </Col>
@@ -58,21 +61,21 @@ const PurchaseDetail = () => {
             <Row className="m-5">
               <Col sm="4">
                 <Form.Group>
-                  <Form.Label>Departamento (opcional)</Form.Label>
+                  <Form.Label style={{ color: "#FFE603" }}>Piso/Depto</Form.Label>
                   <Form.Control
                     required
                     type="text"
-                    placeholder="Ingresá tu departamento"
+                    placeholder="Ingresá tu piso y/o departamento"
                   />
                 </Form.Group>
               </Col>
               <Col sm="4">
                 <Form.Group>
-                  <Form.Label>Código postal</Form.Label>
+                  <Form.Label style={{ color: "#FFE603" }}>Localidad</Form.Label>
                   <Form.Control
                     required
                     type="number"
-                    placeholder="Ingresá tu código postal"
+                    placeholder="Ingresá tu localidad"
                   />
                 </Form.Group>
               </Col>
@@ -80,17 +83,7 @@ const PurchaseDetail = () => {
             <Row className="m-5">
               <Col sm="4">
                 <Form.Group>
-                  <Form.Label>Ciudad</Form.Label>
-                  <Form.Control
-                    required
-                    type="text"
-                    placeholder="Ingresá tu ciudad"
-                  />
-                </Form.Group>
-              </Col>
-              <Col sm="4">
-                <Form.Group>
-                  <Form.Label>Provincia</Form.Label>
+                  <Form.Label style={{ color: "#FFE603" }}>Provincia</Form.Label>
                   <Form.Control
                     required
                     type="text"
@@ -99,27 +92,17 @@ const PurchaseDetail = () => {
                 </Form.Group>
               </Col>
             </Row>
-            <Row className="m-5">
-              <Col sm="4">
-                <Form.Group>
-                  <Form.Label>Teléfono</Form.Label>
-                  <Form.Control
-                    required
-                    type="text"
-                    placeholder="Ingresá tu número de teléfono"
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
             <Button
               type="submit"
-              variant="dark"
-              className="m-5 mx-auto d-flex justify-content-center w-10"
+              variant="warning"
+              className="m-5 mx-auto d-flex justify-content-center w-50 h-"
             >
               FINALIZAR COMPRA
             </Button>
           </Form>
         </Col>
+
+        
         <Col sm="4">
           <Card
             className="m-5"
