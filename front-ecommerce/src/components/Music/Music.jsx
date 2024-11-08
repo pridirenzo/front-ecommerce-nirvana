@@ -101,5 +101,6 @@ const Music = ({ productsvinilos, productscds }) => {
 export default Music;
 
 Music.propTypes = {
-  products: PropTypes.function,
+  productsvinilos: PropTypes.array.isRequired,
+  productscds: PropTypes.array.isRequired,
 };

@@ -22,7 +22,7 @@ const CardProduct = ({ product, handleAddToCart }) => {
       <Card.Img variant="top" src={product.imageUrl} />
       <Card.Body>
         <Card.Title style={{ color: "#FFE603" }}>{product.name}</Card.Title>
-        <Card.Text>${product.price}</Card.Text>
+        <Card.Text style={{ color: "#FFE603" }}>${product.price}</Card.Text>
         {/*<ProtectedBuy onBuy={() => handleAddToCart(product)}>
                     <Button variant="dark">
                         Comprar

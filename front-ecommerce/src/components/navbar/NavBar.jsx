@@ -134,7 +134,7 @@ const Navbar = () => {
           />
         </a>
         <ul className="hidden md:flex space-x-6">
-          {(!user || (user && user.role === 3)) && 
+          {(!user || (user && user.role == "Client")) && 
             Navlinks.map(({ id, name, link }) => (
               <li key={id} className="py-2 px-4">
                 <a
@@ -176,7 +176,7 @@ const Navbar = () => {
         </button>
       </div>
       <ul className={`md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
-        {(!user || (user && user.role === 3)) &&
+        {(!user || (user && user.role == "Client")) &&
           Navlinks.map(({ id, name, link }) => (
             <li key={id} className="py-2 px-4">
               <a
@@ -227,7 +227,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <span className="ml-2 text-black text-xl">{user.firstName} {user.lastName} </span>
+            <span className="ml-2 text-black text-xl">{user.given_name} {user.family_name} </span>
             <div className="relative ml-4">
               <button className="flex items-center" onClick={() => setUserMenuOpen(!userMenuOpen)}>
                 <FaUserCircle className="text-2xl text-black" />
@@ -268,12 +268,6 @@ const Navbar = () => {
       </Button>
     </nav>
   );
-
-
-
-
-
-
 
 };
 

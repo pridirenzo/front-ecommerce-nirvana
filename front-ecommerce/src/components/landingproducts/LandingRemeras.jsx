@@ -40,8 +40,6 @@ const LandingRemeras = ({ products }) => {
     fetchProducts();
   }, [currentPage]);
 
-  console.log(productsRemeras);
-
   const handleAddToCart = (product) => {
     addToCart(product);
     navigate("/cart");
@@ -91,10 +89,6 @@ const LandingRemeras = ({ products }) => {
       {/* Identificador para la sección de contacto */}
     </>
   );
-};
-
-LandingRemeras.propTypes = {
-  products: PropTypes.object.isRequired,
 };
 
 export default LandingRemeras;

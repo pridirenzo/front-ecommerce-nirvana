@@ -1,6 +1,5 @@
-import React, { Fragment, useState } from "react";
+import { useState, useContext } from "react";
 import {
-  Form,
   Button,
   Row,
   Col,
@@ -8,17 +7,19 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "react-bootstrap";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import NavBar from "../navbar/NavBar";
-import CardProduct from "../cardProduct/CardProduct";
-import "../productDetail/ProductDetailStyle.css"
+import "../productDetail/ProductDetailStyle.css";
+import { CartContext } from "../cart/CartContext";
 
 const ProductDetail = () => {
-  const [quantity, setQuantity] = useState(1); // Control de cantidad
-  const [size, setSize] = useState(""); // Control de tamaño
-
+  const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
   const location = useLocation();
   const products = location.state.product;
+
+  const [quantity, setQuantity] = useState(1); 
+  const [size, setSize] = useState(""); 
 
   const categories = [
     "Prendas",
@@ -46,6 +47,17 @@ const ProductDetail = () => {
 
   const handleSizeChange = (selectedSize) => {
     setSize(selectedSize);
+  };
+
+  const handleAddToCart = () => {
+    const productToAdd = {
+      ...products,
+      quantity,
+      size,
+    };
+
+    addToCart(productToAdd);
+    navigate("/cart");
   };
 
   return (
@@ -84,20 +96,19 @@ const ProductDetail = () => {
 
           <Col sm="6" className="text-start">
             <h2 className="text-4xl mb-3">{products.name}</h2>
-            <h3 style={{color:"white"}} className="text-3xl">${products.price}</h3>
+            <h3 style={{ color: "white" }} className="text-3xl">${products.price}</h3>
 
-            <div className=" align-items-center mt-3">
+            <div className="align-items-center mt-3">
               <p className="me-3">Cantidad</p>
-              
-              <Fragment className="align-self-end">
-              <Button variant="dark" onClick={() => handleQuantityChange(-1)}>
-               <b >-</b>
-              </Button>
-              <span className="mx-3">{quantity}</span>
-              <Button variant="dark" onClick={() => handleQuantityChange(1)}>
-                <b style={{color:"white"}}>+</b>
-              </Button>
-              </Fragment>
+              <div className="d-flex align-items-center">
+                <Button variant="dark" onClick={() => handleQuantityChange(-1)}>
+                  <b>-</b>
+                </Button>
+                <span className="mx-3">{quantity}</span>
+                <Button variant="dark" onClick={() => handleQuantityChange(1)}>
+                  <b style={{ color: "white" }}>+</b>
+                </Button>
+              </div>
             </div>
 
             <div className="mt-3">
@@ -116,7 +127,11 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            <Button variant="warning" className="mt-4 w-100 mb-5">
+            <Button
+              variant="warning"
+              className="mt-4 w-100 mb-5"
+              onClick={handleAddToCart}
+            >
               Comprar
             </Button>
           </Col>

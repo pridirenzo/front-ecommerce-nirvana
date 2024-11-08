@@ -9,23 +9,23 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handleRemoveItem = (index) => {
-    if (
-      window.confirm("¿Estás seguro de que quieres eliminar este producto?")
-    ) {
+    if (window.confirm("¿Estás seguro de que quieres eliminar este producto?")) {
       setCartItems(cartItems.filter((item, i) => i !== index));
     }
   };
 
   const handleContinueShopping = () => {
-    navigate("/accessories"); // por ahora accessories, luego a inicio
+    navigate("/"); 
   };
 
   const handleAddDeliveryDetails = () => {
     navigate("/purchase");
   };
 
-  // Calcular el total a pagar
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <>
@@ -49,8 +49,17 @@ const Cart = () => {
                       {item.name}
                     </Card.Title>
                     <Card.Text>{item.description}</Card.Text>
+                    <Card.Text>
+                      <strong>Tamaño:</strong> {item.size || "N/A"}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Cantidad:</strong> {item.quantity}
+                    </Card.Text>
                     <Card.Text className="font-bold">
-                      Precio: ${item.price}
+                      <strong>Precio unitario:</strong> ${item.price}
+                    </Card.Text>
+                    <Card.Text className="font-bold">
+                      <strong>Total:</strong> ${item.price * item.quantity}
                     </Card.Text>
                     <Button
                       variant="dark"
@@ -75,7 +84,7 @@ const Cart = () => {
               </Button>
               <Button
                 variant="dark"
-                className="mt-4"
+                className="mt-4 ml-3"
                 onClick={handleAddDeliveryDetails}
               >
                 Añadir detalles de entrega

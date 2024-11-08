@@ -22,13 +22,9 @@ const LogIn = ({ ClientLog }) => {
       
       const token = response.data; 
       if (token) {
-        console.log("entro al if");
         const decodedUser = jwt_decode(token); // Uso correcto de jwt_decode
-        console.log("cargo el jwt");
         localStorage.setItem("userToken", token);
-        console.log("se seto el jwt");
-        //localStorage.setItem("userData", JSON.stringify(decodedUser));
-        console.log("devolvio el json");
+        localStorage.setItem("user", JSON.stringify(decodedUser)); // Asegúrate de guardar "user"
         setUser(decodedUser);
         navigate("/");  
       } else {

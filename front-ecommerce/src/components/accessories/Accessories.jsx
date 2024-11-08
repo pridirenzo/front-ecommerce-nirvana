@@ -17,6 +17,18 @@ const Accesories = ({ productsaccesories }) => {
     navigate("/cart");
   };
 
+  const handleNavClick = (link) => {
+    if (link.startsWith("#")) {
+      const targetId = link.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      window.location.href = link;
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -43,7 +55,7 @@ const Accesories = ({ productsaccesories }) => {
         {/* Identificador para la sección de contacto */}
       </div>
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5">
+        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick("accesories")}>
           Ver todo en Accesorios
         </Button>
       </div>

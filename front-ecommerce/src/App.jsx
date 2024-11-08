@@ -154,8 +154,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        if (!user (user.role !== "Admin" && user.role !== "Sysadmin")) return;
         const Users = await GetUsers();
-        console.log(Users.data);
         setUsers(Users.data.data);
       } catch (error) {
         console.log(error);
@@ -233,7 +233,9 @@ function App() {
     {
       path: "/music",
       element: (
-        <Music productsvinilos={productsvinilos} productscds={productscds} />
+        <Music 
+        productsvinilos={productsvinilos} 
+        productscds={productscds} />
       ),
     },
     {

@@ -11,7 +11,7 @@ const ProtectedBuy = ({ children, onBuy }) => {
     if (!user) {
       alert("Es necesario que inicie sesión para realizar una compra.");
       setRedirectToLogin(true);
-    } else if (user.role !== 3) {
+    } else if (user.role !== "Client") {
       alert("Solo los clientes pueden realizar compras.");
     } else {
       onBuy();

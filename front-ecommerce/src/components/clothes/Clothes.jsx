@@ -94,8 +94,8 @@ const Clothes = ({ productsremeras, productsbuzos }) => {
 export default Clothes;
 
 Clothes.propTypes = {
-  productsremeras: PropTypes.object.isRequired,
-  productsbuzos: PropTypes.object.isRequired,
+  productsremeras: PropTypes.array.isRequired,
+  productsbuzos: PropTypes.array.isRequired,
 };
 
 //:) :P

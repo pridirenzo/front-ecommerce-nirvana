@@ -6,26 +6,12 @@ const PurchaseDetail = () => {
   return (
     <>
       <Navbar/>
-      <h1 className="d-flex text-center m-5">Detalle de compra</h1>
-      <h2 className="d-flex text-center m-5">Delivery 📦</h2>
+      <h1 className="d-flex text-center m-5" style={{ color: "#FFE603" }}>Detalle de compra</h1>
+      <h2 className="d-flex text-center m-5" style={{ color: "#FFE603" }}>Delivery 📦</h2>
       <Row className="m-5">
         <Col sm="8">
           <Form>
             <Row className="m-5">
-              <Col sm="4">
-                <Form.Group>
-                  <Form.Label>Continente/Región</Form.Label>
-                  <Form.Select required>
-                    <option value="">Seleccioná tu continente</option>
-                    <option value="Africa">África</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europa">Europa</option>
-                    <option value="América del Norte">América del Norte</option>
-                    <option value="América del Sur">América del Sur</option>
-                    <option value="Oceanía">Oceanía</option>
-                  </Form.Select>
-                </Form.Group>
-              </Col>
               <Col sm="4">
                 <Form.Group>
                   <Form.Label>Nombre</Form.Label>
@@ -33,6 +19,16 @@ const PurchaseDetail = () => {
                     required
                     placeholder="Ingresá tu nombre"
                     type="text"
+                  />
+                </Form.Group>
+              </Col>
+              <Col sm="4">
+              <Form.Group>
+                  <Form.Label>Apellido</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Ingresá tu apellido"
                   />
                 </Form.Group>
               </Col>
