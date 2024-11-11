@@ -53,7 +53,7 @@ const Navbar = () => {
     navigate('/');
     setUser(null);
     localStorage.removeItem("user");
-    localStorage.removeItem("cart");
+    localStorage.removeItem("cartItems");
     localStorage.removeItem("userToken");
     
   };

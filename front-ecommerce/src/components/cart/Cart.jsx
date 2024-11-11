@@ -77,7 +77,7 @@ const Cart = () => {
               </h3>
               <Button
                 variant="dark"
-                className="mt-4"
+                className="mt-4 mr-3"
                 onClick={handleContinueShopping}
               >
                 Seguir comprando

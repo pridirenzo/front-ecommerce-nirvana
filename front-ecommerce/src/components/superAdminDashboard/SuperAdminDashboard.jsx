@@ -134,7 +134,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="container" style={{minHeight : "60vh"}}>
         <h1 id="superadminDashTitle" className="text-center mb-4 mt-4" style={{ fontSize: "30px" }}>
           Administrar Usuarios 👥
         </h1>

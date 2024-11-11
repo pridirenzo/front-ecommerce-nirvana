@@ -11,6 +11,7 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import NavBar from "../navbar/NavBar";
 import "../productDetail/ProductDetailStyle.css";
 import { CartContext } from "../cart/CartContext";
+import ProtectedBuy from "../../routes/ProtectedBuy";
 
 const ProductDetail = () => {
   const { addToCart } = useContext(CartContext);
@@ -126,14 +127,17 @@ const ProductDetail = () => {
                 ))}
               </div>
             </div>
-
+            
+            <ProtectedBuy>
             <Button
               variant="warning"
               className="mt-4 w-100 mb-5"
-              onClick={handleAddToCart}
+              onBuy={handleAddToCart}
             >
               Comprar
             </Button>
+            </ProtectedBuy>
+
           </Col>
         </Row>
       </Container>

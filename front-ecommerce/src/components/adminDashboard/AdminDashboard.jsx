@@ -100,8 +100,8 @@ const AdminDashboard = ({
       </h3>
       <div className="d-flex justify-content-center mt-4 gap-3">
         {Array.isArray(productsmusic) &&
-          productsmusic.map((product, index) => (
-            <Card className="hover-card" style={{ width: "20rem" }}>
+          productsmusic.map((product) => (
+            <Card className="hover-card" style={{ width: "20rem" }} key={product.id}>
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
                 <Card.Title style={{ color: "#FFE603" }}>
@@ -111,7 +111,7 @@ const AdminDashboard = ({
                 <Button
                   variant="primary"
                   className="m-2"
-                  onClick={handleOpenModifyProductModal}
+                  onClick={() => handleOpenModifyProductModal(product)}
                 >
                   Modificar
                 </Button>
@@ -144,7 +144,7 @@ const AdminDashboard = ({
                 <Button
                   variant="primary"
                   className="m-2"
-                  onClick={handleOpenModifyProductModal}
+                  onClick={() => handleOpenModifyProductModal(product)}
                 >
                   Modificar
                 </Button>

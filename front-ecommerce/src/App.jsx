@@ -9,7 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   GetUsers, //para mapeo
   ClientLog,
@@ -37,7 +37,8 @@ import ProtectedSuperAdmin from "./routes/ProtectedSuperAdmin";
 import Protected from "./routes/Protected";
 import ProtectedBuy from "./routes/ProtectedBuy";
 import ProtectedLogin from "./routes/ProtectedLogin";
-import { UserContextProvider } from "./services/authentication/user.context";
+import ProtectedClient from "./routes/ProtectedClient";
+import {UserContextProvider, UserContext } from "./services/authentication/user.context";
 import LandingBuzos from "./components/landingproducts/LandingBuzos";
 import LandingRemeras from "./components/landingproducts/landingremeras";
 import LandingVinilos from "./components/landingproducts/LandingVinilos";
@@ -53,6 +54,7 @@ function App() {
   const [productsbuzos, setProductsBuzos] = useState([]);
   const [productsvinilos, setProductsVinilos] = useState([]);
   const [productscds, setProductsCDs] = useState([]);
+  const {user} = useContext(UserContext);
 
   // fetcheo prendas
   useEffect(() => {
@@ -154,7 +156,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (!user (user.role !== "Admin" && user.role !== "Sysadmin")) return;
+        if (!user || (user.role !== "Admin" && user.role !== "Sysadmin")) return;
         const Users = await GetUsers();
         setUsers(Users.data.data);
       } catch (error) {
@@ -181,9 +183,9 @@ function App() {
     {
       path: "/profile",
       element: (
-        //<ProtectedLogin>
+        <ProtectedLogin>
         <Profile />
-        //</ProtectedLogin>
+        </ProtectedLogin>
       ),
     },
     { path: "/product/:id", element: <ProductDetail /> },
@@ -191,9 +193,9 @@ function App() {
     {
       path: "/purchase",
       element: (
-        //<ProtectedLogin>
+
         <PurchaseDetail />
-        //</ProtectedLogin>
+
       ),
     },
     {
@@ -245,9 +247,9 @@ function App() {
     {
       path: "/cart",
       element: (
-        //<ProtectedLogin>
+        <ProtectedClient sendMessage="Solo los clientes pueden realizar compras. Por favor, inicia sesión o registrate.">
         <Cart />
-        //</ProtectedLogin>
+        </ProtectedClient>
       ),
     },
     {
