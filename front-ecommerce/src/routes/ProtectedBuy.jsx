@@ -35,5 +35,3 @@ ProtectedBuy.propTypes = {
 };
 
 export default ProtectedBuy;
-
-

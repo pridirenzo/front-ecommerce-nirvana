@@ -240,4 +240,14 @@ export const updateUser = async (userId, userData) => {
 
 export const GetOrders = () => {  
   return api.get("/api/Order");
-}
+};
+
+export const PostOrder = async (OrderData) => {
+  try {
+    const response = await api.post("/api/Order", OrderData);
+    return response.data;
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    throw error;
+  }
+};

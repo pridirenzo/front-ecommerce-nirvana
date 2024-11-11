@@ -20,7 +20,7 @@ const SalesDashboard = ({ orders, products, users }) => {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="container" style={{minHeight : "60vh"}}>
         <h1 id="salesDashTitle" className="text-center mb-4 mt-4" style={{ fontSize: "30px" }}>
           Administrar Ventas 🛒
         </h1>

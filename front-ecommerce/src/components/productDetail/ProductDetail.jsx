@@ -19,8 +19,8 @@ const ProductDetail = () => {
   const location = useLocation();
   const products = location.state.product;
 
-  const [quantity, setQuantity] = useState(1); 
-  const [size, setSize] = useState(""); 
+  const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState("");
 
   const categories = [
     "Prendas",
@@ -97,7 +97,9 @@ const ProductDetail = () => {
 
           <Col sm="6" className="text-start">
             <h2 className="text-4xl mb-3">{products.name}</h2>
-            <h3 style={{ color: "white" }} className="text-3xl">${products.price}</h3>
+            <h3 style={{ color: "white" }} className="text-3xl">
+              ${products.price}
+            </h3>
 
             <div className="align-items-center mt-3">
               <p className="me-3">Cantidad</p>
@@ -127,17 +129,12 @@ const ProductDetail = () => {
                 ))}
               </div>
             </div>
-            
-            <ProtectedBuy>
-            <Button
-              variant="warning"
-              className="mt-4 w-100 mb-5"
-              onBuy={handleAddToCart}
-            >
-              Comprar
-            </Button>
-            </ProtectedBuy>
 
+            <ProtectedBuy onBuy={handleAddToCart}>
+              <Button variant="warning" className="mt-4 w-100 mb-5">
+                Comprar
+              </Button>
+            </ProtectedBuy>
           </Col>
         </Row>
       </Container>
