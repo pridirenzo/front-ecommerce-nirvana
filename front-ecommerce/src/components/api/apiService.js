@@ -154,6 +154,27 @@ export const DeleteProduct = async (productId) => {
   const response = await api.delete(`api/Product/${productId}`);
   return response.data;
 };
+
+
+// Get todos los productos
+
+export const GetProducts = async () => {
+  try {
+    const response = await api.get("/api/Product", {
+      params: {
+        SortBy: "id",
+        IsDescending: true,
+        Page: 1,
+        PageSize: 1000, 
+      },
+    });
+    return response.data.data; 
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+};
+
 //Llamadas a Users
 
 export const GetUsers = () => {  
@@ -213,3 +234,10 @@ export const updateUser = async (userId, userData) => {
     throw error;
   }
 };
+
+
+//llamadas para ventas 
+
+export const GetOrders = () => {  
+  return api.get("/api/Order");
+}
