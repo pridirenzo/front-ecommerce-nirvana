@@ -11,10 +11,12 @@ import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import SuperAdminDashboard from "./components/superAdminDashboard/SuperAdminDashboard";
 import { useEffect, useState, useContext } from "react";
 import {
+  GetOrders,
   GetUsers, //para mapeo
   ClientLog,
   createUser, //con mailing
   createUser2,
+  GetProducts,
   GetProductsMusic,
   GetProductsPrendas,
   GetProductsAccesories,
@@ -54,7 +56,24 @@ function App() {
   const [productsbuzos, setProductsBuzos] = useState([]);
   const [productsvinilos, setProductsVinilos] = useState([]);
   const [productscds, setProductsCDs] = useState([]);
+  const [products, setProducts] = useState([]);
   const {user} = useContext(UserContext);
+
+
+  //fetcheo de todos los productos
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const Products = await GetProducts();
+        setProducts(Array.isArray(Products) ? Products : []);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProducts();
+  }, []);
+
 
   // fetcheo prendas
   useEffect(() => {
@@ -165,6 +184,28 @@ function App() {
     };
     fetchData();
   }, []);
+
+
+  // -----------------------------
+  // FETCHEO Ordenes
+  // -------------------------------
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await GetOrders();
+        const data = response.data.data;
+        setOrders(data);
+      } catch (error) {
+        console.error("Error al obtener las órdenes:", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+
   // ----------------------------------------------------------------------------
 
   const router = createBrowserRouter([
@@ -261,7 +302,7 @@ function App() {
       path: "/salesdashboard",
       element: (
         //<Protected>
-        <SalesDashboard />
+        <SalesDashboard orders={orders} setOrders={setOrders} products={products} users={users}/>
         //</Protected>
       ),
     },
