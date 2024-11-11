@@ -1,35 +1,87 @@
 import { Form, Col, Row, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect} from "react";
+import { useLocation, useNavigate} from "react-router-dom";
 
 const NewResetPassword = () => {
+
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState(null); // Estado para guardar el token q viene del back
 
-  const handleSubmit = (event) => {
+  const location = useLocation(); // obtener URL
+  const navigate = useNavigate();  // Usar useNavigate para redirigir
+ 
+
+  // Usar useEffect para obtener el token de la URL cuando el componente se monta
+  useEffect(() => {
+    // Obtener el parámetro 'token' de la URL
+    const urlParams = new URLSearchParams(location.search);
+    const tokenFromUrl = urlParams.get("token");
+
+    if (tokenFromUrl) {
+      setToken(tokenFromUrl); // Guardar el token en el estado
+    } else {
+      setError("No se ha encontrado el token de restablecimiento.");
+    }
+  }, [location]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Lógica para manejar el restablecimiento de contraseña
+
     if (!newPassword || !confirmPassword) {
       setError("Por favor, completa todos los campos.");
       return;
     }
+
     if (newPassword !== confirmPassword) {
       setError("Las contraseñas no coinciden.");
       return;
     }
 
-    // Aquí puedes añadir la lógica para enviar la nueva contraseña
-    console.log("Nueva Contraseña:", newPassword);
-    
-    // Limpiar los campos después de enviar
+    setError("");
+
+    // fetcheo 2do endpoint restablecimiento d contra. envio nueva contra y token 
+
+    try {
+      const response = await fetch(
+        "https://localhost:7037/api/Client/resetPassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            newPassword,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Hubo un error al restablecer la contraseña.");
+      }
+
+      const data = await response.json();
+      alert(data.message || "Restablecimiento exitoso");
+      // Redirigir al login después de restablecer la contraseña
+      navigate("/login"); 
+      setError("");
+    } catch (err) {
+      alert(`Error: ${err.message}`);
+    }
+
     setNewPassword("");
     setConfirmPassword("");
-    setError("");
   };
 
   return (
     <>
-      <h1 id="newPasswordTitle" className="d-flex justify-content-center mt-5" style={{ fontSize: "30px" }}>
+      <h1
+        id="newPasswordTitle"
+        className="d-flex justify-content-center mt-5"
+        style={{ fontSize: "30px" }}
+      >
         Establecer Nueva Contraseña
       </h1>
       <p id="newPasswordText1" className="text-center mb-4 mt-4">

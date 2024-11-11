@@ -2,25 +2,46 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import { useState } from "react";
 
 const ResetPassword = () => {
+
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (event) => {
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Lógica para manejar el restablecimiento de contraseña
+
     if (!email) {
       setError("Por favor, completa todos los campos.");
+      alert("Por favor, completa todos los campos."); 
       return;
     }
 
-    // Aquí puedes añadir la lógica para enviar el nuevo password
+    setError(""); 
 
-    console.log("Email:", email);
-    
-    // Limpiar los campos después de enviar
+
+    // fetcheo 1er endpoint restablecimiento d contra
+
+    try {
+      const response = await fetch("https://localhost:7037/api/Client/ResetPassword-Using-Email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Hubo un error durante el restablecimiento.");
+      }
+
+      const data = await response.json();
+      alert(data); 
+    } catch (err) {
+      alert(`Error: ${err.message}`); 
+    }
+
     setEmail("");
-    setError("");
   };
+
 
   return (
     <>
@@ -50,7 +71,7 @@ const ResetPassword = () => {
               variant="dark"
               className="form-button mt-4 d-flex justify-content-center w-100"
             >
-              Reestablecer Contraseña
+              Restablecer Contraseña
             </Button>
           </Col>
         </Form.Group>

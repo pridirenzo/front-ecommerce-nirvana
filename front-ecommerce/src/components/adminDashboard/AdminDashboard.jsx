@@ -53,7 +53,7 @@ const AdminDashboard = ({
       <div>
         <Navbar />
       </div>
-      <h2 className="d-flex justify-content-center mt-5 mb-5">
+      <h2 id="productTitleAdminDash" className="d-flex justify-content-center mt-5 mb-5">
         Control de productos 🛠️
       </h2>
       <Container className="d-flex justify-content-center mb-4">
