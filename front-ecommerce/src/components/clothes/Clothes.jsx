@@ -12,15 +12,7 @@ const Clothes = ({ productsremeras, productsbuzos }) => {
   };
 
   const handleNavClick = (link) => {
-    if (link.startsWith("#")) {
-      const targetId = link.substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    } else {
       window.location.href = link;
-    }
   };
 
   return (
@@ -83,7 +75,7 @@ const Clothes = ({ productsremeras, productsbuzos }) => {
       </div>
 
       <div className="d-flex justify-content-center mt-5">
-        <Button variant="dark" className="mt-2 mb-5">
+        <Button variant="dark" className="mt-2 mb-5" onClick={() => handleNavClick("/sweatshirts")}>
           Ver todo en Buzos
         </Button>
       </div>

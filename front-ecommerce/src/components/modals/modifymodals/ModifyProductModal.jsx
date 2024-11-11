@@ -25,7 +25,6 @@ const ModifyProductModal = ({ show, handleClose, product }) => {
   }, [product]);
 
   const handleSave = async () => {
-    debugger;
     const priceValue = price ? parseFloat(price) : 0; // Verificar que el precio no esté vacío
     const updatedProduct = {
       idCategory: category,

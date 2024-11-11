@@ -45,6 +45,11 @@ import LandingVinilos from "./components/landingproducts/LandingVinilos";
 import LandingCDs from "./components/landingproducts/LandingCDs";
 import LandingAccesorios from "./components/landingproducts/LandingAccesorios";
 import Accesories from "./components/accessories/Accessories";
+import AdminLandingRemeras from "./components/adminLandingProducts/AdminLandingRemeras"
+import AdminLandingBuzos from "./components/adminLandingProducts/AdminLandingBuzos";
+import AdminLandingVinilos from "./components/adminLandingProducts/AdminLandingVinilos";
+import AdminLandingCDs from "./components/adminLandingProducts/AdminLandingCDs";
+import AdminLandingAccesorios from "./components/adminLandingProducts/AdminLandingAccesorios";
 
 function App() {
   const [productsprendas, setProductsPrendas] = useState([]);
@@ -201,13 +206,13 @@ function App() {
     {
       path: "/admin",
       element: (
-        //<Protected>
+        <Protected>
         <AdminDashboard
           productsprendas={productsprendas}
           productsmusic={productsmusic}
           productsaccesories={productsaccesories}
         />
-        //</Protected>
+        </Protected>
       ),
     },
     {
@@ -270,6 +275,14 @@ function App() {
     { path: "/vinyls", element: <LandingVinilos /> },
     { path: "/cds", element: <LandingCDs /> },
     { path: "/accesories", element: <LandingAccesorios /> },
+
+    
+    {path: "/admintees", element: <Protected><AdminLandingRemeras /></Protected>},
+    {path: "/adminsweatshirts", element: <Protected><AdminLandingBuzos /></Protected>},
+    {path: "/adminvinyls", element: <Protected><AdminLandingVinilos/></Protected>},
+    {path: "/admincds", element: <Protected><AdminLandingCDs/></Protected>},
+    {path: "/adminaccessories", element: <Protected><AdminLandingAccesorios/></Protected>}
+
   ]);
 
   return (

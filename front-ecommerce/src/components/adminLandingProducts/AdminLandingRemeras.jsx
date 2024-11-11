@@ -1,14 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Button, Pagination } from "react-bootstrap";
+import { Container, Pagination } from "react-bootstrap";
 import Navbar from "../navbar/NavBar";
 import axios from "axios";
 import "../landingproducts/LandingProducts.css";
-import CardProduct from "../cardProduct/CardProduct";
+import AdminCardProduct from "../cardProduct/AdminCardProduct";
+import ModifyProductModal from "../modals/modifymodals/ModifyProductModal";
+import DeleteProductModal from "../modals/deletemodals/DeleteProductModal";
 
-const LandingRemeras = ({}) => {
+const AdminLandingRemeras = ({ }) => {
   const [productsRemeras, setProductsRemeras] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [showModifyProductModal, setShowModifyProductModal] = useState(false);
+  const [showDeleteProductModal, setShowDeleteProductModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+
+    const handleOpenModifyProductModal = (product) => {
+    setSelectedProduct(product);
+    setShowModifyProductModal(true);
+  };
+
+  const handleOpenDeleteProductModal = (productId) => {
+    setSelectedProductId(productId);
+    setShowDeleteProductModal(true);
+  };
+
+  const handleCloseModifyProductModal = () => {
+    setShowModifyProductModal(false);
+    setSelectedProduct(null);
+  };
+
+  const handleCloseDeleteProductModal = () => {
+    setShowDeleteProductModal(false);
+    setSelectedProductId(null);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,14 +65,10 @@ const LandingRemeras = ({}) => {
     fetchProducts();
   }, [currentPage]);
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    navigate("/cart");
-  };
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
 
   return (
     <>
@@ -62,12 +84,13 @@ const LandingRemeras = ({}) => {
         </Container>
       </div>
       <div className="d-flex justify-content-center mt-4 gap-3">
-        {Array.isArray(productsRemeras) &&
+      {Array.isArray(productsRemeras) &&
           productsRemeras.map((product) => (
-            <CardProduct
+            <AdminCardProduct
               key={product.id}
               product={product}
-              handleAddToCart={handleAddToCart}
+              handleOpenModifyProductModal={handleOpenModifyProductModal}
+              handleOpenDeleteProductModal={handleOpenDeleteProductModal}
             />
           ))}
       </div>
@@ -86,8 +109,19 @@ const LandingRemeras = ({}) => {
       </div>
       <span id="REMERAS"></span>{" "}
       {/* Identificador para la sección de contacto */}
+
+      <ModifyProductModal
+        show={showModifyProductModal}
+        handleClose={handleCloseModifyProductModal}
+        product={selectedProduct}
+      />
+      <DeleteProductModal
+        show={showDeleteProductModal}
+        handleClose={handleCloseDeleteProductModal}
+        productId={selectedProductId}
+      />
     </>
   );
 };
 
-export default LandingRemeras;
+export default AdminLandingRemeras;
