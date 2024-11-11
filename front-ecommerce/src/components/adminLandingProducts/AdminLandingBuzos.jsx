@@ -1,21 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Button, Pagination } from "react-bootstrap";
+import { Container, Pagination } from "react-bootstrap";
 import Navbar from "../navbar/NavBar";
 import axios from "axios";
 import "../landingproducts/LandingProducts.css";
-import CardProduct from "../cardProduct/CardProduct";
+import AdminCardProduct from "../cardProduct/AdminCardProduct";
+import ModifyProductModal from "../modals/modifymodals/ModifyProductModal";
+import DeleteProductModal from "../modals/deletemodals/DeleteProductModal";
 
-const LandingRemeras = ({}) => {
-  const [productsRemeras, setProductsRemeras] = useState([]);
+const AdminLandingBuzos = ({ }) => {
+  const [productsBuzos, setProductsBuzos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [showModifyProductModal, setShowModifyProductModal] = useState(false);
+  const [showDeleteProductModal, setShowDeleteProductModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+
+    const handleOpenModifyProductModal = (product) => {
+    setSelectedProduct(product);
+    setShowModifyProductModal(true);
+  };
+
+  const handleOpenDeleteProductModal = (productId) => {
+    setSelectedProductId(productId);
+    setShowDeleteProductModal(true);
+  };
+
+  const handleCloseModifyProductModal = () => {
+    setShowModifyProductModal(false);
+    setSelectedProduct(null);
+  };
+
+  const handleCloseDeleteProductModal = () => {
+    setShowDeleteProductModal(false);
+    setSelectedProductId(null);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get("https://localhost:7037/api/Product", {
           params: {
-            filters: "idCategory:4:1",
+            filters: "idCategory:5:1",
             SortBy: "id",
             IsDescending: true,
             Page: currentPage,
@@ -24,29 +50,26 @@ const LandingRemeras = ({}) => {
         });
 
         if (response.data && response.data.data) {
-          setProductsRemeras(response.data.data); // Ajusta esto según la estructura de tu respuesta
+          setProductsBuzos(response.data.data); // Ajusta esto según la estructura de tu respuesta
           const pageCount = response.data.pageCount || 1; // Asegúrate de obtener el pageCount
           setTotalPages(pageCount); // Ajusta esto según la estructura de tu respuesta
         } else {
-          setProductsRemeras([]);
+          setProductsBuzos([]);
         }
       } catch (error) {
         console.error("Error fetching products:", error);
-        setProductsRemeras([]);
+        setProductsBuzos([]);
       }
     };
 
     fetchProducts();
   }, [currentPage]);
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    navigate("/cart");
-  };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
 
   return (
     <>
@@ -57,17 +80,18 @@ const LandingRemeras = ({}) => {
             id="landingTitle"
             className="d-flex justify-content-center mt-5 mb-5"
           >
-            Remeras
+            Buzos
           </h1>
         </Container>
       </div>
       <div className="d-flex justify-content-center mt-4 gap-3">
-        {Array.isArray(productsRemeras) &&
-          productsRemeras.map((product) => (
-            <CardProduct
+      {Array.isArray(productsBuzos) &&
+          productsBuzos.map((product) => (
+            <AdminCardProduct
               key={product.id}
               product={product}
-              handleAddToCart={handleAddToCart}
+              handleOpenModifyProductModal={handleOpenModifyProductModal}
+              handleOpenDeleteProductModal={handleOpenDeleteProductModal}
             />
           ))}
       </div>
@@ -84,10 +108,21 @@ const LandingRemeras = ({}) => {
           ))}
         </Pagination>
       </div>
-      <span id="REMERAS"></span>{" "}
+      <span id="BUZOS"></span>{" "}
       {/* Identificador para la sección de contacto */}
+
+      <ModifyProductModal
+        show={showModifyProductModal}
+        handleClose={handleCloseModifyProductModal}
+        product={selectedProduct}
+      />
+      <DeleteProductModal
+        show={showDeleteProductModal}
+        handleClose={handleCloseDeleteProductModal}
+        productId={selectedProductId}
+      />
     </>
   );
 };
 
-export default LandingRemeras;
+export default AdminLandingBuzos;
