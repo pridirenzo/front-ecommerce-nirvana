@@ -11,11 +11,7 @@ const ConfirmAccount = () => {
   useEffect(() => {
     const verifyAccount = async () => {
       try {
-        await api.post("api/User/verify", {
-          params: {
-            token: JSON.stringify(token),
-          },
-        });
+        await api.get(`api/User/verify?token=${token}`);
         alert("Se ha verificado su cuenta correctamente.");
         setIsVerified(true);
       } catch (err) {
