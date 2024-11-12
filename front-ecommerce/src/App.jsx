@@ -52,6 +52,7 @@ import AdminLandingBuzos from "./components/adminLandingProducts/AdminLandingBuz
 import AdminLandingVinilos from "./components/adminLandingProducts/AdminLandingVinilos";
 import AdminLandingCDs from "./components/adminLandingProducts/AdminLandingCDs";
 import AdminLandingAccesorios from "./components/adminLandingProducts/AdminLandingAccesorios";
+import ConfirmAccount from "./routes/ConfirmAccount";
 
 function App() {
   const [productsprendas, setProductsPrendas] = useState([]);
@@ -322,7 +323,8 @@ function App() {
     {path: "/adminsweatshirts", element: <Protected><AdminLandingBuzos /></Protected>},
     {path: "/adminvinyls", element: <Protected><AdminLandingVinilos/></Protected>},
     {path: "/admincds", element: <Protected><AdminLandingCDs/></Protected>},
-    {path: "/adminaccessories", element: <Protected><AdminLandingAccesorios/></Protected>}
+    {path: "/adminaccessories", element: <Protected><AdminLandingAccesorios/></Protected>},
+    {path: "/confirmAccount/:token", element: <ConfirmAccount />}
 
   ]);
 
