@@ -3,16 +3,10 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaUserCircle, FaVolumeUp, FaVolumeMute, FaCartPlus, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import LogoNirvana from '../../../public/LogoNirvana.png';
-import Button from "react-bootstrap/Button";
 import { ThemeContext } from "../../services/theme/theme.context";
-import solyluna from '../../../public/solyluna.png';
-import { Form } from "react-bootstrap";
-import search from "../icons/search.svg";
-import { InputGroup } from "react-bootstrap";
 import { UserContext } from "../../services/authentication/user.context";
 import { useMusic } from '../../services/music/music.context';
-
-
+import { Button } from 'react-bootstrap';
 
 const Navlinks = [
   { id: 1, name: 'PRENDAS', link: '/clothes' },
@@ -26,7 +20,7 @@ const Navbar = () => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  const { isPlaying, handlePlayMusic, handlePauseMusic } = useMusic(); // consumiendo el contexto de música. para encapsular todo el código y hacerlo más ordenado (?)
+  const { isPlaying, handlePlayMusic, handlePauseMusic } = useMusic(); // consumiendo el contexto de música.
 
   const handleAccountClick = () => {
     setShowButtons(!showButtons);
@@ -56,7 +50,6 @@ const Navbar = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("cartItems");
     localStorage.removeItem("userToken");
-    
   };
 
   const RoleButtons = () => {
@@ -167,8 +160,7 @@ const Navbar = () => {
             style={{ fontSize: "30px", margin: "10px", cursor: "pointer", color: "black"}}
           />
         )}
-        </div>
-          
+      </div>
 
       <div className="md:hidden flex items-center">
         <button
@@ -194,14 +186,7 @@ const Navbar = () => {
         }
         {RoleButtons()}
       </ul>
-      {/* <Form className="custom-form me-3">
-        <InputGroup>
-          <Form.Control placeholder="Buscar" aria-label="Buscar" />
-          <Button variant="outline-secondary">
-            <img src={search} alt="search" />
-          </Button>
-        </InputGroup>
-      </Form> */}
+
       <div className="d-flex align-items-center">
         {!user ? (
           <>
@@ -230,7 +215,8 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <span className="ml-2 text-black text-xl">{user.given_name} {user.family_name} </span>
+            {/* Actualización dinámica del nombre del usuario */}
+            <span className="ml-2 text-black text-xl">{user.firstName} {user.lastName} </span>
             <div className="relative ml-4">
               <button className="flex items-center" onClick={() => setUserMenuOpen(!userMenuOpen)}>
                 <FaUserCircle className="text-2xl text-black" />
@@ -243,7 +229,7 @@ const Navbar = () => {
                       className="flex items-center text-black"
                       onClick={() => handleNavClick('/profile')}
                     >
-                      <FaUserAlt className="mr-2" /> PERFIL
+                      <FaUserAlt className="mr-2" /> Mi Perfil
                     </a>
                   </li>
                   <li className="py-2 px-4 hover:bg-gray-200">
@@ -252,12 +238,12 @@ const Navbar = () => {
                       className="flex items-center text-black"
                       onClick={() => handleNavClick('/cart')}
                     >
-                      <FaCartPlus className="mr-2" /> CARRITO
+                      <FaCartPlus className="mr-2" /> Mi Carrito
                     </a>
                   </li>
                   <li className="py-2 px-4 hover:bg-gray-200">
                     <button className="flex items-center text-black" onClick={handleLogout}>
-                      <FaSignOutAlt className="mr-2" /> CERRAR SESIÓN
+                      <FaSignOutAlt className="mr-2" /> Cerrar Sesión
                     </button>
                   </li>
                 </ul>
@@ -271,12 +257,6 @@ const Navbar = () => {
       </Button>
     </nav>
   );
-
 };
 
 export default Navbar;
-
-
-
-
-

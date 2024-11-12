@@ -59,6 +59,9 @@ export const ThemeContextProvider = ({ children }) => {
     const secondTitleEditProf = document.getElementById("secondTitleEdit");
     const nameEditProf = document.getElementById("nameEdit");
     const surnameEditProf = document.getElementById("surnameEdit");
+    const firstTextNotFound = document.getElementById("firstTextNotFound");
+    const secondTextNotFound = document.getElementById("secondTextNotFound");
+    const thirdTextNotFound = document.getElementById("thirdTextNotFound");
 
     // me aseguro de que los textos y elementos se muestren con el color acorde al tema
     if (theme === "dark") {
@@ -105,6 +108,9 @@ export const ThemeContextProvider = ({ children }) => {
       if (secondTitleEditProf) secondTitleEditProf.style.color = "#FFE603";
       if (nameEditProf) nameEditProf.style.color = "#FFE603";
       if (surnameEditProf) surnameEditProf.style.color = "#FFE603";
+      if (firstTextNotFound) firstTextNotFound.style.color = "#FFE603"
+      if (secondTextNotFound) secondTextNotFound.style.color = "#FFE603"
+      if (thirdTextNotFound) thirdTextNotFound.style.color = "#FFE603"
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";
@@ -149,6 +155,9 @@ export const ThemeContextProvider = ({ children }) => {
       if (secondTitleEditProf) secondTitleEditProf.style.color = "black";
       if (nameEditProf) nameEditProf.style.color = "black";
       if (surnameEditProf) surnameEditProf.style.color = "black";
+      if (firstTextNotFound) firstTextNotFound.style.color = "black";
+      if (secondTextNotFound) secondTextNotFound.style.color = "black";
+      if (thirdTextNotFound) thirdTextNotFound.style.color = "black";
     }
   }, [theme]);
 
