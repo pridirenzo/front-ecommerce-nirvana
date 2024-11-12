@@ -27,6 +27,8 @@ const Cart = () => {
     0
   );
 
+console.log(cartItems);
+
   return (
     <>
       <Navbar />

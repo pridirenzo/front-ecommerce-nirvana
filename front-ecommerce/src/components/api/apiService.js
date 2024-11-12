@@ -243,8 +243,16 @@ export const GetOrders = () => {
 };
 
 export const PostOrder = async (OrderData) => {
+
+  const token = localStorage.getItem('userToken');
+  
   try {
-    const response = await api.post("/api/Order", OrderData);
+    const response = await api.post("/api/Order", OrderData, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
     return response.data;
   } catch (error) {
     console.error("Error en la solicitud:", error);

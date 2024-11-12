@@ -1,22 +1,80 @@
 import { Form, Col, Row, Button, Card } from "react-bootstrap";
 import Navbar from "../navbar/NavBar";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../services/authentication/user.context";
+import { PostOrder } from "../api/apiService.js";
+import OrderSuccessfulModal from "./OrderSuccessfullModal.jsx";
+
 
 const PurchaseDetail = () => {
   const location = useLocation();
   const { cartItems } = location.state || { cartItems: [] };
-  
+
   const { user } = useContext(UserContext); // Obtener el usuario desde el contexto
-  
+  const [showOrderSuccessfulModal, setShowOrderSuccessfulModal] = useState(false);
+
+  const handleOpenOrderSuccessfulModal = () => setShowOrderSuccessfulModal(true);
+
+  const handleCloseModal = () => {
+    setShowOrderSuccessfulModal(false);
+    handleNavClick("/");
+  };
+
+
+  const [streetName, setStreetName] = useState("");
+  const [streetNumber, setStreetNumber] = useState("");
+  const [province, setProvince] = useState("");
+  const [locality, setLocality] = useState("");
+
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
-  console.log(cartItems)
+  const getProductVariantId = (item) => {
+    if (item.idCategory === 4 || item.idCategory === 5) {
+      // Si el producto tiene tallas (categoría 4 o 5)
+      const variant = item.productVariants.find(
+        (variant) => variant.size === item.size
+      );
+      return variant ? variant.id : null;
+    } else {
+      // Si el producto no tiene tallas
+      return item.productVariants.length > 0
+        ? item.productVariants[0].id
+        : null;
+    }
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
   
+    const orderLines = cartItems.map((item) => ({
+      idProductVariant: getProductVariantId(item),
+      amount: item.quantity,
+    })).filter(line => line.idProductVariant !== null); // Filtrar elementos sin id válido
+  
+    const orderData = {
+      orderLines: orderLines, // Primero orderLines
+      address: { streetName, streetNumber, province, locality }, // Luego address
+    };
+  
+    try {
+      await PostOrder(JSON.stringify(orderData));
+      console.log("Order placed successfully:", JSON.stringify(orderData));
+      handleOpenOrderSuccessfulModal();
+    } catch (error) {
+      console.error("Error placing order:", error);
+    }
+  };
+  
+
+  const handleNavClick = (link) => {
+      window.location.href = link;
+  };
+
   return (
     <>
       <Navbar />
@@ -35,7 +93,7 @@ const PurchaseDetail = () => {
           Datos de usuario 👤
         </h2>
         <Col sm="8">
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Row className="m-5">
               <Col sm="4">
                 <Form.Group>
@@ -77,6 +135,8 @@ const PurchaseDetail = () => {
                     required
                     type="text"
                     placeholder="Ingresá tu calle"
+                    value={streetName}
+                    onChange={(e) => setStreetName(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -87,6 +147,8 @@ const PurchaseDetail = () => {
                     required
                     type="text"
                     placeholder="Ingresá tu altura"
+                    value={streetNumber}
+                    onChange={(e) => setStreetNumber(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -101,6 +163,8 @@ const PurchaseDetail = () => {
                     required
                     type="text"
                     placeholder="Ingresá tu provincia"
+                    value={province}
+                    onChange={(e) => setProvince(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -113,6 +177,8 @@ const PurchaseDetail = () => {
                     required
                     type="text"
                     placeholder="Ingresá tu localidad"
+                    value={locality}
+                    onChange={(e) => setLocality(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -175,6 +241,7 @@ const PurchaseDetail = () => {
               type="submit"
               variant="warning"
               className="m-5 mx-auto d-flex justify-content-center w-50 h-"
+              onClick={() => handleSubmit()}
             >
               FINALIZAR COMPRA
             </Button>
@@ -222,6 +289,11 @@ const PurchaseDetail = () => {
           </Card>
         </Col>
       </Row>
+
+      <OrderSuccessfulModal
+        show={showOrderSuccessfulModal}
+        handleClose={handleCloseModal}
+      />
     </>
   );
 };
