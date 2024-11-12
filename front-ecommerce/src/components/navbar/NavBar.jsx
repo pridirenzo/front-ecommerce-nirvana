@@ -7,6 +7,7 @@ import { ThemeContext } from "../../services/theme/theme.context";
 import { UserContext } from "../../services/authentication/user.context";
 import { useMusic } from '../../services/music/music.context';
 import { Button } from 'react-bootstrap';
+import { useEffect } from 'react';
 
 const Navlinks = [
   { id: 1, name: 'PRENDAS', link: '/clothes' },
@@ -18,9 +19,25 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const { isPlaying, handlePlayMusic, handlePauseMusic } = useMusic(); // consumiendo el contexto de música.
+
+
+  const { user, setUser } = useContext(UserContext);
+  const [fullName, setFullName] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      setFullName(`${user.given_name} ${user.family_name}`);
+    } else {
+      setFullName('Invitado');
+    }
+  }, [user]);
+
+  
+
+   console.log(user);
+
 
   const handleAccountClick = () => {
     setShowButtons(!showButtons);
@@ -216,7 +233,7 @@ const Navbar = () => {
         ) : (
           <>
             {/* Actualización dinámica del nombre del usuario */}
-            <span className="ml-2 text-black text-xl">{user.firstName} {user.lastName} </span>
+             <span className="ml-2 text-black text-xl">{fullName}</span>
             <div className="relative ml-4">
               <button className="flex items-center" onClick={() => setUserMenuOpen(!userMenuOpen)}>
                 <FaUserCircle className="text-2xl text-black" />

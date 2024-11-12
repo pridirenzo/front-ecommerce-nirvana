@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import Navbar from "../navbar/NavBar";
+import { useContext } from "react";
+import { UserContext } from "../../services/authentication/user.context";
 
 const SignIn = ({ createUser }) => {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext); // Obtener setUser desde el contexto
   
   // estado para las dimensiones de la ventana
   const [dimensions, setDimensions] = useState({
@@ -49,28 +52,43 @@ const SignIn = ({ createUser }) => {
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
     const confirmPassword = event.target.elements.confirmPassword.value;
-
+  
     if (password !== confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
-
+  
     if (!validatePassword(password)) {
       alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial");
       return;
     }
-
+  
     try {
+      // Mapeamos firstName y lastName a givenName y familyName
       const userData = {
         firstName,
         lastName,
         email,
         password,
-        role: 3,
-        isActive: 1
+        role: 3,  // Rol de Cliente (o el valor que utilices para roles)
+        isActive: 1,
+        givenName: firstName,  // Aquí se hace el mapeo
+        familyName: lastName   // Aquí se hace el mapeo
       };
-
-      const response = await createUser(userData);
+  
+      // Llamar a la función para crear el usuario
+      await createUser(userData);
+  
+      // Actualizamos el contexto con el nuevo usuario
+      setUser({
+        firstName,
+        lastName,
+        email,
+        role: 3, // Rol de cliente
+        givenName: firstName, // Añadido el givenName
+        familyName: lastName  // Añadido el familyName
+      });
+  
       alert("Revise su correo para la confirmación");
       navigate("/login");
     } catch (error) {
@@ -78,6 +96,8 @@ const SignIn = ({ createUser }) => {
       alert("Error al crear la cuenta");
     }
   };
+  
+
 
   return (
     <>
