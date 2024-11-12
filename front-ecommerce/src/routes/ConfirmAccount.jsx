@@ -35,7 +35,30 @@ const ConfirmAccount = () => {
     return <Navigate to="/" />;
   }
 
-  return <div>Verificando su cuenta...</div>;
+  const pageStyle = {
+    minHeight: "85vh",
+    display: "flex",
+    flexDirection: "column",
+  };
+
+  return (
+    <div className="confirm-account-container" style={pageStyle}>
+      <h1
+        id="verifyTitle"
+        className="d-flex justify-content-center title"
+        style={{ fontSize: '60px', marginTop: '130px', textAlign: 'center' }}
+      >
+        Verificación de Cuenta
+      </h1>
+      <p
+        id="verifyText"
+        className="d-flex justify-content-center status-message"
+        style={{ marginTop: '20px', textAlign: 'center' }}
+      >
+        Verificando su cuenta...
+      </p>
+    </div>
+  );
 };
 
 export default ConfirmAccount;

@@ -53,6 +53,12 @@ export const ThemeContextProvider = ({ children }) => {
     const musicButton1 = document.getElementById("musicButton1");
     const musicButton2 = document.getElementById("musicButton2");
     const productTitleAdminDash = document.getElementById("productTItleAdminDash");
+    const verifyTitle = document.getElementById("verifyTitle");
+    const verifyText = document.getElementById("verifyText");
+    const titleEditProf = document.getElementById("titleEditProfile");
+    const secondTitleEditProf = document.getElementById("secondTitleEdit");
+    const nameEditProf = document.getElementById("nameEdit");
+    const surnameEditProf = document.getElementById("surnameEdit");
 
     // me aseguro de que los textos y elementos se muestren con el color acorde al tema
     if (theme === "dark") {
@@ -93,6 +99,12 @@ export const ThemeContextProvider = ({ children }) => {
       if (musicButton1) musicButton1.style.color = "black";
       if (musicButton2) musicButton2.style.color = "black";
       if (productTitleAdminDash) productTitleAdminDash.style.color = "#FFE603";
+      if (verifyText) verifyText.style.color = "#FFE603";
+      if (verifyTitle) verifyTitle.style.color = "#FFE603";
+      if (titleEditProf) titleEditProf.style.color = "#FFE603"
+      if (secondTitleEditProf) secondTitleEditProf.style.color = "#FFE603";
+      if (nameEditProf) nameEditProf.style.color = "#FFE603";
+      if (surnameEditProf) surnameEditProf.style.color = "#FFE603";
     } else {
       document.body.style.backgroundColor = "#DDDDDD";
       if (navbar) navbar.style.backgroundColor = "#A4AAA6";
@@ -131,6 +143,12 @@ export const ThemeContextProvider = ({ children }) => {
       if (musicButton1) musicButton1.style.color = "black";
       if (musicButton2) musicButton2.style.color = "black";
       if (productTitleAdminDash) productTitleAdminDash.style.color = "black";
+      if (verifyText) verifyText.style.color = "black";
+      if (verifyTitle) verifyTitle.style.color = "black";
+      if (titleEditProf) titleEditProf.style.color = "black"
+      if (secondTitleEditProf) secondTitleEditProf.style.color = "black";
+      if (nameEditProf) nameEditProf.style.color = "black";
+      if (surnameEditProf) surnameEditProf.style.color = "black";
     }
   }, [theme]);
 

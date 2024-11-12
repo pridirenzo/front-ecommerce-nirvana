@@ -51,20 +51,25 @@ const NewResetPassword = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             newPassword,
+            token
           }),
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Hubo un error al restablecer la contraseña.");
-      }
+     // Si la respuesta no es ok, lanzamos un error
+     if (!response.ok) {
+      const text = await response.text(); // Obtenemos el cuerpo de la respuesta como texto plano
+      throw new Error(text); // Lanzamos un error con el mensaje del backend
+    }
+    // Si la respuesta es exitosa, obtenemos el texto y lo mostramos en un alert
+    const text = await response.text(); // Obtener el texto de la respuesta
 
-      const data = await response.json();
-      alert(data.message || "Restablecimiento exitoso");
+    alert(text); // Mostramos el mensaje del backend en un alert
+
+  
       // Redirigir al login después de restablecer la contraseña
       navigate("/login"); 
       setError("");
@@ -72,8 +77,6 @@ const NewResetPassword = () => {
       alert(`Error: ${err.message}`);
     }
 
-    setNewPassword("");
-    setConfirmPassword("");
   };
 
     // Estilos en línea

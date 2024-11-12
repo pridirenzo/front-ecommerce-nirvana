@@ -10,17 +10,17 @@ const Profile = () => {
   return (
     <>
       <Navbar/>
-      <h1 className="d-flex justify-content-center mt-5 mb-5" style={{fontSize: "30px"}}>
-        Hola {user.given_name} 
+      <h1 id="titleEditProfile" className="d-flex justify-content-center mt-5 mb-5" style={{fontSize: "30px"}}>
+        Hola, {user.given_name}! 
       </h1> 
       {/* hay que validar que cuando venga no venga user, no rompa*/}
       <Row className="m-5">
         <Col sm={8}>
-          <h2 className="mb-5" style={{fontSize: "30px"}}>Editar mi perfil</h2>
+          <h2 id="secondTitleEdit" className="mb-5" style={{fontSize: "30px"}}>Editar mi perfil</h2>
           <Form>
             <Form.Group as={Row}>
               <Col sm="8">
-                <Form.Label>Nombre</Form.Label>
+                <Form.Label id="nameEdit">Nombre</Form.Label>
                 <Form.Control
                   placeholder="Editá tu nombre"
                   type="text"
@@ -30,7 +30,7 @@ const Profile = () => {
             </Form.Group>
             <Form.Group as={Row}>
               <Col sm="8">
-                <Form.Label>Apellido</Form.Label>
+                <Form.Label id="surnameEdit">Apellido</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Editá tu apellido"

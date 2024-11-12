@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { UserContext } from "../../services/authentication/user.context";
 import Navbar from "../navbar/NavBar";
-import jwt_decode from "jwt-decode"; // Importación correcta
+import jwt_decode from "jwt-decode"; // a rodri y priska le funca con jwtDecode xd
 
 const LogIn = ({ ClientLog }) => {
   const [email, setEmail] = useState("");
