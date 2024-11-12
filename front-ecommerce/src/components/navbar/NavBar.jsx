@@ -13,6 +13,7 @@ import { UserContext } from "../../services/authentication/user.context";
 import { useMusic } from '../../services/music/music.context';
 
 
+
 const Navlinks = [
   { id: 1, name: 'PRENDAS', link: '/clothes' },
   { id: 2, name: 'DISCOGRAFIA', link: '/music' },
@@ -154,12 +155,14 @@ const Navbar = () => {
         {!isPlaying ? (
           <FaVolumeUp
             id="musicButton1"
+            className="icon-black" 
             onClick={handlePlayMusic}
             style={{ fontSize: "30px", margin: "10px", cursor: "pointer", color: "black"}}
           />
         ) : (
           <FaVolumeMute
             id="musicButton2"
+            className="icon-black" 
             onClick={handlePauseMusic}
             style={{ fontSize: "30px", margin: "10px", cursor: "pointer", color: "black"}}
           />

@@ -1,6 +1,7 @@
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { useState, useEffect} from "react";
 import { useLocation, useNavigate} from "react-router-dom";
+import Navbar from "../navbar/NavBar";
 
 const NewResetPassword = () => {
 
@@ -75,8 +76,19 @@ const NewResetPassword = () => {
     setConfirmPassword("");
   };
 
+    // Estilos en línea
+    const pageStyle = {
+
+      minHeight: "83vh",
+      display: "flex",
+      flexDirection: "column"
+    }
+  
+
   return (
     <>
+    <div style={pageStyle}>
+      <Navbar/>
       <h1
         id="newPasswordTitle"
         className="d-flex justify-content-center mt-5"
@@ -125,6 +137,7 @@ const NewResetPassword = () => {
           </Col>
         </Form.Group>
       </Form>
+      </div>
     </>
   );
 };

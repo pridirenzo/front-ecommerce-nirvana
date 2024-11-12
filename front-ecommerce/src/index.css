@@ -10,6 +10,10 @@
   padding: 0;
 }
 
+text, h1, h2, h3, p, form label{
+  color:  #ffcc00;
+}
+
 @keyframes slideDown {
   0% {
     opacity: 0;
@@ -71,4 +75,7 @@
 .icon-hover, .bi-cart2, .bi-person-circle, .GiHamburgerMenu, .search-icon, .bi-circle-half { color: #000}
 
 
-
+/* Estilo para los íconos con color negro */
+.icon-black {
+  color: black !important;
+}
