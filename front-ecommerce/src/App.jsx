@@ -241,14 +241,16 @@ function App() {
     },
     { path: "/product/:id", element: <ProductDetail /> },
     { path: "*", element: <NotFound /> },
+    
     {
       path: "/purchase",
       element: (
-
+        <ProtectedClient sendMessage="Solo los clientes pueden realizar compras. Por favor, inicia sesión o registrate.">
         <PurchaseDetail />
-
+        </ProtectedClient>
       ),
     },
+    
     {
       path: "/admin",
       element: (
@@ -264,14 +266,14 @@ function App() {
     {
       path: "/superadmin",
       element: (
-        //<ProtectedSuperAdmin>
+        <ProtectedSuperAdmin>
         <SuperAdminDashboard
           users={users}
           setUsers={setUsers}
           createUser2={createUser2}
           updateUser={updateUser}
         />
-        //</ProtectedSuperAdmin>
+        </ProtectedSuperAdmin>
       ),
     },
     {
@@ -311,9 +313,9 @@ function App() {
     {
       path: "/salesdashboard",
       element: (
-        //<Protected>
+        <Protected>
         <SalesDashboard orders={orders} setOrders={setOrders} products={products} users={users}/>
-        //</Protected>
+        </Protected>
       ),
     },
     { path: "/tees", element: <LandingRemeras /> },

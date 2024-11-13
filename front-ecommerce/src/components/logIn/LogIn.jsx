@@ -63,25 +63,25 @@ const LogIn = ({ ClientLog }) => {
         alert("Credenciales incorrectas");
       }
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      alert("Usuario o contraseña incorrecto. Por favor, intenta con otro.");
       
     // Verificar si el error tiene una respuesta
-    if (error.response) {
-      const errorMessage = error.response.data.message || "Error desconocido"; // Manejar mensaje de error
-      console.log("Mensaje del backend: ", errorMessage);  // Muestra el mensaje en consola
+    // if (error.response) {
+    //   const errorMessage = error.response.data.message || "Error desconocido"; // Manejar mensaje de error
+    //   console.log("Mensaje del backend: ", errorMessage);  // Muestra el mensaje en consola
 
-      if (errorMessage.includes("Usuario no registrado")) {
-        alert("El usuario no está registrado.");
-      } else if (errorMessage.includes("Contraseña incorrecta")) {
-        alert("La contraseña es incorrecta.");
-      } else if (errorMessage.includes("NotAllowedException")) {
-        alert("Cuenta no registrada o acceso denegado.");
-      } else {
-        alert("Error al iniciar sesión. Intenta nuevamente.");
-      }
-    } else {
-      alert("Error desconocido en la respuesta del servidor.");
-    }
+    //   if (errorMessage.includes("Usuario no registrado")) {
+    //     alert("El usuario no está registrado.");
+    //   } else if (errorMessage.includes("Contraseña incorrecta")) {
+    //     alert("La contraseña es incorrecta.");
+    //   } else if (errorMessage.includes("NotAllowedException")) {
+    //     alert("Cuenta no registrada o acceso denegado.");
+    //   } else {
+    //     alert("Error al iniciar sesión. Intenta nuevamente.");
+    //   }
+    // } else {
+    //   alert("Error desconocido en la respuesta del servidor.");
+    // }
   }
   };
 

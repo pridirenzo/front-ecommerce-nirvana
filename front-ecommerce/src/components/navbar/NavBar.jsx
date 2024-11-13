@@ -34,10 +34,6 @@ const Navbar = () => {
     }
   }, [user]);
 
-  
-
-   console.log(user);
-
 
   const handleAccountClick = () => {
     setShowButtons(!showButtons);

@@ -21,6 +21,7 @@ const ProductDetail = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
+  const [sizeError, setSizeError] = useState("");
 
   const categories = [
     "Prendas",
@@ -51,6 +52,13 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
+    if ((products.idCategory === 4 || products.idCategory === 5) && !size) {
+      setSizeError("Selecciona un tamaño.");
+      return; // Detener la ejecución si la talla es requerida y no está seleccionada
+    } else {
+      setSizeError(""); // Limpiar el mensaje de error si ya no se aplica
+    }
+
     const productToAdd = {
       ...products,
       quantity,
@@ -114,21 +122,24 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            <div className="mt-3">
-              <p>Tamaño</p>
-              <div className="d-flex">
-                {["S", "M", "L", "XL", "XXL"].map((sizeOption) => (
-                  <Button
-                    key={sizeOption}
-                    variant={size === sizeOption ? "warning" : "dark"}
-                    onClick={() => handleSizeChange(sizeOption)}
-                    className="me-2"
-                  >
-                    {sizeOption}
-                  </Button>
-                ))}
+            {(products.idCategory === 4 || products.idCategory === 5) && (
+              <div className="mt-3">
+                <p>Tamaño</p>
+                <div className="d-flex">
+                  {["S", "M", "L", "XL"].map((sizeOption) => (
+                    <Button
+                      key={sizeOption}
+                      variant={size === sizeOption ? "warning" : "dark"}
+                      onClick={() => handleSizeChange(sizeOption)}
+                      className="me-2"
+                    >
+                      {sizeOption}
+                    </Button>
+                  ))}
+                </div>
+                {sizeError && <p style={{ color: "red" }}>{sizeError}</p>}
               </div>
-            </div>
+            )}
 
             <ProtectedBuy onBuy={handleAddToCart}>
               <Button variant="warning" className="mt-4 w-100 mb-5">

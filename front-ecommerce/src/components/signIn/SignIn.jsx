@@ -59,7 +59,7 @@ const SignIn = ({ createUser }) => {
     }
   
     if (!validatePassword(password)) {
-      alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial");
+      alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial cómo estos : !@#$%^&* ");
       return;
     }
   
