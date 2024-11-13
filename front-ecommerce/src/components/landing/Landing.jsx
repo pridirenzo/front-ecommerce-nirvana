@@ -28,7 +28,6 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
 
   const { isLoading } = useContext(LoaderContext);
 
-  
 
   return (
     <>

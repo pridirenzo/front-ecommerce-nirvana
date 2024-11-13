@@ -27,7 +27,7 @@ const Cart = () => {
     0
   );
 
-console.log(cartItems);
+
 
   return (
     <>
@@ -50,20 +50,23 @@ console.log(cartItems);
                     <Card.Title style={{ color: "#FFE603" }}>
                       {item.name}
                     </Card.Title>
-                    <Card.Text>{item.description}</Card.Text>
-                    <Card.Text>
-                      <strong>Tamaño:</strong> {item.size || "N/A"}
+                    <Card.Text style={{ color: "#000000" }}>{item.description}</Card.Text>
+                    { (item.idCategory === 4 || item.idCategory === 5) && (
+                    <Card.Text style={{ color: "#FFE603" }}>
+                      <strong style={{ color: "#000000" }}> - Tamaño:</strong> {item.size || "N/A"}
                     </Card.Text>
-                    <Card.Text>
-                      <strong>Cantidad:</strong> {item.quantity}
+                    )}
+                    <Card.Text style={{ color: "#FFE603" }}>
+                      <strong style={{ color: "#000000" }}> - Cantidad:</strong> {item.quantity}
+                    </Card.Text >
+                    <Card.Text  style={{ color: "#FFE603" }}>
+                      <strong style={{ color: "#000000" }}> - Precio unitario:</strong> ${item.price}
                     </Card.Text>
-                    <Card.Text className="font-bold">
-                      <strong>Precio unitario:</strong> ${item.price}
-                    </Card.Text>
-                    <Card.Text className="font-bold">
-                      <strong>Total:</strong> ${item.price * item.quantity}
+                    <Card.Text style={{ color: "#FFE603" }}>
+                      Total: ${item.price * item.quantity}
                     </Card.Text>
                     <Button
+                      className="mt-2"
                       variant="dark"
                       onClick={() => handleRemoveItem(index)}
                     >
@@ -74,8 +77,8 @@ console.log(cartItems);
               ))}
             </div>
             <div className="mt-4">
-              <h3 className="text-white">
-                Total a pagar: ${totalPrice.toFixed(2)}
+              <h3 style={{ color: "#FFE603", fontSize: 20, margin: 8 }}>
+                <div className="text-white inline ">Total a pagar:</div> ${totalPrice.toFixed(2)}
               </h3>
               <Button
                 variant="dark"
@@ -85,11 +88,11 @@ console.log(cartItems);
                 Seguir comprando
               </Button>
               <Button
-                variant="dark"
+                variant="warning"
                 className="mt-4"
                 onClick={handleAddDeliveryDetails}
               >
-                Añadir detalles de entrega
+                Finalizar compra
               </Button>
             </div>
           </>
