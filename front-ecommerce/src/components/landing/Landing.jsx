@@ -3,6 +3,8 @@ import { Card, Button, Carousel, Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Navbar from "../navbar/NavBar";
 import CardProduct from "../cardProduct/CardProduct";
+import { LoaderContext } from "../../services/loadercontext/LoaderContext";
+import { useContext } from "react";
 
 
 const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
@@ -24,12 +26,15 @@ const Landing = ({ productsprendas, productsmusic, productsaccesories }) => {
     }
   };
 
+  const { isLoading } = useContext(LoaderContext);
+
+  
+
   return (
     <>
       <Navbar />
-
-
       <div className="animated-text d-flex justify-content-center">
+        
         <Container className="text-center mt-5">
           <h1
             id="landingTitle"
