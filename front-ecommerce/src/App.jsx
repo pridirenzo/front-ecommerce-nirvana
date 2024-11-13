@@ -53,6 +53,7 @@ import AdminLandingVinilos from "./components/adminLandingProducts/AdminLandingV
 import AdminLandingCDs from "./components/adminLandingProducts/AdminLandingCDs";
 import AdminLandingAccesorios from "./components/adminLandingProducts/AdminLandingAccesorios";
 import ConfirmAccount from "./routes/ConfirmAccount";
+import LoaderContextProvider, { LoaderContext } from "./services/loadercontext/LoaderContext";
 
 function App() {
   const [productsprendas, setProductsPrendas] = useState([]);
@@ -64,15 +65,18 @@ function App() {
   const [productscds, setProductsCDs] = useState([]);
   const [products, setProducts] = useState([]);
   const {user} = useContext(UserContext);
+  const { toggleLoading } = useContext(LoaderContext);
 
 
   //fetcheo de todos los productos
 
   useEffect(() => {
     const fetchProducts = async () => {
+      toggleLoading(true);
       try {
         const Products = await GetProducts();
         setProducts(Array.isArray(Products) ? Products : []);
+        toggleLoading(false);
       } catch (error) {
         console.log(error);
       }
