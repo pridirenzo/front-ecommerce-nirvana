@@ -82,7 +82,7 @@ const CreateProductModal = ({ show, handleClose }) => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label className='form-title-custom'>Categorías</Form.Label>
-              <Form.Select value={category} onChange={handleCategoryChange}>
+              <Form.Select value={category} onChange={handleCategoryChange} required>
                 <option value="" className='form-select-options-custom'>Elija una categoría</option>
                 <option value="3" className='form-select-options-custom'>Accesorios</option>
                 <option value="4" className='form-select-options-custom'>Remeras</option>
@@ -98,12 +98,16 @@ const CreateProductModal = ({ show, handleClose }) => {
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
                 autoFocus
+                type='text'
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label className='form-title-custom'>Descripción del producto</Form.Label>
               <Form.Control as="textarea"
                 rows={3}
+                required
+                type='textarea'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -113,6 +117,7 @@ const CreateProductModal = ({ show, handleClose }) => {
               <Form.Control
                 placeholder="Ej: https://imagen.com/"
                 value={imageUrl}
+                type="url"
                 onChange={(e) => setImageUrl(e.target.value)}
               />
             </Form.Group>
@@ -120,9 +125,11 @@ const CreateProductModal = ({ show, handleClose }) => {
               <Form.Group className="mb-3">
                 <Form.Label className='form-title-custom'>Color</Form.Label>
                 <Form.Control
+                type='text'
                   placeholder="Color"
                   value={color}
                   onChange={handleColorChange}
+                  required
                 />
               </Form.Group>
             )}
@@ -131,7 +138,9 @@ const CreateProductModal = ({ show, handleClose }) => {
               <InputGroup.Text>$</InputGroup.Text>
               <Form.Control aria-label="Amount (to the nearest dollar)"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)} />
+                type='number'
+                onChange={(e) => setPrice(e.target.value)} 
+                required/>
             </InputGroup>
             <Button onClick={handleOpenStockVariantsModal}> Agregar stock</Button>
           </Form>

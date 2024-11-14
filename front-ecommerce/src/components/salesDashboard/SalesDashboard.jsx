@@ -58,12 +58,12 @@ const SalesDashboard = ({ orders, products, users }) => {
                   </td>
                   <td>
                     {order.orderLines.map((line, index) => (
-                      <div key={index}>{line.productVariant.size}</div>
+                      <div key={index}>{line.productVariant.size || <strong>-</strong>}</div>
                     ))}
                   </td>
                   <td>
                     {order.orderLines.map((line, index) => (
-                      <div key={index}>{line.productVariant.color}</div>
+                      <div key={index}>{line.productVariant.color || <strong>-</strong>}</div>
                     ))}
                   </td>
                   <td>

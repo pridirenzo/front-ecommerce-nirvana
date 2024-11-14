@@ -56,6 +56,8 @@ function StockVariantsModal({ show, handleClose, onSave, isClothingCategory }) {
               <Form.Control
                 placeholder="Cantidad en stock"
                 value={variant.stock}
+                required
+                type='number'
                 onChange={(e) => handleVariantChange(index, "stock", e.target.value)}
               />
             </Form.Group>
