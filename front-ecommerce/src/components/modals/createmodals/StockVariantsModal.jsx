@@ -2,7 +2,6 @@ import '../modalstyle/Modals.css';
 import React, { useState } from "react";
 import { Modal, Form, Button, FormGroup } from "react-bootstrap";
 
-
 function StockVariantsModal({ show, handleClose, onSave, isClothingCategory }) {
   const [variants, setVariants] = useState([{ id: 0, size: "", stock: "" }]);
 
@@ -18,20 +17,36 @@ function StockVariantsModal({ show, handleClose, onSave, isClothingCategory }) {
 
   const handleVariantChange = (index, field, value) => {
     const updatedVariants = variants.map((variant, i) =>
-      i === index ? { ...variant, [field]: value } : variant
+      i === index ? { ...variant, [field]: field === "stock" ? Math.max(0, Number(value)) : value } : variant
     );
     setVariants(updatedVariants);
   };
 
   const handleSave = () => {
+    // Verificar que el stock es positivo y que no hay talles duplicados
+    const isValidStock = variants.every(variant => variant.stock > 0);
+    const uniqueSizes = new Set(variants.map(variant => variant.size));
+    const isUniqueSize = uniqueSizes.size === variants.length;
+  
+    if (!isValidStock) {
+      alert("Por favor, ingresa un stock positivo para cada variante.");
+      return;
+    }
+  
+    if (!isUniqueSize) {
+      alert("Cada talle debe ser único. Por favor, selecciona talles diferentes.");
+      return;
+    }
+  
     onSave(variants);
     handleClose();
   };
+  
 
   return (
     <Modal show={show} onHide={handleClose} backdrop="static">
       <Modal.Header closeButton>
-        <Modal.Title  className='modal-title-custom'>Agregar stock</Modal.Title>
+        <Modal.Title className='modal-title-custom'>Agregar stock</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {variants.map((variant, index) => (
@@ -43,7 +58,7 @@ function StockVariantsModal({ show, handleClose, onSave, isClothingCategory }) {
                   value={variant.size}
                   onChange={(e) => handleVariantChange(index, "size", e.target.value)}
                 >
-                  <option value="" className="form-select-options-custom">Seleccione un tamaño</option>
+                  <option value="" disabled className="form-select-options-custom">Seleccione un tamaño</option>
                   <option value="S" className="form-select-options-custom">S</option>
                   <option value="M" className="form-select-options-custom">M</option>
                   <option value="L" className="form-select-options-custom">L</option>
@@ -59,6 +74,7 @@ function StockVariantsModal({ show, handleClose, onSave, isClothingCategory }) {
                 required
                 type='number'
                 onChange={(e) => handleVariantChange(index, "stock", e.target.value)}
+                min="1"
               />
             </Form.Group>
           </div>

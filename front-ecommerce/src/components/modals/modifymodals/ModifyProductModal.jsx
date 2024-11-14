@@ -13,6 +13,7 @@ const ModifyProductModal = ({ show, handleClose, product }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [price, setPrice] = useState('');
   const [color, setColor] = useState('');
+  const [isUpdating, setIsUpdating] = useState(false); 
 
   useEffect(() => {
     if (product) {
@@ -25,7 +26,20 @@ const ModifyProductModal = ({ show, handleClose, product }) => {
   }, [product]);
 
   const handleSave = async () => {
-    const priceValue = price ? parseFloat(price) : 0; // Verificar que el precio no esté vacío
+    // Validar que todos los campos estén completos
+    if (!category || !productName || !description || !imageUrl || !price) {
+      alert("Por favor, completa todos los campos antes de guardar.");
+      return;
+    }
+  
+    const priceValue = parseFloat(price);
+  
+    // Validar que el precio sea positivo
+    if (priceValue <= 0) {
+      alert("Por favor, ingresa un precio positivo.");
+      return;
+    }
+  
     const updatedProduct = {
       idCategory: category,
       name: productName,
@@ -33,20 +47,24 @@ const ModifyProductModal = ({ show, handleClose, product }) => {
       imageUrl: imageUrl,
       price: {
         createdAt: new Date().toISOString(),
-        value: priceValue // Asegúrate de que el valor se convierte a número
+        value: priceValue
       },
-      id: product.id // Asegúrate de incluir el id del producto
+      id: product.id
     };
-
+  
     try {
-      const response = await UpdateProduct(updatedProduct); // Usa la función de ApiService
+      setIsUpdating(true);
+      const response = await UpdateProduct(updatedProduct);
       console.log('Producto actualizado:', response);
+      setIsUpdating(false);
       handleClose();
       window.location.reload();
     } catch (error) {
       console.error('Error al actualizar el producto:', error);
     }
   };
+  
+  
 
   return (
     <>
@@ -59,7 +77,7 @@ const ModifyProductModal = ({ show, handleClose, product }) => {
             <Form.Group className="mb-3">
               <Form.Label className='form-title-custom'>Categorías</Form.Label>
               <Form.Select value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option value="" className='form-select-options-custom'>Elija una categoría</option>
+                <option value="" className='form-select-options-custom' disabled>Elija una categoría</option>
                 <option value="3" className='form-select-options-custom'>Accesorios</option>
                 <option value="4" className='form-select-options-custom'>Remeras</option>
                 <option value="5" className='form-select-options-custom'>Buzos</option>
@@ -100,13 +118,13 @@ const ModifyProductModal = ({ show, handleClose, product }) => {
                 onChange={(e) => setPrice(e.target.value)}
               />
             </InputGroup>
-            <Button onClick={handleSave}>Guardar cambios</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
           </Button>
+          <Button onClick={handleSave} className='mr-3' disabled={isUpdating}>Guardar cambios</Button>
         </Modal.Footer>
       </Modal>
     </>

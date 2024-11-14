@@ -9,6 +9,7 @@ import { UserContext } from "../../services/authentication/user.context";
 const SignIn = ({ createUser }) => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext); // Obtener setUser desde el contexto
+  const [isUpdating, setIsUpdating] = useState(false);
   
   // estado para las dimensiones de la ventana
   const [dimensions, setDimensions] = useState({
@@ -64,6 +65,7 @@ const SignIn = ({ createUser }) => {
     }
   
     try {
+      setIsUpdating(true);
       // Mapeamos firstName y lastName a givenName y familyName
       const userData = {
         firstName,
@@ -89,6 +91,7 @@ const SignIn = ({ createUser }) => {
   
       alert("Revise su correo para la confirmación");
       navigate("/login");
+      setIsUpdating(false);
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
       alert("Error al crear la cuenta");
@@ -159,7 +162,7 @@ const SignIn = ({ createUser }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3" className="d-flex justify-content-between">
-            <Button type="submit" variant="dark" className="form-button w-50 mb-2">
+            <Button type="submit" variant="dark" className="form-button w-50 mb-2" disabled={isUpdating}>
               REGISTRARME
             </Button>
             <Button
