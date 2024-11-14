@@ -5,12 +5,13 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../services/authentication/user.context";
 import { PostOrder } from "../api/apiService.js";
 import OrderSuccessfulModal from "./OrderSuccessfullModal.jsx";
+import { CartContext } from "../cart/CartContext.jsx";
 
 
 const PurchaseDetail = () => {
   const location = useLocation();
   const { cartItems } = location.state || { cartItems: [] };
-
+  const { clearCart } = useContext(CartContext);
   const { user } = useContext(UserContext); // Obtener el usuario desde el contexto
   const [showOrderSuccessfulModal, setShowOrderSuccessfulModal] = useState(false);
 
@@ -65,6 +66,7 @@ const PurchaseDetail = () => {
       await PostOrder(JSON.stringify(orderData));
       console.log("Order placed successfully:", JSON.stringify(orderData));
       handleOpenOrderSuccessfulModal();
+      clearCart();
     } catch (error) {
       console.error("Error placing order:", error);
     }

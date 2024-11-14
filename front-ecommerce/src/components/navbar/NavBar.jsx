@@ -138,6 +138,7 @@ const Navbar = () => {
             src={LogoNirvana}
             alt="LogoNirvana"
             className="w-16 sm:w-24 transition duration-300 ease-in-out transform hover:scale-150 mr-4 cursor-pointer"
+            style={{width: "5rem"}}
           />
         </a>
         <ul className="hidden md:flex space-x-6">

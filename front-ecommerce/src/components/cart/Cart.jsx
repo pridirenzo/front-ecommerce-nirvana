@@ -32,7 +32,7 @@ const Cart = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4" style={{minHeight: "64vh"}}>
         <h2 className="hover:text-primary text-white text-2xl font-bold mb-4">
           Carrito de Compras
         </h2>

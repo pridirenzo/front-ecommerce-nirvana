@@ -71,23 +71,21 @@ const SignIn = ({ createUser }) => {
         email,
         password,
         role: 3,  // Rol de Cliente (o el valor que utilices para roles)
-        isActive: 1,
-        givenName: firstName,  // Aquí se hace el mapeo
-        familyName: lastName   // Aquí se hace el mapeo
+        isActive: 1
       };
   
       // Llamar a la función para crear el usuario
       await createUser(userData);
   
       // Actualizamos el contexto con el nuevo usuario
-      setUser({
-        firstName,
-        lastName,
-        email,
-        role: 3, // Rol de cliente
-        givenName: firstName, // Añadido el givenName
-        familyName: lastName  // Añadido el familyName
-      });
+      // setUser({
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   role: 3, // Rol de cliente
+      //   givenName: firstName, // Añadido el givenName
+      //   familyName: lastName  // Añadido el familyName
+      // });
   
       alert("Revise su correo para la confirmación");
       navigate("/login");
