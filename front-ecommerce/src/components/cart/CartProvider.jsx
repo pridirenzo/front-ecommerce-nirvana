@@ -10,13 +10,22 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setCartItems((prevItems) => {
-      const updatedCart = [...prevItems, product];
-      localStorage.setItem('cartItems', JSON.stringify(updatedCart)); // Guardar en localStorage
+      const updatedCart = prevItems.map(item => 
+        item.id === product.id && item.size === product.size
+          ? { ...item, quantity: item.quantity + product.quantity }
+          : item
+      );
+
+      if (!updatedCart.find(item => item.id === product.id && item.size === product.size)) {
+        updatedCart.push(product);
+      }
+
+      localStorage.setItem('cartItems', JSON.stringify(updatedCart)); 
       return updatedCart;
     });
   };
 
-  const clearCart = () => { //para vaciar el carrito al cerrar sesion 
+  const clearCart = () => { // Para vaciar el carrito al cerrar sesión
     setCartItems([]); 
     localStorage.removeItem('cartItems'); 
   };
