@@ -10,6 +10,7 @@ const LogIn = ({ ClientLog }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -53,11 +54,13 @@ const LogIn = ({ ClientLog }) => {
       // Si la respuesta es exitosa, procesamos el token
       const token = response.data;
       if (token) {
+        setIsUpdating(true);
         const decodedUser = jwt_decode(token); // Decodificamos el token para obtener el usuario
         localStorage.setItem("userToken", token);
         localStorage.setItem("user", JSON.stringify(decodedUser)); // Guardamos el usuario en el localStorage
         setUser(decodedUser); // Actualizamos el contexto de usuario
         navigate("/"); // Redirigimos al inicio
+        setIsUpdating(false);
       } else {
         setError("Credenciales incorrectas");
         alert("Credenciales incorrectas");
@@ -121,6 +124,7 @@ const LogIn = ({ ClientLog }) => {
               type="submit"
               variant="dark"
               className="form-button mt-5 w-100 mb-5"
+              disabled = {isUpdating}
             >
               INICIAR SESIÓN
             </Button>

@@ -11,7 +11,8 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [newUser, setNewUser] = useState({ firstName: "", lastName: "", email: "", password: "", role: 3 });
   const [successMessage, setSuccessMessage] = useState("");
-  
+  const [failMessage, setFailMessage] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false); 
 
   const handleCloseEdit = () => setShowEditModal(false);
   const handleCloseDelete = () => setShowDeleteModal(false);
@@ -50,9 +51,15 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
     }
   };
 
+  
   const handleAddUser = async (event) => {
     event.preventDefault();
     const { firstName, lastName, email, password } = newUser;
+
+    if (!newUser.firstName || !newUser.lastName || !newUser.email || !newUser.password || !newUser.role) {
+      alert("Por favor, completa todos los campos antes de agregar el usuario.");
+      return;
+    }
 
     if (!validatePassword(password)) {
       alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial");
@@ -60,6 +67,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
     }
 
     try {
+      setIsUpdating(true);
       const userData = {
         firstName,
         lastName,
@@ -73,6 +81,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
       console.log('Nuevo usuario creado:', response.data);
       setUsers((prevUsers) => [...prevUsers, response.data]);
       alert("Usuario creado con exito");
+      setIsUpdating(false);
       handleCloseAdd();
       window.location.reload();  //linea que hace el reload, borrar cuando se arregle error de id
     } catch (error) {
@@ -93,10 +102,12 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
     };
   
     try {
+      setIsUpdating(true);
       await updateUser(selectedUser.id, updatedUser);
       setUsers((prevUsers) =>
         prevUsers.map((user) => (user.id === selectedUser.id ? { ...user, ...updatedUser } : user))
       );
+      setIsUpdating(false);
       handleCloseEdit();
       setSuccessMessage('Usuario editado exitosamente.');
     } catch (error) {
@@ -108,16 +119,21 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
 
   const handleDeleteUser = async (userId) => {
     try {
+      setIsUpdating(true);
       const response = await fetch(`https://localhost:7037/api/User/${userId}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
         setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+        setIsUpdating(false);
         handleCloseDelete();
         setSuccessMessage("Usuario eliminado exitosamente.");
       } else {
         console.error('Error al eliminar el usuario de la base de datos');
+        setIsUpdating(false);
+        handleCloseDelete();
+        setFailMessage("El usuario posee compras ya hechas, por lo cual no se puede eliminar.");
       }
     } catch (error) {
       console.error('Error en la solicitud:', error);
@@ -129,7 +145,12 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
       const timer = setTimeout(() => setSuccessMessage(""), 3000);
       return () => clearTimeout(timer);
     }
-  }, [successMessage]);
+    if (failMessage) {
+      const timer = setTimeout(() => setFailMessage(""), 3000);
+      return () => clearTimeout(timer);
+    }
+
+  }, [successMessage, failMessage]);
 
   return (
     <>
@@ -140,6 +161,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
         </h1>
 
         {successMessage && <Alert variant="success">{successMessage}</Alert>}
+        {failMessage && <Alert variant="danger">{failMessage}</Alert>}
 
         <div className="d-flex justify-content-center mb-4">
           <Button variant="dark" className="add-button w-50" onClick={handleShowAdd}>
@@ -179,48 +201,53 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
           </Modal.Header>
           <Modal.Body >
             <form onSubmit={handleAddUser}>
-              <div className="form-group">
+              <div className="form-group mb-3">
                 <label style={{ color: "black" }}>Nombre</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control mb-3"
                   value={newUser.firstName}
                   onChange={(e) => setNewUser({ ...newUser, firstName: e.target.value })}
+                  required
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mb-3">
                 <label style={{ color: "black" }}>Apellido</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control mb-3"
                   value={newUser.lastName}
                   onChange={(e) => setNewUser({ ...newUser, lastName: e.target.value })}
+                  required
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mb-3">
                 <label style={{ color: "black" }}>Email</label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control mb-3"
                   value={newUser.email}
                   onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                  required
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mb-3">
                 <label style={{ color: "black" }}>Contraseña</label>
                 <input
                   type="password"
                   className="form-control"
                   value={newUser.password}
                   onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                  required
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mb-3">
                 <label style={{ color: "black" }}>Rol</label>
                 <select
                   className="form-control"
                   value={newUser.role}
                   onChange={(e) => setNewUser({ ...newUser, role: parseInt(e.target.value) })}
+                  required
                 >
                   <option value={1}>Super Admin</option>
                   <option value={2}>Admin</option>
@@ -230,7 +257,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="success" type="submit" onClick={handleAddUser}>
+            <Button variant="success" type="submit" onClick={handleAddUser} disabled={isUpdating}>
               Agregar Usuario
             </Button>
           </Modal.Footer>
@@ -243,7 +270,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
           <Modal.Body>
             {selectedUser && (
               <form>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label style={{ color: "black" }}>Nombre</label>
                   <input
                     type="text"
@@ -252,16 +279,16 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
                     onChange={(e) => setSelectedUser({ ...selectedUser, firstName: e.target.value })}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label style={{ color: "black" }}>Apellido</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control mb-3"
                     value={selectedUser.lastName}
                     onChange={(e) => setSelectedUser({ ...selectedUser, lastName: e.target.value })}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label style={{ color: "black" }}>Email</label>
                   <input
                     type="email"
@@ -270,7 +297,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
                     onChange={(e) => setSelectedUser({ ...selectedUser, email: e.target.value })}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label style={{ color: "black" }}>Rol</label>
                   <select
                     className="form-control"
@@ -282,7 +309,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
                     <option value={3}>Cliente</option>
                   </select>
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group mb-3">
                   <label style={{ color: "black" }}>Activo</label>
                   <select
                     className="form-control"
@@ -292,16 +319,16 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
                     <option value={1}>Activo</option>
                     <option value={0}>Inactivo</option>
                   </select>
-                </div>
-                <Button variant="success" onClick={handleEditUser} className="mt-2">
-                  Guardar Cambios
-                </Button>
+                </div> */}
               </form>
             )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="dark" onClick={handleCloseEdit}>
               Cancelar
+            </Button>
+            <Button variant="success" onClick={handleEditUser} className="ml-3" disabled={isUpdating}>
+                  Guardar Cambios
             </Button>
           </Modal.Footer>
         </Modal>
@@ -316,7 +343,7 @@ const SuperAdminDashboard = ({ users, setUsers, createUser2, updateUser }) => {
             <Button variant="secondary" onClick={handleCloseDelete}>
               Cancelar
             </Button>
-            <Button variant="danger" onClick={() => handleDeleteUser(selectedUser?.id)}>
+            <Button variant="danger" onClick={() => handleDeleteUser(selectedUser?.id)} disabled={isUpdating}>
               Eliminar
             </Button>
           </Modal.Footer>

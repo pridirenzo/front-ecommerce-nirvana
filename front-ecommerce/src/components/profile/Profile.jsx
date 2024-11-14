@@ -44,10 +44,10 @@ const Profile = () => {
     }
 
     const updatedUser = {
-      firstName,
-      lastName,
-      givenName: firstName, // Mapear firstName a givenName
-      familyName: lastName, // Mapear lastName a familyName
+      firstName: firstName,
+      lastName: lastName,
+      // given_name: firstName, // Mapear firstName a givenName
+      // family_name: lastName, // Mapear lastName a familyName
     };
 
     try {
@@ -73,10 +73,10 @@ const Profile = () => {
 
       const updatedData = {
         ...user,
-        firstName,
-        lastName,
-        givenName: firstName, // Actualizamos el givenName
-        familyName: lastName, // Actualizamos el familyName
+        // firstName,
+        // lastName,
+        given_name: firstName, // Actualizamos el givenName
+        family_name: lastName, // Actualizamos el familyName
       };
 
       setUser(updatedData); // Esto actualiza el contexto y debería hacer re-renderizar Navbar y Profile
